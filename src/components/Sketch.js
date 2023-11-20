@@ -13,9 +13,9 @@ const sketch = (p) => {
   let myShape = [];
   let axisRotation;
   let myShapeRows;
-  let angleRadians;
+  let angleRadians = 0;
   let areModifiersSubmitted = false;
-
+  let scale = 1;
 
   let transZ = 0;
   let transX = 0;
@@ -32,9 +32,6 @@ const sketch = (p) => {
   p.setup = () => {
     p.createCanvas(divCanvas.clientWidth, window.innerHeight, p.WEBGL);
     // p.debugMode();
-
-
-
 
   };
 
@@ -53,57 +50,61 @@ const sketch = (p) => {
 
       myShapeRows = props.myShapeRows;
       angleRadians = props.angleRadians;
+
+      if(areModifiersSubmitted !== props.areModifiersSubmitted){
+        p.camera(400,-300,0,0,0,0);
+      }
+
       areModifiersSubmitted = props.areModifiersSubmitted;
 
       switchMode = props.switchMode;
 
-      if(!switchMode){
-        transZ = -((myShape.length / myShapeRows)-2)*20 -20;
-        transX = -(myShapeRows-1)*20;
-      }else{
-        transZ = -((myShape.length / (myShapeRows*2)))*20 -20;
-        transX = -(myShapeRows/2-1)*20;
-      };
-
-
-      if(!switchMode){
-        cameraX= ((myShape.length / myShapeRows)-1)*15*maxY;
-        cameraY= -cameraX/2;
-      }else{
-        cameraX= ((myShape.length / myShapeRows)/2)*15*maxY;
-        cameraY=-cameraX/2;
-      }
-
-      if(angleRadians){
-        cameraX = cameraX*1.5;
-        cameraY = cameraY*1.5;
-      }
-
-
-      for(let i = 0; i < myShape.length; i++){
-        if(myShape[i][1] < maxY){
-          maxY = myShape[i][1];
-        }
-      }
-      maxY = -maxY;
-
+      scale = props.scale;
 
   };
-
 
 
 
   p.draw = () => {
     p.background(255);
 
+    if(!switchMode){
+      transZ = -((myShape.length / myShapeRows)-2)*(scale/2) -(scale/2);
+      transX = -(myShapeRows-1)*20;
+    }else{
+      transZ = -((myShape.length / (myShapeRows*2)))*(scale/2) -(scale/2);
+      transX = -(myShapeRows/2-1)*20;
+    };
+
+
+    for(let i = 0; i < myShape.length; i++){
+      if(myShape[i][1] < maxY){
+        maxY = myShape[i][1];
+      }
+    }
+    maxY = -maxY;
+
+
+    if(!switchMode){
+      cameraX= 500 + (30*maxY);
+      cameraY= -cameraX/2;
+    }else{
+      cameraX= ((myShape.length / myShapeRows)/2)*15*maxY;
+      cameraY=-cameraX/2;
+    }
+
+    if(angleRadians){
+      cameraX = cameraX*1.5;
+      cameraY = cameraY*1.5;
+    }
 
     if(!areModifiersSubmitted){
       p.orbitControl();
     }else{
       p.camera(cameraX,cameraY,0,0,0,0);
       p.rotateY(p.frameCount/160);
+      scale=20;
     }
-
 
     if(!angleRadians){
           p.translate(transX,0,transZ);
@@ -114,9 +115,7 @@ const sketch = (p) => {
     }
 
 
-
-
-    p.scale(40);
+    p.scale(scale);
 
 
     if (myShape) {
@@ -246,13 +245,14 @@ const sketch = (p) => {
 
 
 
-const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted } ) => {
+const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, exportStl } ) => {
 
   const [angle, setAngle] = useState(0);
   const [switchMode, setSwitchMode] = useState(0);
   const [qualityRotation, setQualityRotation] = useState(2);
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
+  const [scale, setScale] = useState(1);
 
 
 
@@ -276,6 +276,9 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted }
         setAxisRotation(data);
       };
 
+      const handleScaleChange = (data) => {
+          setScale(data);
+        };
 
 
     const [myShape, setMyShape] = useState([]);
@@ -309,6 +312,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted }
           angleRadians={angleRadians}
           switchMode={switchMode}
           areModifiersSubmitted={areModifiersSubmitted}
+          scale={scale}
         />
         <MyShape
           dropZoneInfo={dropZoneInfo}
@@ -320,6 +324,16 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted }
           offsetValue ={offsetValue}
           axisRotation ={axisRotation}
         />
+
+        {exportStl && (<Export
+
+          myShape={myShape}
+          axisRotation={axisRotation}
+          myShapeRows={myShapeRows}
+          angleRadians={angleRadians}
+          switchMode={switchMode}
+
+          />)}
 
       </div>
 
@@ -338,6 +352,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted }
             angleRadians={angleRadians}
             switchMode={switchMode}
             areModifiersSubmitted={areModifiersSubmitted}
+            scale={scale}
           />
           <MyShape
             dropZoneInfo={dropZoneInfo}
@@ -352,7 +367,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted }
           </div>
 
         <div className="col-md-4 px-0 mx-0 mt-5" >
-         <div className = "modifiers p-3 m-2">
+         <div className = "modifiers p-3 m-2 mx-5">
 
           <Modifiers
             onAngleChange={handleAngle}
@@ -360,10 +375,13 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted }
             onQualityRotationChange={handleQualityRotation}
             onOffsetValueChange={handleOffsetValue}
             onAxisRotationChange={handleAxisRotation}
+            onScaleChange={handleScaleChange}
+
           />
 
           </div>
         </div>
+
 
       </>
         )}

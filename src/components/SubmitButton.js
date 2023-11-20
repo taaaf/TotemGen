@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SubmitButton = ({ onFileTextSubmission, onDropDivInfoSubmission, file, text, isFileTextSubmitted, areDimensionsSubmitted, onModifiersSubmission }) => {
+const SubmitButton = ({ onFileTextSubmission, onDropDivInfoSubmission, file, text, isFileTextSubmitted, areDimensionsSubmitted, onModifiersSubmission, isReadyToExport, onReadyToExport }) => {
 
   const handleFileTextSubmit = () => {
-    
+
     if (file) {
       // If there's a file selected, read it and pass its content
       const reader = new FileReader();
@@ -25,6 +25,10 @@ const SubmitButton = ({ onFileTextSubmission, onDropDivInfoSubmission, file, tex
     onModifiersSubmission(); // Handle the submission of dropDivInfo
   };
 
+  const handleExport = () => {
+    onReadyToExport();
+  };
+
   return (
     <div className="position-fixed bottom-0 end-0 p-3 mb-5">
       {!isFileTextSubmitted && (
@@ -39,9 +43,15 @@ const SubmitButton = ({ onFileTextSubmission, onDropDivInfoSubmission, file, tex
         </button>
       )}
 
-      {(areDimensionsSubmitted) && (
+      {(!isReadyToExport && areDimensionsSubmitted) && (
         <button className="my-btn submitButton" onClick={handleModifiersSubmitted}>
           SUBMIT
+        </button>
+      )}
+
+      {(isReadyToExport) && (
+        <button className="my-btn submitButton" onClick={handleExport}>
+          EXPORT
         </button>
       )}
 

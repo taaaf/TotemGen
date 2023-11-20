@@ -17,25 +17,34 @@ const Import = ({ onFileSelect, onTextChange }) => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="mb-3">
-      <input className="form-control"
-      type="file"
-      accept=".csv"
-      onChange={handleFileChange}
-      />
 
-      </div>
+    <div className="container-fluid d-flex justify-content-center align-items-center pt-5 mt-5 pb-4 ">
+  <div className="row">
+    <div className="col-sm-8 col-md-12 col-lg-12 mx-auto">
       <div className="mb-3">
+        <input
+          className="form-control"
+          id="choose-file"
+          type="file"
+          accept=".csv"
+          onChange={handleFileChange}
+        />
+      </div>
+      <div className="mb-0">
         <textarea
           className="form-control"
+          id="text-area"
           placeholder="Or copy here..."
           value={text}
           onChange={handleTextChange}
-          style={{ height: "300px" }} // Adjust height as needed
+          style={{ height: "14rem" }}
         ></textarea>
       </div>
     </div>
+  </div>
+</div>
+
+
   );
 };
 

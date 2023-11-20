@@ -304,9 +304,6 @@ const MyShape = ({
         }
 
 
-console.log(myShape);
-
-
     });
 
       }

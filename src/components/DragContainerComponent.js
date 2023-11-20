@@ -3,68 +3,108 @@ import DraggableComponent from './DraggableComponent';
 import DropZoneComponent from './DropZoneComponent';
 
 const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
+
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", event.target.id);
   };
 
   const handleDragOver = (event) => {
-    event.preventDefault(); // Necessary for the drop event to fire
+    event.preventDefault();
   };
 
   const handleDrop = (event) => {
-    event.preventDefault();
-    const draggableId = event.dataTransfer.getData("text/plain");
-    const draggedElement = document.getElementById(draggableId);
+  event.preventDefault();
+  const draggableId = event.dataTransfer.getData("text/plain");
+  const draggedElement = document.getElementById(draggableId);
 
-    if (draggedElement && event.target.classList.contains("droppable")) {
-      event.target.appendChild(draggedElement);
-      onDropZoneUpdate(event.target.id, draggableId);
-    }
+  const isZAxis = event.target.id === 'dropzone1';
+  const hasChild = event.target.children.length > 0;
+
+  if (draggedElement && event.target.classList.contains("droppable") && (!isZAxis || !hasChild)) {
+    event.target.appendChild(draggedElement);
+    onDropZoneUpdate(event.target.id, draggableId);
+  }
   };
+
+
+    const handleGeneralDrop = (event) => {
+      event.preventDefault();
+      const draggableId = event.dataTransfer.getData("text/plain");
+      const draggedElement = document.getElementById(draggableId);
+
+      if (draggedElement && event.target.classList.contains("general-dropzone")) {
+        event.target.appendChild(draggedElement);
+        onDropZoneUpdate(null, draggableId);
+      }
+    };
 
   return (
 
-    <div className="height-window mx-5">
+    <div className="container"> {/* Adds a bit of margin on the sides */}
 
-    <div className = "row d-flex align-items-center height-window mx-0">
+     <div className="mx-5">
 
-      <div className= "col-md-4 ">
+       <div className="row d-flex align-items-center height-window mx-0 general-dropzone">
 
-      {table && table[0] && table[0].map((item, index) => (
-        <DraggableComponent
-          key={`${index}`}
-          id={`${index}`}
-          content={item}
-          onDragStart={handleDragStart}
-        />
-      ))}
+       <div className="col-lg-2 col-xl-1">
+       </div>
 
-        </div>
+         <div className="col-lg-3 col-xl-3 box-draggable">
+
+         <label className="p-2">
+         DIMENSIONS SUBMITTED
+         </label>
+
+           <div className="general-dropzone pb-5" onDrop={handleGeneralDrop} onDragOver={handleDragOver}>
+             {table && table[0] && table[0].map((item, index) => (
+               <DraggableComponent
+                 key={`${index}`}
+                 id={`${index}`}
+                 content={item}
+                 onDragStart={handleDragStart}
+               />
+             ))}
+           </div>
+
+         </div>
+
+         <div className="col-lg-1 col-xl-1">
+         </div>
+
+         <div className="col-lg-4 col-xl-6 py-3 px-5 box-droppable">
+
+         <label className="">
+         VARIABLES
+         </label>
 
 
-      <div className= "col-md-4 dropzones">
+           <div className="row">
 
-      <p> Z Axis </p>
-            <DropZoneComponent
-              id="dropzone1"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-            />
+             <div className="col-lg-12 col-xl-5 dropzones">
+               <p> Z Axis </p>
+               <div className="dropzone-container">
+                 <DropZoneComponent id="dropzone1" onDrop={handleDrop} onDragOver={handleDragOver} />
+               </div>
+             </div>
 
-      </div>
+             <div className="col-lg-2 col-xl-1">
+             </div>
 
+             <div className="col-lg-12 col-xl-5 dropzones">
+               <p> X Axis </p>
+               <div className="dropzone-container">
+                 <DropZoneComponent id="dropzone2" onDrop={handleDrop} onDragOver={handleDragOver} />
+               </div>
+             </div>
 
-      <div className= "col-md-4 dropzones">
-      <p> X Axis </p>
-            <DropZoneComponent
-              id="dropzone2"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-            />
-      </div>
+           </div>
+         </div>
 
-    </div>
-  </div>
+       </div>
+
+     </div>
+
+   </div>
 
   );
 };

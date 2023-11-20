@@ -1,3 +1,22 @@
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+
 .my-btn {
   padding: 0.3rem 1rem;
   width: 14rem;
@@ -24,10 +43,25 @@
   color: white;
 }
 
+#choose-file{
+  border: 1px solid black;
+  border-radius: 100rem;
+  background-color: white;
+  color: gray;
+  width:18rem;
+}
+
+#text-area{
+  border: 1px solid black;
+  border-radius: 0rem;
+  background-color: white;
+  width:25rem;
+}
+
+
+
 .label-modifiers{
-
   font-size: 1.2rem;
-
 }
 
 .navbar {
@@ -35,17 +69,14 @@
 }
 
 .containers-margin{
-
   margin: 10%;
   border: 1px solid black;
 
-
 }
-
 
 .draggable {
   padding: 0.6rem 1rem;
-  width: 14rem;
+  max-width: 14rem;
   border: 1px solid black;
   border-radius: 100rem;
   text-align: left;
@@ -55,13 +86,20 @@
   margin:1rem;
 }
 
+.box-draggable{
+  border: 1px solid black;
+  overflow: auto;
+  height: 25rem;
+}
+
 .height-window {
   height:90vh;
 }
 
 .droppable {
-  padding: 2rem 1rem;
-  width: 18rem;
+  min-height:3rem;
+  min-width: 12rem;
+  max-width: 16rem;
   border: 1px solid black;
   text-align: center;
   background-color: white;
@@ -69,15 +107,21 @@
   cursor: pointer;
 }
 
+.box-droppable{
+  height: 25rem;
+  border: 1px solid black;
+  overflow: auto;
+}
+
 .no-margin{
   margin: 0px;
 }
 
-
 .modifiers {
   border: 1px solid black;
-
+  min-width: 20rem;
 }
+
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -89,7 +133,6 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-/* For WebKit browsers */
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -138,5 +181,4 @@ input[type="range"]::-moz-range-thumb {
 .rule{
   opacity: 0.8;
   border-top: 1px solid black;
-
 }

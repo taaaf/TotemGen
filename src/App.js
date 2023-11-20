@@ -10,7 +10,7 @@ import SubmitButton from "./components/SubmitButton";
 import BackButton from './components/BackButton';
 import ParseVertexData from "./components/ParseVertexData";
 import DragContainerComponent from './components/DragContainerComponent';
-
+import BackgroundImage from "./logo.svg";
 
 
 export function App() {
@@ -37,13 +37,20 @@ export function App() {
 
   const [dropZoneInfo, setDropZoneInfo] = useState({});
 
-   const handleDropZoneUpdate = (dropZoneId, draggableId) => {
-     setDropZoneInfo(prevInfo => ({
-       ...prevInfo,
-       [draggableId]: dropZoneId
-     }));
-
-   };
+  const handleDropZoneUpdate = (dropZoneId, draggableId) => {
+  setDropZoneInfo(prevInfo => {
+    if (dropZoneId === null) {
+      const updatedInfo = { ...prevInfo };
+      delete updatedInfo[draggableId];
+      return updatedInfo;
+    } else {
+      return {
+        ...prevInfo,
+        [draggableId]: dropZoneId
+      };
+    }
+  });
+};
 
 
  const [submittedData, setSubmittedData] = useState('');
@@ -67,8 +74,12 @@ export function App() {
 
   const [areModifiersSubmitted, setAreModifiersSubmitted] = useState(false);
 
+  const [isReadyToExport, setIsReadyToExport] = useState(false);
+
+
   const handleModifiersSubmitted = () => {
     setAreModifiersSubmitted(true);
+    setIsReadyToExport(true);
  }
 
  const handleResetSubmittedData = () => {
@@ -81,17 +92,22 @@ export function App() {
 
    const handleResetDimensionsSubmitted = () => {
        setAreDimensionsSubmitted(false);
-      setDropZoneInfo();
+       setDropZoneInfo();
      };
 
      const handleResetModifiersSubmitted = () => {
          setAreModifiersSubmitted(false);
+         setIsReadyToExport(false);
+         setExportStl(false);
        };
 
 
-useEffect(() => {
- console.log(dropZoneInfo);
-  }, [dropZoneInfo]);
+const [exportStl, setExportStl]=useState(false);
+
+  const handleExport = () => {
+      setExportStl(true);
+    };
+
 
   return (
 
@@ -119,6 +135,9 @@ useEffect(() => {
          table={tableData}
          onDropZoneUpdate={handleDropZoneUpdate}
        />
+
+
+
      )}
 
 
@@ -126,6 +145,7 @@ useEffect(() => {
        dropZoneInfo={dropZoneInfo}
        table={tableData}
        areModifiersSubmitted={areModifiersSubmitted}
+       exportStl={exportStl}
       />}
 
 
@@ -138,6 +158,8 @@ useEffect(() => {
     isFileTextSubmitted={isFileTextSubmitted}
     areDimensionsSubmitted={areDimensionsSubmitted}
     onModifiersSubmission={handleModifiersSubmitted}
+    isReadyToExport={isReadyToExport}
+    onReadyToExport={handleExport}
     />
 
 
@@ -152,8 +174,9 @@ useEffect(() => {
 
     />
 
+    <div className="bg-image"  >
 
-
+    </div>
 
 
     </>

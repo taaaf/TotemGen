@@ -5,7 +5,8 @@ const Modifiers = ({
   onSwitchModeChange,
   onQualityRotationChange,
   onOffsetValueChange,
-  onAxisRotationChange
+  onAxisRotationChange,
+  onScaleChange
 }) => {
 
 
@@ -14,6 +15,7 @@ const Modifiers = ({
   const [qualityRotation, setQualityRotation] = useState(2);
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
+  const [scale, setScale] = useState(1);
 
 
 
@@ -37,6 +39,10 @@ const Modifiers = ({
     onAxisRotationChange(axisRotation);
   }, [axisRotation, onAxisRotationChange]);
 
+  useEffect(() => {
+    onScaleChange(scale);
+  }, [scale, onScaleChange]);
+
 
   const handleAngleChange = (e) => {
     setAngle(Number(e.target.value));
@@ -56,6 +62,10 @@ const Modifiers = ({
 
   const handleAxisRotationChange = (e) => {
     setAxisRotation(Number(e.target.value));
+  };
+
+  const handleScaleChange = (e) => {
+    setScale(Number(e.target.value));
   };
 
 
@@ -237,6 +247,31 @@ const Modifiers = ({
           />
           </div>
         </div>
+
+    <div className="row mt-4">
+      <label className="col-form-label col-sm-3 px-1">
+        Scale:
+      </label>
+      <div className="col-sm-6 px-1">
+        <input
+          type="range"
+          min="0.1"
+          max="100"
+          step="0.1"
+          value={scale}
+          onChange={handleScaleChange}
+          className="form-control"
+        />
+      </div>
+      <div className="col-sm-3 px-1">
+        <input
+          type="text"
+          value={scale}
+          onChange={handleScaleChange}
+          className="form-control"
+        />
+      </div>
+    </div>
 
     </div>
     </div>
