@@ -227,8 +227,9 @@ const Modifiers = ({
           <div className="col-sm-6 px-1">
           <input
           type="range"
-          min="0"
-          max="10"
+          min="-100"
+          step="0.1"
+          max="100"
           value={offsetValue}
           onChange={handleOffsetValue}
           className="form-control"
@@ -238,8 +239,8 @@ const Modifiers = ({
           <div className="col-sm-3 px-1">
           <input
             type="text"
-            min="0"
-            max="10"
+            min="-1000"
+            max="1000"
             value={offsetValue}
             onChange={handleOffsetValue}
             className="form-control"

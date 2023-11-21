@@ -107,6 +107,10 @@
   cursor: pointer;
 }
 
+.padding-bottom{
+  padding-bottom: 2rem;
+}
+
 .box-droppable{
   height: 25rem;
   border: 1px solid black;

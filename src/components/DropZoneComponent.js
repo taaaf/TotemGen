@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 const DropZoneComponent = ({ id, onDrop, onDragOver, onDropUpdate }) => (
+<>
+
+{ id === "dropzone1" ? <p style={{ marginBottom: '0.3rem' }}> Z Axis </p> : <p style={{ marginBottom: '0.3rem' }}> X Axis </p> }
 
   <div
     id={id}
@@ -17,11 +20,12 @@ const DropZoneComponent = ({ id, onDrop, onDragOver, onDropUpdate }) => (
       }
     }}
     onDragOver={onDragOver}
-    className="droppable"
+    className={`droppable ${id === "dropzone2" ? "padding-bottom" : ""}`}
   >
 
-  </div>
 
+  </div>
+</>
 );
 
 

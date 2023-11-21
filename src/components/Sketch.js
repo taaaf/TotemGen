@@ -52,7 +52,7 @@ const sketch = (p) => {
       angleRadians = props.angleRadians;
 
       if(areModifiersSubmitted !== props.areModifiersSubmitted){
-        p.camera(400,-300,0,0,0,0);
+        p.camera(400,-300,100,0,0,0);
       }
 
       areModifiersSubmitted = props.areModifiersSubmitted;
@@ -117,6 +117,8 @@ const sketch = (p) => {
 
     p.scale(scale);
 
+    p.fill(255,255,0);
+
 
     if (myShape) {
       drawModel();
@@ -133,18 +135,16 @@ const sketch = (p) => {
     // Wall 1
     p.beginShape(p.TRIANGLE_STRIP);
 
-    for (let i = 1; i < verticesPerRow - 1; i++) {
+        for (let i = 1; i < verticesPerRow - 1; i++) {
+            p.vertex(myShape[i][0], 0, myShape[i][2]);
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
 
-        p.vertex(myShape[i][0], 0, myShape[i][2]);
-        p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-        p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
+            p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
+        }
 
-        p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-        p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
-        p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
-
-
-    }
 
 
     p.endShape();
@@ -166,15 +166,15 @@ const sketch = (p) => {
 
       if ((i + 2) % (verticesPerRow) === 0) {
 
-        let drawnVertices = (i + 1);
+        i  = i + 1;
 
-        p.vertex(myShape[drawnVertices - verticesPerRow][0], myShape[drawnVertices - verticesPerRow][1], myShape[drawnVertices - verticesPerRow][2]);
-        p.vertex(myShape[drawnVertices - (verticesPerRow * 2) + 1][0], myShape[drawnVertices - (verticesPerRow * 2) + 1][1], myShape[drawnVertices - (verticesPerRow * 2) + 1][2]);
-        p.vertex(myShape[drawnVertices - verticesPerRow + 1][0], myShape[drawnVertices - verticesPerRow + 1][1], myShape[drawnVertices - verticesPerRow + 1][2]);
+        p.vertex(myShape[i - verticesPerRow][0], myShape[i - verticesPerRow][1], myShape[i - verticesPerRow][2]);
+        p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+        p.vertex(myShape[i - verticesPerRow + 1][0], myShape[i - verticesPerRow + 1][1], myShape[i - verticesPerRow + 1][2]);
 
-        p.vertex(myShape[drawnVertices - verticesPerRow][0], myShape[drawnVertices - verticesPerRow][1], myShape[drawnVertices - verticesPerRow][2]);
-        p.vertex(myShape[drawnVertices][0], myShape[drawnVertices][1], myShape[drawnVertices][2]);
-        p.vertex(myShape[drawnVertices - verticesPerRow + 1][0], myShape[drawnVertices - verticesPerRow + 1][1], myShape[drawnVertices - verticesPerRow + 1][2]);
+        p.vertex(myShape[i - verticesPerRow][0], myShape[i - verticesPerRow][1], myShape[i - verticesPerRow][2]);
+        p.vertex(myShape[i - (verticesPerRow * 2) + 1][0], myShape[i - (verticesPerRow * 2) + 1][1], myShape[i - (verticesPerRow * 2) + 1][2]);
+        p.vertex(myShape[i - verticesPerRow + 1][0], myShape[i - verticesPerRow + 1][1], myShape[i - verticesPerRow + 1][2]);
 
       }
 

@@ -46,10 +46,10 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
 
        <div className="row d-flex align-items-center height-window mx-0 general-dropzone">
 
-       <div className="col-lg-2 col-xl-1">
+       <div className="col-lg-1 col-xl-1">
        </div>
 
-         <div className="col-lg-3 col-xl-3 box-draggable">
+         <div className="col-lg-4 col-xl-3 box-draggable">
 
          <label className="p-2">
          DIMENSIONS SUBMITTED
@@ -71,18 +71,18 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
          <div className="col-lg-1 col-xl-1">
          </div>
 
-         <div className="col-lg-4 col-xl-6 py-3 px-5 box-droppable">
+         <div className="col-lg-5 col-xl-6  box-droppable">
 
-         <label className="">
+         <label className="p-2">
          VARIABLES
          </label>
 
 
-           <div className="row">
+           <div className="row px-4 mt-2">
 
              <div className="col-lg-12 col-xl-5 dropzones">
-               <p> Z Axis </p>
-               <div className="dropzone-container">
+
+               <div className="dropzone-container mt-3">
                  <DropZoneComponent id="dropzone1" onDrop={handleDrop} onDragOver={handleDragOver} />
                </div>
              </div>
@@ -90,8 +90,7 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
              <div className="col-lg-2 col-xl-1">
              </div>
 
-             <div className="col-lg-12 col-xl-5 dropzones">
-               <p> X Axis </p>
+             <div className="col-lg-12 col-xl-5 dropzones mt-3">
                <div className="dropzone-container">
                  <DropZoneComponent id="dropzone2" onDrop={handleDrop} onDragOver={handleDragOver} />
                </div>
