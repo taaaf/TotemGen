@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const BackButton = ({ onResetSubmittedData, onResetDimensionSubmitted, isFileTextSubmitted, areDimensionsSubmitted, areModifiersSubmitted, onModifiersSubmission, onResetModifiersSubmitted }) => {
+const BackButton = ({ isReadyCreate, onResetCreate, onResetSubmittedData, onResetDimensionSubmitted, isFileTextSubmitted, areDimensionsSubmitted, areModifiersSubmitted, onModifiersSubmission, onResetModifiersSubmitted }) => {
 
 
   const handleBackClickSubmittedData = () => {
@@ -15,12 +15,16 @@ const BackButton = ({ onResetSubmittedData, onResetDimensionSubmitted, isFileTex
           onResetModifiersSubmitted();
         };
 
+        const handleResetCreate = () => {
+            onResetCreate();
+          };
+
   return(
 
 
         <div className="position-fixed bottom-0 start-0 p-3 mb-5">
-          {!isFileTextSubmitted && (
-            <button className="my-btn backButton" >
+          {isReadyCreate && !isFileTextSubmitted &&(
+            <button className="my-btn backButton" onClick={handleResetCreate}>
               BACK
             </button>
           )}

@@ -4,16 +4,26 @@ import { ReactP5Wrapper } from "@p5-wrapper/react";
 import "./App.css"
 
 import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
 import Sketch from "./components/Sketch";
 import Import from "./components/Import";
 import SubmitButton from "./components/SubmitButton";
 import BackButton from './components/BackButton';
 import ParseVertexData from "./components/ParseVertexData";
 import DragContainerComponent from './components/DragContainerComponent';
-import BackgroundImage from "./logo.svg";
 
 
 export function App() {
+
+  const [isReadyCreate, setReadyCreate] = useState(false);
+
+  const handleCreate = (data) =>{
+    setReadyCreate(true);
+  }
+
+const handleResetCreate = (data) =>{
+  setReadyCreate(false);
+}
 
   const [uploadedFile, setUploadedFile] = useState(null);
   const [inputText, setInputText] = useState('');
@@ -114,11 +124,11 @@ const [exportStl, setExportStl]=useState(false);
 
     <>
 
-    <Navbar / >
+    <Navbar />
 
+    {!isReadyCreate && <HomePage />}
 
-
-    {!submittedData && <Import
+    {isReadyCreate && !submittedData && <Import
     onFileSelect={handleFileSelect}
     onTextChange={handleTextChange}
      />}
@@ -160,6 +170,9 @@ const [exportStl, setExportStl]=useState(false);
     onModifiersSubmission={handleModifiersSubmitted}
     isReadyToExport={isReadyToExport}
     onReadyToExport={handleExport}
+    isReadyCreate={isReadyCreate}
+    onCreate={handleCreate}
+
     />
 
 
@@ -171,6 +184,8 @@ const [exportStl, setExportStl]=useState(false);
      onModifiersSubmission={handleModifiersSubmitted}
      onResetDimensionSubmitted={handleResetDimensionsSubmitted}
      onResetModifiersSubmitted={handleResetModifiersSubmitted}
+     isReadyCreate={isReadyCreate}
+     onResetCreate={handleResetCreate}
 
     />
 

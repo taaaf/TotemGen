@@ -17,6 +17,25 @@
 }
 
 
+.background-image {
+    background-image: url('assets/logo.svg');
+    background-size: 50%;
+    background-position: center;
+    height: 90vh;
+    background-repeat:no-repeat;
+    overflow:auto;
+    scroll-behavior: smooth;
+}
+
+.scroll-button {
+  margin-top:60vh;
+  padding: 0.3rem 1rem;
+  color: black;
+  border: none;
+  background-color: white;
+}
+
+
 .my-btn {
   padding: 0.3rem 1rem;
   width: 14rem;
@@ -65,7 +84,7 @@
 }
 
 .navbar {
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
 }
 
 .containers-margin{

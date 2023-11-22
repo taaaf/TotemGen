@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SubmitButton = ({ onFileTextSubmission, onDropDivInfoSubmission, file, text, isFileTextSubmitted, areDimensionsSubmitted, onModifiersSubmission, isReadyToExport, onReadyToExport }) => {
+const SubmitButton = ({ onCreate, isReadyCreate, onFileTextSubmission, onDropDivInfoSubmission, file, text, isFileTextSubmitted, areDimensionsSubmitted, onModifiersSubmission, isReadyToExport, onReadyToExport }) => {
 
   const handleFileTextSubmit = () => {
 
@@ -29,9 +29,20 @@ const SubmitButton = ({ onFileTextSubmission, onDropDivInfoSubmission, file, tex
     onReadyToExport();
   };
 
+  const handleCreate = () => {
+    onCreate();
+  };
+
   return (
     <div className="position-fixed bottom-0 end-0 p-3 mb-5">
-      {!isFileTextSubmitted && (
+    {!isReadyCreate && (
+      <button className="my-btn submitButton" onClick={handleCreate}>
+        CREATE
+      </button>
+    )}
+
+
+      {!isFileTextSubmitted && isReadyCreate &&(
         <button className="my-btn submitButton" onClick={handleFileTextSubmit}>
           SUBMIT
         </button>
