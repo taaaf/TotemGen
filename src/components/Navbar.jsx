@@ -6,7 +6,7 @@ const Navbar = () => {
             <div className="container-fluid">
                 <div className="row w-100">
                     <div className="col text-start">
-                        <a className="navbar-brand" href="#">Home</a>
+                        <a className="navbar-brand" href=".">Home</a>
                     </div>
                     <div className="col text-center">
                         <a className="navbar-brand" href="#">Resources</a>

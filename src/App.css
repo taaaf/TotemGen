@@ -9,11 +9,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: #2B2A29;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: black;
+  background: #2B2A29;
 }
 
 
@@ -30,7 +30,7 @@
 .scroll-button {
   margin-top:60vh;
   padding: 0.3rem 1rem;
-  color: black;
+  color: #2B2A29;
   border: none;
   background-color: white;
 }
@@ -38,11 +38,12 @@
 
 .my-btn {
   padding: 0.3rem 1rem;
-  width: 14rem;
-  border: 1px solid black;
+  width: 18rem;
+  border: 2px solid #2B2A29;
   border-radius: 100rem;
   background-color: white;
-  color: black;
+  color: #2B2A29;
+  font-size: 1.3rem;
 }
 
 .submitButton{
@@ -55,15 +56,15 @@
 
 .my-btn:hover {
   padding: 0.3rem 1rem;
-  width: 14rem;
-  border: 1px solid black;
+  width: 18rem;
+  border: 2px solid #2B2A29;
   border-radius: 100rem;
-  background-color: black;
+  background-color: #2B2A29;
   color: white;
 }
 
 #choose-file{
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   border-radius: 100rem;
   background-color: white;
   color: gray;
@@ -71,42 +72,41 @@
 }
 
 #text-area{
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   border-radius: 0rem;
   background-color: white;
   width:25rem;
 }
 
 
-
 .label-modifiers{
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .navbar {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #2B2A29;
 }
 
 .containers-margin{
   margin: 10%;
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
 
 }
 
 .draggable {
   padding: 0.6rem 1rem;
   max-width: 14rem;
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   border-radius: 100rem;
   text-align: left;
-  background-color: black;
+  background-color: #2B2A29;
   color: white;
   cursor: pointer;
   margin:1rem;
 }
 
 .box-draggable{
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   overflow: auto;
   height: 25rem;
 }
@@ -119,20 +119,21 @@
   min-height:3rem;
   min-width: 12rem;
   max-width: 16rem;
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   text-align: center;
   background-color: white;
-  color: black;
+  color: #2B2A29;
   cursor: pointer;
 }
 
 .padding-bottom{
   padding-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .box-droppable{
   height: 25rem;
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   overflow: auto;
 }
 
@@ -141,14 +142,14 @@
 }
 
 .modifiers {
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   min-width: 20rem;
 }
 
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background-color: black;
+  background-color: #2B2A29;
   width: 1rem;
   height: 1rem;
   border: none;
@@ -159,7 +160,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background-color: black;
+  background-color: #2B2A29;
   width: 1rem;
   height: 1rem;
   border: none;
@@ -172,27 +173,27 @@ input[type="radio"] {
   background-color: white;
   width: 1rem;
   height: 1rem;
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   border-radius: 0;
   cursor: pointer;
-  border-color: black;
+  border-color: #2B2A29;
 }
 
 input[type="radio"]:checked {
   -webkit-appearance: none;
-  background-color: black;
+  background-color: #2B2A29;
   width: 1rem;
   height: 1rem;
-  border: 1px solid black;
+  border: 2px solid #2B2A29;
   border-radius: 0;
   cursor: pointer;
-  border-color: black;
+  border-color: #2B2A29;
 }
 
 
 /* For Firefox */
 input[type="range"]::-moz-range-thumb {
-  background-color: black;
+  background-color: #2B2A29;
   width: 1rem;
   height: 1rem;
   border: none;
@@ -203,5 +204,5 @@ input[type="range"]::-moz-range-thumb {
 
 .rule{
   opacity: 0.8;
-  border-top: 1px solid black;
+  border-top: 2px solid #2B2A29;
 }
