@@ -16,6 +16,7 @@ const sketch = (p) => {
   let angleRadians = 0;
   let areModifiersSubmitted = false;
   let scale = 1;
+  let color = "FFFFFF";
 
   let transZ = 0;
   let transX = 0;
@@ -60,6 +61,8 @@ const sketch = (p) => {
       switchMode = props.switchMode;
 
       scale = props.scale;
+
+      color = props.color;
 
   };
 
@@ -117,7 +120,8 @@ const sketch = (p) => {
 
     p.scale(scale);
 
-    p.fill(255,255,0);
+
+    p.fill(color);
 
 
     if (myShape) {
@@ -253,7 +257,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
   const [scale, setScale] = useState(1);
-
+  const [color, setColor] = useState('#FFFFFF');
 
 
   const handleAngle = (data) => {
@@ -272,13 +276,17 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
       setOffsetValue(data);
     };
 
-    const handleAxisRotation = (data) => {
-        setAxisRotation(data);
-      };
+  const handleAxisRotation = (data) => {
+      setAxisRotation(data);
+    };
 
-      const handleScaleChange = (data) => {
-          setScale(data);
-        };
+  const handleScaleChange = (data) => {
+        setScale(data);
+    };
+
+  const handleColorChange = (data) => {
+         setColor(data);
+     };
 
 
     const [myShape, setMyShape] = useState([]);
@@ -313,6 +321,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
           switchMode={switchMode}
           areModifiersSubmitted={areModifiersSubmitted}
           scale={scale}
+          color={color}
         />
         <MyShape
           dropZoneInfo={dropZoneInfo}
@@ -343,7 +352,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
 
       <>
 
-      <div className="col-md-8 p-0 m-0" id="divCanvas">
+      <div className="col-lg-8 col-xl-9 p-0 m-0" id="divCanvas">
           <ReactP5Wrapper
             sketch={sketch}
             myShape={myShape}
@@ -353,6 +362,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
             switchMode={switchMode}
             areModifiersSubmitted={areModifiersSubmitted}
             scale={scale}
+            color={color}
           />
           <MyShape
             dropZoneInfo={dropZoneInfo}
@@ -366,8 +376,10 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
           />
           </div>
 
-        <div className="col-md-4 px-0 mx-0 mt-5" >
-         <div className = "modifiers p-3 m-2 mx-5">
+
+  <div className="col-sm-2 col-md-2 d-lg-none"> </div>
+        <div className="col-sm-8 col-md-8 col-lg-4 col-xl-3 px-0 mx-0 my-5" >
+         <div className = "modifiers me-4 my-5">
 
           <Modifiers
             onAngleChange={handleAngle}
@@ -376,6 +388,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
             onOffsetValueChange={handleOffsetValue}
             onAxisRotationChange={handleAxisRotation}
             onScaleChange={handleScaleChange}
+            onColorChange={handleColorChange}
 
           />
 

@@ -6,7 +6,8 @@ const Modifiers = ({
   onQualityRotationChange,
   onOffsetValueChange,
   onAxisRotationChange,
-  onScaleChange
+  onScaleChange,
+  onColorChange
 }) => {
 
 
@@ -16,6 +17,7 @@ const Modifiers = ({
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
   const [scale, setScale] = useState(1);
+  const [color, setColor] = useState('#FFFFFF');
 
 
 
@@ -43,6 +45,10 @@ const Modifiers = ({
     onScaleChange(scale);
   }, [scale, onScaleChange]);
 
+  useEffect(() => {
+   onColorChange(color);
+ }, [color, onColorChange]);
+
 
   const handleAngleChange = (e) => {
     setAngle(Number(e.target.value));
@@ -68,10 +74,14 @@ const Modifiers = ({
     setScale(Number(e.target.value));
   };
 
+  const handleColorChange = (e) => {
+    setColor(e.target.value);
+  };
+
 
   return (
 
-    <div  className="label-modifiers">
+    <div  className="mb-5 px-3 pt-3">
 
       <div className="row">
         <div className="col-sm-12 px-3 pb-0">
@@ -83,7 +93,9 @@ const Modifiers = ({
 
       <hr className="rule mt-1" />
 
-  <div className="row mt-5 mx-2">
+      <div className="ms-4">
+
+  <div className="row mt-5">
 
     <div className="col-sm-1 px-1">
     <input
@@ -94,7 +106,7 @@ const Modifiers = ({
     />
     </div>
 
-    <div className="col-sm-3 px-1">
+    <div className="col-sm-3 px-3">
         <label>
           Plot
           </label>
@@ -111,7 +123,7 @@ const Modifiers = ({
         />
     </div>
 
-    <div className="col-sm-7 px-1">
+    <div className="col-sm-7 px-3">
       <label>
           Bars
         </label>
@@ -138,7 +150,7 @@ const Modifiers = ({
         />
     </div>
 
-    <div className="col-sm-2 px-1">
+    <div className="col-sm-2 px-3">
     <label>
           Y
           </label>
@@ -155,7 +167,7 @@ const Modifiers = ({
 
         />
     </div>
-    <div className="col-sm-5 px-1">
+    <div className="col-sm-5 px-3">
           <label >
           Z
           </label>
@@ -175,15 +187,15 @@ const Modifiers = ({
            max="360"
            value={angle}
            onChange={handleAngleChange}
-           className="form-control"
+           className="custom-range form-control"
          />
        </div>
        <div className="col-sm-3 px-1">
          <input
-           type="text"
+           type="number"
            value={angle}
            onChange={handleAngleChange}
-           className="form-control"
+           className="custom-number form-control"
          />
        </div>
      </div>
@@ -201,18 +213,18 @@ const Modifiers = ({
          max="36"
          value={qualityRotation}
          onChange={handleQualityRotation}
-         className="form-control"
+         className="custom-range form-control"
 
          />
          </div>
          <div className="col-sm-3 px-1">
          <input
-           type="text"
+           type="number"
            min="0"
            max="360"
            value={qualityRotation}
            onChange={handleQualityRotation}
-           className="form-control"
+           className="custom-number form-control"
 
          />
          </div>
@@ -232,18 +244,18 @@ const Modifiers = ({
           max="100"
           value={offsetValue}
           onChange={handleOffsetValue}
-          className="form-control"
+          className="custom-range form-control"
 
           />
           </div>
           <div className="col-sm-3 px-1">
           <input
-            type="text"
+            type="number"
             min="-1000"
             max="1000"
             value={offsetValue}
             onChange={handleOffsetValue}
-            className="form-control"
+            className="custom-number form-control"
 
           />
           </div>
@@ -261,21 +273,36 @@ const Modifiers = ({
           step="0.1"
           value={scale}
           onChange={handleScaleChange}
-          className="form-control"
+          className="custom-range form-control"
         />
       </div>
       <div className="col-sm-3 px-1">
         <input
-          type="text"
+          type="number"
           value={scale}
           onChange={handleScaleChange}
-          className="form-control"
+          className="custom-number form-control"
         />
       </div>
     </div>
 
-    </div>
-    </div>
+    <div className="row mt-4">
+            <label className="col-form-label col-sm-3 px-1">
+              Color:
+            </label>
+            <div className="col-sm-9 px-1">
+              <input
+                type="color"
+                value={color}
+                onChange={handleColorChange}
+                className="form-control form-control-color custom-color"
+              />
+            </div>
+          </div>
+
+          </div>
+      </div>
+  </div>
 
   );
 };
