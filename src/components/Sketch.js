@@ -32,14 +32,11 @@ const sketch = (p) => {
 
   p.setup = () => {
     p.createCanvas(divCanvas.clientWidth, window.innerHeight, p.WEBGL);
-    // p.debugMode();
-
+    //p.debugMode();
   };
 
   p.windowResized = () => {
-
     p.resizeCanvas(divCanvas.clientWidth, window.innerHeight, p.WEBGL);
-
   }
 
 
@@ -110,12 +107,17 @@ const sketch = (p) => {
     }
 
     if(!angleRadians){
+      console.log("dentro");
           p.translate(transX,0,transZ);
     }
 
     if(angleRadians && axisRotation){
+
           p.translate(0,0,transZ);
+    }else{
+      p.translate(0,(maxY*scale/2),0);
     }
+
 
 
     p.scale(scale);

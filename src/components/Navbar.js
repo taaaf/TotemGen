@@ -20,7 +20,7 @@ const Navbar = ({ isReadyCreate }) => {
                 </div>
 
               <div className="row">
-                  <hr className="rule w-100 no-margin" />
+                  <hr className="rule no-margin" />
               </div>
 
               <div className="row px-4 pt-1">

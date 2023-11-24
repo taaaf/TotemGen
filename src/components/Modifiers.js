@@ -132,7 +132,7 @@ const Modifiers = ({
 
     <br />
 
-  <div className="row mt-4">
+  <div className="row mt-5">
 
     <div className="col-sm-3 px-1">
         <label>
@@ -202,7 +202,7 @@ const Modifiers = ({
 
       <br />
 
-      <div className="row mt-4">
+      <div className="row mt-2">
          <label className="col-form-label col-sm-3 px-1">
            Quality:
          </label>
@@ -232,7 +232,7 @@ const Modifiers = ({
 
        <br />
 
-       <div className="row mt-4">
+       <div className="row mt-2">
           <label className="col-form-label col-sm-3 px-1">
             Offset:
           </label>
@@ -261,7 +261,7 @@ const Modifiers = ({
           </div>
         </div>
 
-    <div className="row mt-4">
+    <div className="row mt-5">
       <label className="col-form-label col-sm-3 px-1">
         Scale:
       </label>
@@ -286,7 +286,7 @@ const Modifiers = ({
       </div>
     </div>
 
-    <div className="row mt-4">
+    <div className="row mt-5">
             <label className="col-form-label col-sm-3 px-1">
               Color:
             </label>

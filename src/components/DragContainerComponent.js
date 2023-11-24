@@ -49,13 +49,13 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
        <div className="col-lg-1 col-xl-1">
        </div>
 
-         <div className="col-lg-4 col-xl-3 box-draggable">
+         <div className="col-lg-4 col-xl-3 box-draggable flex">
 
          <label className="p-2">
          DIMENSIONS SUBMITTED
          </label>
 
-           <div className="general-dropzone pb-5" onDrop={handleGeneralDrop} onDragOver={handleDragOver}>
+           <div className="general-dropzone dropzone-padding " onDrop={handleGeneralDrop} onDragOver={handleDragOver}>
              {table && table[0] && table[0].map((item, index) => (
                <DraggableComponent
                  key={`${index}`}
