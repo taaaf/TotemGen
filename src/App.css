@@ -16,25 +16,9 @@
   background: #2B2A29;
 }
 
-
-.background-image {
-    background-image: url('assets/logo.svg');
-    background-size: 50%;
-    background-position: center;
-    height: 90vh;
-    background-repeat:no-repeat;
-    overflow:auto;
-    scroll-behavior: smooth;
+.container-navbar{
+  width:100%;
 }
-
-.scroll-button {
-  margin-top:60vh;
-  padding: 0.3rem 1rem;
-  color: #2B2A29;
-  border: none;
-  background-color: white;
-}
-
 
 .my-btn {
   padding: 0.3rem 1rem;
@@ -78,10 +62,11 @@
   width:25rem;
 }
 
-
-
-.navbar {
-  border-bottom: 2px solid #2B2A29;
+.random-table{
+  border:none;
+  background: none;
+  text-decoration:underline;
+  font-size:0.9rem;
 }
 
 .containers-margin{

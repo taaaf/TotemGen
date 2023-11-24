@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 function ParseVertexData(props) {
+  console.log(props.file);
   const lines = props.file.split(/\r?\n/);
   const table = [];
 

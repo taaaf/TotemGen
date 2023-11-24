@@ -5,6 +5,8 @@ import "./App.css"
 
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
+import Resources from "./components/Resources";
+import Contribute from "./components/Contribute";
 import Sketch from "./components/Sketch";
 import Import from "./components/Import";
 import SubmitButton from "./components/SubmitButton";
@@ -41,7 +43,6 @@ const handleResetCreate = (data) =>{
 
   const handleTableData = (data) => {
       setTableData(data);
-
     };
 
 
@@ -124,7 +125,9 @@ const [exportStl, setExportStl]=useState(false);
 
     <>
 
-    <Navbar />
+    <Navbar
+    isReadyCreate={isReadyCreate}
+    />
 
     {!isReadyCreate && <HomePage />}
 
@@ -145,9 +148,6 @@ const [exportStl, setExportStl]=useState(false);
          table={tableData}
          onDropZoneUpdate={handleDropZoneUpdate}
        />
-
-
-
      )}
 
 
