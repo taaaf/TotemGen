@@ -22,6 +22,10 @@ const sketch = (p) => {
   let transX = 0;
   let maxY = 0;
 
+  let camRadius = 300;
+  let camAngleX = 0;
+  let camAngleY = 0;
+
 
   let cameraX;
   let cameraY;
@@ -63,6 +67,11 @@ const sketch = (p) => {
 
   };
 
+  function isMouseOverCanvas() {
+          let overCanvasX = p.mouseX > 0 && p.mouseX < p.width;
+          let overCanvasY = p.mouseY > 0 && p.mouseY < p.height;
+          return overCanvasX && overCanvasY;
+      }
 
 
   p.draw = () => {
@@ -99,7 +108,20 @@ const sketch = (p) => {
     }
 
     if(!areModifiersSubmitted){
-      p.orbitControl();
+          if (p.mouseIsPressed && isMouseOverCanvas()) {
+            camAngleX -= (p.mouseX - p.pmouseX) * 0.005;
+            camAngleY -= (p.mouseY - p.pmouseY) * 0.005;
+
+            camAngleX = camAngleX % (2 * Math.PI);
+            camAngleY = p.constrain(camAngleY, -Math.PI / 2, Math.PI / 2); // Limit vertical rotation
+        }
+
+        let camX = camRadius * Math.sin(camAngleX) * Math.cos(camAngleY);
+        let camY = camRadius * Math.sin(camAngleY);
+        let camZ = camRadius * Math.cos(camAngleX) * Math.cos(camAngleY);
+
+        p.camera(camX, camY, camZ, 0, 0, 0, 0, 1, 0);
+
     }else{
       p.camera(cameraX,cameraY,0,0,0,0);
       p.rotateY(p.frameCount/160);
@@ -107,7 +129,6 @@ const sketch = (p) => {
     }
 
     if(!angleRadians){
-      console.log("dentro");
           p.translate(transX,0,transZ);
     }
 
