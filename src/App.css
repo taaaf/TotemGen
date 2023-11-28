@@ -47,6 +47,12 @@
   color: white;
 }
 
+.images{
+
+  max-width: 3rem;
+
+}
+
 #choose-file{
   border: 2px solid #2B2A29;
   border-radius: 100rem;
@@ -86,7 +92,7 @@
   margin:1rem;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .box-draggable{
