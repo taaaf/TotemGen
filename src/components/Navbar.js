@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = ({ isReadyCreate }) => {
 
 
-    return (
-        <nav className="navbar pb-1 pt-3">
-            <div className="container-navbar">
-                <div className="row px-4">
-                    <div className="col-4 text-start p-0">
-                    {isReadyCreate && <a className="navbar-brand no-margin" href=".">Home</a> }
-                    </div>
-                    <div className="col-4 text-center p-0">
-                        <a className="navbar-brand no-margin" href="#">Resources</a>
-                    </div>
-                    <div className="col-4 text-end p-0">
-                        <a className="navbar-brand no-margin" href="#">Contribute</a>
-                    </div>
+  const location = useLocation();
+   const currentPath = location.pathname;
 
-                </div>
+   const renderLinkText = (path, text) => {
+       return currentPath === path ? <div className="navbar-brand no-margin">{text}</div> : null;
+   };
+
+
+    return (
+      <nav className="navbar pb-1 pt-3">
+          <div className="container-navbar">
+              <div className="row px-4">
+                  <div className="col-4 text-start p-0">
+                      {currentPath !== "/" && <div className="navbar-brand no-margin"><Link to="." className="style-link">Home</Link></div>}
+                  </div>
+                  <div className="col-4 text-center p-0">
+                    {currentPath !== "/resources" &&  <div className="navbar-brand no-margin"> <Link to="/resources" className="style-link">Resources</Link></div> }
+                  </div>
+                  <div className="col-4 text-end p-0">
+                    {currentPath !== "/contribute" &&  <div className="navbar-brand no-margin"><Link to="/contribute" className="style-link">Contribute</Link></div>}
+                  </div>
+              </div>
 
               <div className="row">
                   <hr className="rule no-margin" />
@@ -25,20 +33,17 @@ const Navbar = ({ isReadyCreate }) => {
 
               <div className="row px-4 pt-1">
                   <div className="col-4 text-start p-0">
-                  {!isReadyCreate && <a className="navbar-brand no-margin" href=".">Home</a> }
+                      {renderLinkText("/", "Home")}
                   </div>
                   <div className="col-4 text-center p-0">
-                    {false &&  <a className="navbar-brand no-margin" href="#">Resources</a>}
+                      {renderLinkText("/resources", "Resources")}
                   </div>
                   <div className="col-4 text-end p-0">
-                    {false && <a className="navbar-brand no-margin" href="#">Contribute</a>}
+                      {renderLinkText("/contribute", "Contribute")}
                   </div>
-
               </div>
-
-
-            </div>
-        </nav>
+          </div>
+      </nav>
     );
 };
 

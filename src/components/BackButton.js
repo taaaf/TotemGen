@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 const BackButton = ({ isReadyCreate, onResetCreate, onResetSubmittedData, onResetDimensionSubmitted, isFileTextSubmitted, areDimensionsSubmitted, areModifiersSubmitted, onModifiersSubmission, onResetModifiersSubmitted }) => {
 
+  const handleResetCreate = () => {
+          onResetCreate();
+    };
 
   const handleBackClickSubmittedData = () => {
       onResetSubmittedData();
@@ -11,13 +14,10 @@ const BackButton = ({ isReadyCreate, onResetCreate, onResetSubmittedData, onRese
         onResetDimensionSubmitted();
       };
 
-      const handleBackClickModifiersSubmitted = () => {
+    const handleBackClickModifiersSubmitted = () => {
           onResetModifiersSubmitted();
-        };
+      };
 
-        const handleResetCreate = () => {
-            onResetCreate();
-          };
 
   return(
 

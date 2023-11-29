@@ -1,3 +1,11 @@
+html{
+    overflow-x: hidden;
+}
+
+.style-link{
+  text-decoration: none;
+  color: #2B2A29;
+}
 
 /* scrollbar */
 ::-webkit-scrollbar {
@@ -285,4 +293,11 @@ input[type="range"]::-moz-range-thumb {
 .rule{
   opacity: 0.8;
   border-top: 2px solid #2B2A29;
+}
+
+.resources-text{
+
+  max-height: 70vh;
+  overflow-y: auto;
+
 }
