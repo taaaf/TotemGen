@@ -2,6 +2,8 @@ import React from 'react';
 import logo from "../assets/logo.svg"
 import mit from "../assets/mit-license.png"
 import github from "../assets/github-mark.png"
+import version from "../assets/version.svg"
+
 
 const HomePage = () => {
 
@@ -9,8 +11,12 @@ return(
 
   <>
     <div className="position-absolute top-50 start-50 translate-middle">
-      <img src={logo} />
-        <p className="mt-4 text-center description"> A free and opensource tool for creating data sculptures.</p>
+
+    <div className="relative-positioned-div">
+          <img src={logo} alt="Logo" />
+          <img src={version} className="absolute-top-right" alt="New SVG" />
+          </div>
+        <p className="mt-4 text-center description"> A free and opensource tool for generating data sculptures.</p>
     </div>
 
     <div className="position-absolute bottom-0 start-0 p-3">

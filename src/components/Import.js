@@ -23,7 +23,7 @@ const Import = ({ onFileSelect, onTextChange}) => {
       const numberOfRows = Math.floor(Math.random() * 7) + 4;
 
       let newData = [headerWords];
-      
+
       for (let i = 0; i < numberOfRows; i++) {
         let row = Array(headerWords.length);
 

@@ -28,6 +28,27 @@ html{
   flex-grow:1;
 }
 
+
+.relative-positioned-div {
+  position: relative;
+}
+
+.absolute-top-right {
+  position: absolute;
+  top: -20%;
+  right: -2.5%;
+  animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
 .my-btn {
   padding: 0.3rem 1rem;
   width: 18rem;
@@ -56,9 +77,7 @@ html{
 }
 
 .images{
-
   max-width: 3rem;
-
 }
 
 #choose-file{
@@ -297,7 +316,7 @@ input[type="range"]::-moz-range-thumb {
 
 .resources-text{
 
-  max-height: 70vh;
+  max-height: 75vh;
   overflow-y: auto;
 
 }
