@@ -35,12 +35,12 @@ const sketch = (p) => {
 
 
   p.setup = () => {
-    p.createCanvas(divCanvas.clientWidth, window.innerHeight, p.WEBGL);
+    p.createCanvas(divCanvas.clientWidth, window.innerHeight*0.9, p.WEBGL);
     //p.debugMode();
   };
 
   p.windowResized = () => {
-    p.resizeCanvas(divCanvas.clientWidth, window.innerHeight, p.WEBGL);
+    p.resizeCanvas(divCanvas.clientWidth, window.innerHeight*0.9, p.WEBGL);
   }
 
 
@@ -55,6 +55,7 @@ const sketch = (p) => {
 
       if(areModifiersSubmitted !== props.areModifiersSubmitted){
         p.camera(400,-300,100,0,0,0);
+        p.resizeCanvas(divCanvas.clientWidth, window.innerHeight*0.9, p.WEBGL);
       }
 
       areModifiersSubmitted = props.areModifiersSubmitted;
@@ -282,6 +283,10 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
   const [scale, setScale] = useState(1);
   const [color, setColor] = useState('#FFFFFF');
 
+  const [shapeName, setShapeName] = useState('');
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+
 
   const handleAngle = (data) => {
       setAngle(data);
@@ -323,6 +328,15 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
        setAngleRadians(angleRadians);
      };
 
+     const handleShapeNameChange = (event) => {
+      setShapeName(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsFormSubmitted(true);
+};
+
+
 
   return (
 
@@ -357,6 +371,14 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
           axisRotation ={axisRotation}
         />
 
+        <input
+        className="shape-name-input"
+        type="text"
+        value={shapeName}
+        onChange={handleShapeNameChange}
+        placeholder="Enter shape name"
+        />
+
         {exportStl && (<Export
 
           myShape={myShape}
@@ -364,6 +386,8 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
           myShapeRows={myShapeRows}
           angleRadians={angleRadians}
           switchMode={switchMode}
+          shapeName={shapeName}
+          exportStl={exportStl}
 
           />)}
 
@@ -375,7 +399,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
 
       <>
 
-      <div className="col-lg-8 col-xl-9 p-0 m-0" id="divCanvas">
+      <div className="col-lg-7 col-xl-8 p-0 m-0" id="divCanvas">
           <ReactP5Wrapper
             sketch={sketch}
             myShape={myShape}
@@ -400,24 +424,22 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
           </div>
 
 
-  <div className="col-sm-2 col-md-2 d-lg-none"> </div>
+        <div className="col-sm-2 col-md-2 d-lg-none"> </div>
+
         <div className="col-sm-8 col-md-8 col-lg-4 col-xl-3 px-0 mx-0 my-5" >
-         <div className = "modifiers me-4 my-5">
+             <div className = "modifiers mx-1">
+                  <Modifiers
+                    onAngleChange={handleAngle}
+                    onSwitchModeChange={handleSwitchMode}
+                    onQualityRotationChange={handleQualityRotation}
+                    onOffsetValueChange={handleOffsetValue}
+                    onAxisRotationChange={handleAxisRotation}
+                    onScaleChange={handleScaleChange}
+                    onColorChange={handleColorChange}
+                    />
 
-          <Modifiers
-            onAngleChange={handleAngle}
-            onSwitchModeChange={handleSwitchMode}
-            onQualityRotationChange={handleQualityRotation}
-            onOffsetValueChange={handleOffsetValue}
-            onAxisRotationChange={handleAxisRotation}
-            onScaleChange={handleScaleChange}
-            onColorChange={handleColorChange}
-
-          />
-
+                </div>
           </div>
-        </div>
-
 
       </>
         )}

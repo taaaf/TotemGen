@@ -309,6 +309,27 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
+.shape-name-input {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    padding: 0.5rem;
+    height: 2.8rem;
+    width:15rem;
+    background-color: none;
+    color: #2B2A29;
+    font-size: 1.2rem;
+    border: 2px solid #2B2A29;
+    text-align: center;
+}
+
+.shape-name-input::placeholder {
+    color: #2B2A29;
+    opacity:0.5;
+}
+
 .rule{
   opacity: 0.8;
   border-top: 2px solid #2B2A29;

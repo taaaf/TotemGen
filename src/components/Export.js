@@ -9,6 +9,7 @@ const sketch = (p) => {
   let axisRotation;
   let switchMode;
   let angleRadians;
+  let shapeName = "myShape";
 
   p.updateWithProps = props => {
 
@@ -18,6 +19,9 @@ const sketch = (p) => {
     switchMode = props.switchMode;
     angleRadians  = props.angleRadians;
 
+    if(props.shapeName){
+      shapeName = props.shapeName;
+    }
 
     if(myShape){
     exportSTL();
@@ -55,7 +59,7 @@ const sketch = (p) => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'myShape.stl';
+    link.download = shapeName + '.stl';
 
     // Trigger a click event to download the STL file
     link.click();
@@ -228,7 +232,7 @@ const sketch = (p) => {
 }
 
 
-const Export = ( { myShape, axisRotation, myShapeRows, angleRadians, switchMode }) => {
+const Export = ( { myShape, axisRotation, myShapeRows, angleRadians, switchMode, shapeName }) => {
 
 
   return  (
@@ -240,6 +244,7 @@ const Export = ( { myShape, axisRotation, myShapeRows, angleRadians, switchMode 
       myShapeRows={myShapeRows}
       angleRadians={angleRadians}
       switchMode={switchMode}
+      shapeName={shapeName}
     />
 
   )

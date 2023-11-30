@@ -79,10 +79,10 @@ const Resources = () => {
 
 
             <h1>GETTING STARTED</h1>
-            <div className="row mt-3">
+            <div className="row mt-3 mb-5">
 
                 <div className="col-xl-5 py-5 p-5">
-                    <img src={res01} style={{width:"100%"}}/>
+                    <img src={res01} style={{width:"100%", border: "1px solid #2B2A29" }}/>
                 </div>
 
                 <div className="col-xl-7 p-4 pt-5">
@@ -98,7 +98,7 @@ const Resources = () => {
                 </div>
 
                 <div className="col-xl-5 p-5">
-                  <img src={res02} className="px-5" style={{width:"100%"}}/>
+                  <img src={res02} style={{width:"100%", border: "1px solid #2B2A29" }}/>
                 </div>
 
                 <div className="col-xl-7 p-4 pt-5">
@@ -111,7 +111,7 @@ const Resources = () => {
                 </div>
 
                 <div className="col-xl-5 p-5">
-                    <img src={res04} className="px-5" style={{width:"100%"}}/>
+                    <img src={res04} style={{width:"100%", border: "1px solid #2B2A29"}}/>
                 </div>
 
                 <div className="col-xl-7 p-4 pt-5">
@@ -127,7 +127,7 @@ const Resources = () => {
 
 
                 <div className="col-xl-5 p-5">
-                  <img src={res05} className="px-5" style={{width:"100%"}}/>
+                  <img src={res05}style={{width:"100%", border: "1px solid #2B2A29"}}/>
                 </div>
 
                 <div className="col-xl-7 p-4 pt-5">
@@ -138,7 +138,7 @@ const Resources = () => {
                 </div>
 
                 <div className="col-xl-5 p-5">
-                  <img src={res06} className="px-5" style={{width:"100%"}}/>
+                  <img src={res06}style={{width:"100%", border: "1px solid #2B2A29"}}/>
                 </div>
 
                 <div className="col-xl-7 p-4 pt-5">
