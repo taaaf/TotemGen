@@ -1,9 +1,19 @@
-import React from 'react';
+import React from "react";
 
-const SubmitButton = ({ onCreate, isReadyCreate, onFileTextSubmission, onDropDivInfoSubmission, file, text, isFileTextSubmitted, areDimensionsSubmitted, onModifiersSubmission, isReadyToExport, onReadyToExport }) => {
-
+const SubmitButton = ({
+  onCreate,
+  isReadyCreate,
+  onFileTextSubmission,
+  onDropDivInfoSubmission,
+  file,
+  text,
+  isFileTextSubmitted,
+  areDimensionsSubmitted,
+  onModifiersSubmission,
+  isReadyToExport,
+  onReadyToExport,
+}) => {
   const handleFileTextSubmit = () => {
-
     if (file) {
       // If there's a file selected, read it and pass its content
       const reader = new FileReader();
@@ -36,38 +46,41 @@ const SubmitButton = ({ onCreate, isReadyCreate, onFileTextSubmission, onDropDiv
 
   return (
     <div className="position-fixed bottom-0 end-0 p-3 mb-5">
-    {!isReadyCreate && (
-      <button className="my-btn submitButton" onClick={handleCreate}>
-        CREATE
-      </button>
-    )}
+      {!isReadyCreate && (
+        <button className="my-btn submitButton" onClick={handleCreate}>
+          CREATE
+        </button>
+      )}
 
-
-      {!isFileTextSubmitted && isReadyCreate &&(
+      {!isFileTextSubmitted && isReadyCreate && (
         <button className="my-btn submitButton" onClick={handleFileTextSubmit}>
           SUBMIT
         </button>
       )}
 
-      {(isFileTextSubmitted && !areDimensionsSubmitted) && (
-        <button className="my-btn submitButton" onClick={handleDropDivInfoSubmit}>
+      {isFileTextSubmitted && !areDimensionsSubmitted && (
+        <button
+          className="my-btn submitButton"
+          onClick={handleDropDivInfoSubmit}
+        >
           SUBMIT
         </button>
       )}
 
-      {(!isReadyToExport && areDimensionsSubmitted) && (
-        <button className="my-btn submitButton" onClick={handleModifiersSubmitted}>
+      {!isReadyToExport && areDimensionsSubmitted && (
+        <button
+          className="my-btn submitButton"
+          onClick={handleModifiersSubmitted}
+        >
           SUBMIT
         </button>
       )}
 
-      {(isReadyToExport) && (
+      {isReadyToExport && (
         <button className="my-btn submitButton" onClick={handleExport}>
           EXPORT
         </button>
       )}
-
-
     </div>
   );
 };

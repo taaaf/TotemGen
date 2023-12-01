@@ -7,7 +7,7 @@ function ParseVertexData(props) {
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-    if (line === '') continue;
+    if (line === "") continue;
 
     const coordinates = line.split(/[,|;]/);
     table.push(coordinates);
@@ -18,7 +18,7 @@ function ParseVertexData(props) {
       props.onTableReady(table);
     }
   }, [props]);
-  return (table);
+  return table;
 }
 
 export default ParseVertexData;

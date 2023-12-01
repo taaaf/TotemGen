@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const DraggableComponent = ({ id, content, onDragStart, onDragEnd }) => (
   <div
