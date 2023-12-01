@@ -19,6 +19,7 @@ const sketch = (p) => {
     switchMode = props.switchMode;
     angleRadians  = props.angleRadians;
 
+
     if(props.shapeName){
       shapeName = props.shapeName;
     }
@@ -232,7 +233,7 @@ const sketch = (p) => {
 }
 
 
-const Export = ( { myShape, axisRotation, myShapeRows, angleRadians, switchMode, shapeName }) => {
+const Export = ( { myShape, axisRotation, myShapeRows, angleRadians, switchMode, shapeName}) => {
 
 
   return  (

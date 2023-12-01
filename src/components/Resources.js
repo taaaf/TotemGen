@@ -57,7 +57,9 @@ const Resources = () => {
 
                   <h4>Totemgen is a free and opensource tool for generating data sculptures.
                   It was developed to simplify the process of translating table data into three-dimensional shapes.
-                  <br/><br/>
+                  <br/>
+                  The website is built with React, ReactP5Wrapper and Bootstrap.
+                  <br/> <br/>
                   It's part of the Master's thesis project of Mattia Tafel, student at
                   Politecnico di Milano.
                   <br/> <br/>

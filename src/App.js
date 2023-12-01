@@ -126,8 +126,13 @@ const [exportStl, setExportStl]=useState(false);
 
   const handleExport = () => {
       setExportStl(true);
-    };
+  };
 
+  useEffect(() => {
+     if (exportStl) {
+       setExportStl(false);
+     }
+   }, [exportStl]); 
 
   return (
 

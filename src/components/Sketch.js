@@ -287,7 +287,6 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 
-
   const handleAngle = (data) => {
       setAngle(data);
     };
@@ -347,7 +346,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
 
      {areModifiersSubmitted ? (
 
-        <div className="col-12 p-0 m-0 d-flex justify-content-center" id="divCanvas">
+       <div className="col p-0 m-0 d-flex justify-content-center" id="divCanvas">
 
         <ReactP5Wrapper
           sketch={sketch}
@@ -376,7 +375,7 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
         type="text"
         value={shapeName}
         onChange={handleShapeNameChange}
-        placeholder="Enter shape name"
+        placeholder="Enter sculpture name"
         />
 
         {exportStl && (<Export
@@ -387,12 +386,9 @@ const Sketch = ( { dropZoneInfo, table, onMyShapeChange, areModifiersSubmitted, 
           angleRadians={angleRadians}
           switchMode={switchMode}
           shapeName={shapeName}
-          exportStl={exportStl}
-
           />)}
 
       </div>
-
 
 
     ) : (

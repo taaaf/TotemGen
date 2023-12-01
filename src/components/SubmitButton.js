@@ -18,15 +18,16 @@ const SubmitButton = ({ onCreate, isReadyCreate, onFileTextSubmission, onDropDiv
   };
 
   const handleDropDivInfoSubmit = () => {
-    onDropDivInfoSubmission(); // Handle the submission of dropDivInfo
+    onDropDivInfoSubmission();
   };
 
   const handleModifiersSubmitted = () => {
-    onModifiersSubmission(); // Handle the submission of dropDivInfo
+    onModifiersSubmission();
   };
 
   const handleExport = () => {
     onReadyToExport();
+    console.log("clicked");
   };
 
   const handleCreate = () => {

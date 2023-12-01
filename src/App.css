@@ -125,7 +125,13 @@ html{
 .box-draggable{
   border: 2px solid #2B2A29;
   overflow: auto;
-  height: 25rem;
+  height: 20rem;
+}
+
+.box-droppable{
+  height: 20rem;
+  border: 2px solid #2B2A29;
+  overflow: auto;
 }
 
 .height-window {
@@ -157,11 +163,7 @@ flex-grow: 1;
   margin-bottom: 1.5rem;
 }
 
-.box-droppable{
-  height: 25rem;
-  border: 2px solid #2B2A29;
-  overflow: auto;
-}
+
 
 .no-margin{
   margin: 0px;
@@ -336,8 +338,6 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .resources-text{
-
   max-height: 75vh;
   overflow-y: auto;
-
 }
