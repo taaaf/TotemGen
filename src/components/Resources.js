@@ -6,6 +6,7 @@ import res03 from "../assets/resources_03.png";
 import res04 from "../assets/resources_04.png";
 import res05 from "../assets/resources_05.png";
 import res06 from "../assets/resources_06.png";
+import dataSculptureExample from "../assets/data_sculpture_example.png";
 
 const Resources = () => {
   const [activeContent, setActiveContent] = useState("totemgen");
@@ -29,12 +30,21 @@ const Resources = () => {
           >
             What is TotemGen?
           </p>
+
+          <p
+            style={getStyle("gettingStarted")}
+            onClick={() => handleContentChange("gettingStarted")}
+          >
+            Getting Started
+          </p>
+
           <p
             style={getStyle("tutorial")}
             onClick={() => handleContentChange("tutorial")}
           >
             Tutorial
           </p>
+
           {/*  <p style={getStyle('community')} onClick={() => handleContentChange('community')}>Community</p>
         <p style={getStyle('dataSculptures')} onClick={() => handleContentChange('dataSculptures')}>Data Sculptures</p>
         <p style={getStyle('selfTracking')} onClick={() => handleContentChange('selfTracking')}>Self Tracking</p>
@@ -92,7 +102,7 @@ const Resources = () => {
 
           {activeContent === "tutorial" && (
             <>
-              <h1>GETTING STARTED</h1>
+              <h1>HOW TO</h1>
               <div className="row mt-3 mb-5">
                 <div className="col-xl-5 py-5 p-5">
                   <img
@@ -109,8 +119,8 @@ const Resources = () => {
                     <br />
                     Note: CSVs are currently the only file type accepted. If you
                     do not have data to upload and just want a demo of the tool,
-                    click on the “Generate random table”. This will show a
-                    compatible table that you can use.
+                    click on the “Generate random table” button. This will show
+                    a compatible table that you can use.
                   </h4>
                 </div>
 
@@ -123,11 +133,10 @@ const Resources = () => {
 
                 <div className="col-xl-7 p-4 pt-5">
                   <h4>
-                    Table formatting Since data will be mapped to the three
-                    different axis, to generate a topologically sound shape you
-                    should always have a column that has ascending or descending
-                    order of values. Also, values do not have to be of constant
-                    increments.
+                    Since data will be mapped to the three different axis, to
+                    generate a topologically sound shape you should always have
+                    a column that has ascending or descending order of values.
+                    Also, values do not have to be of constant increments.
                   </h4>
                 </div>
 
@@ -179,6 +188,83 @@ const Resources = () => {
                     then export. The 3D shape downloaded will be in .STL file
                     format, ready to be 3D printed.
                   </h4>
+                </div>
+              </div>
+            </>
+          )}
+
+          {activeContent === "gettingStarted" && (
+            <>
+              <h1>CREATE YOUR OWN SCULPTURE</h1>
+              <div className="row mt-3 mb-5">
+                <div className="col-xl-5 py-5 p-5"></div>
+
+                <div className="col-xl-7 p-4 pt-5">
+                  <h4>
+                    To create a data sculpture you will need to track some data.{" "}
+                    <a
+                      href="https://docs.google.com/spreadsheets/d/1QQA8T7UwnBClrBLdQPLHF_j7UFUASzgioxVUJui6j70/edit?usp=sharing"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      Click here
+                    </a>{" "}
+                    if you'd like to have a template as a starting point. You
+                    can also write your data on a piece of paper, the notes on
+                    your phone... Do whatever is handier and more convenient for
+                    you!
+                    <br />
+                    <br />
+                    Naturally you can also use some data that you have already,
+                    like the meters you walked the past week, the calories you
+                    had today or the time spent listening to Lofi Girl the past
+                    month.
+                    <br />
+                    <br />
+                    Once data is collected you need to format it in a table like
+                    so:
+                    <br />
+                  </h4>
+                  <br />
+                  <p>
+                    DAY, FULFILL MOR, FULFILL AFT, FULFILL EVE <br />
+                    1, 7, 8, 5 <br />
+                    2, 4, 3, 4 <br />
+                    3, 6, 7, 6 <br />
+                    4, 7, 7, 8 <br />
+                    5, 8, 2, 8 <br />
+                    6, 9, 5, 9 <br />
+                    7, 10, 4, 7 <br />
+                  </p>
+
+                  <h4>
+                    You can now use Totemgen with your data to create the data
+                    sculpture. Check out the{" "}
+                    <a
+                      style={{
+                        ...getStyle("tutorial"),
+                        textDecoration: "underline",
+                      }}
+                      onClick={() => handleContentChange("tutorial")}
+                    >
+                      tutorial
+                    </a>{" "}
+                    if you need help.
+                    <br />
+                    <br />
+                    Here is one of the possible data sculpture that can be
+                    created with the data above:
+                  </h4>
+
+                  <br />
+                  <br />
+
+                  <img
+
+                    src={dataSculptureExample}
+                    style={{ width: "100%", border: "1px solid #2B2A29" }}
+                  />
+
                 </div>
               </div>
             </>
