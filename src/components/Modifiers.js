@@ -204,7 +204,7 @@ const Modifiers = ({
 
       <div className="row mt-2">
          <label className="col-form-label col-sm-3 px-1">
-           Quality:
+           Iterations:
          </label>
          <div className="col-sm-6 px-1">
          <input

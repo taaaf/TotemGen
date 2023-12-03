@@ -26,6 +26,10 @@ const sketch = (p) => {
   let cameraX;
   let cameraY;
 
+  let exportStl;
+  let exportBoolean = false;
+  let shapeName = "MyShape";
+
   const divCanvas = document.getElementById("divCanvas");
 
   p.setup = () => {
@@ -50,6 +54,11 @@ const sketch = (p) => {
       p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
     }
 
+    if(exportStl !== props.exportStl && exportStl){
+      p.resizeCanvas(1920, 1920, p.WEBGL);
+      exportBoolean = true;
+    }
+
     areModifiersSubmitted = props.areModifiersSubmitted;
 
     switchMode = props.switchMode;
@@ -57,6 +66,9 @@ const sketch = (p) => {
     scale = props.scale;
 
     color = props.color;
+
+    exportStl = props.exportStl;
+    shapeName = props.shapeName;
   };
 
   function isMouseOverCanvas() {
@@ -111,7 +123,8 @@ const sketch = (p) => {
 
       p.camera(camX, camY, camZ, 0, 0, 0, 0, 1, 0);
     } else {
-      p.camera(cameraX, cameraY, 0, 0, 0, 0);
+      let zoom = 0.4;
+      p.camera(cameraX*zoom, cameraY*zoom, 0, 0, 0, 0);
       p.rotateY(p.frameCount / 160);
       scale = 20;
     }
@@ -133,6 +146,13 @@ const sketch = (p) => {
     if (myShape) {
       drawModel();
     }
+
+    if(exportBoolean){
+      p.saveCanvas("Render_Sculpture_"+shapeName, 'jpg');
+      p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
+      exportBoolean = false;
+    }
+
   };
 
   function drawModel() {
@@ -339,6 +359,8 @@ const Sketch = ({
                 areModifiersSubmitted={areModifiersSubmitted}
                 scale={scale}
                 color={color}
+                exportStl={exportStl}
+                shapeName={shapeName}
               />
               <MyShape
                 dropZoneInfo={dropZoneInfo}

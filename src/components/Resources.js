@@ -69,9 +69,40 @@ const Resources = () => {
                     Totemgen is a free and opensource tool for generating data
                     sculptures. It was developed to simplify the process of
                     translating table data into three-dimensional shapes.
-                    <br />
-                    The website is built with React, ReactP5Wrapper and
-                    Bootstrap.
+                    <br /> <br />
+                    The website is built with
+                    <a
+                      href="https://react.dev/"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      React
+                    </a>
+                    ,{" "}
+                    <a
+                      href="https://github.com/P5-wrapper/react"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      ReactP5Wrapper
+                    </a>{" "}
+                    and{" "}
+                    <a
+                      href="https://getbootstrap.com/"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      Bootstrap
+                    </a>
+                    . It uses the font{" "}
+                    <a
+                      href="https://www.redaction.us/"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      Redaction
+                    </a>
+                    .
                     <br /> <br />
                     It's part of the Master's thesis project of Mattia Tafel,
                     student at Politecnico di Milano.
@@ -227,7 +258,7 @@ const Resources = () => {
                   </h4>
                   <br />
                   <p>
-                    DAY, FULFILL MOR, FULFILL AFT, FULFILL EVE <br />
+                    STEPS, DATA 1, DATA 2, DATA 3 <br />
                     1, 7, 8, 5 <br />
                     2, 4, 3, 4 <br />
                     3, 6, 7, 6 <br />
@@ -238,8 +269,8 @@ const Resources = () => {
                   </p>
 
                   <h4>
-                    You can now use Totemgen with your data to create the data
-                    sculpture. Check out the{" "}
+                    You can now use Totemgen to genereate the data sculpture.
+                    Check out the{" "}
                     <a
                       style={{
                         ...getStyle("tutorial"),
@@ -260,11 +291,9 @@ const Resources = () => {
                   <br />
 
                   <img
-
                     src={dataSculptureExample}
                     style={{ width: "100%", border: "1px solid #2B2A29" }}
                   />
-
                 </div>
               </div>
             </>

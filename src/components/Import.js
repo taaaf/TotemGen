@@ -18,7 +18,7 @@ const Import = ({ onFileSelect, onTextChange }) => {
   };
 
   const generateRandomTable = () => {
-    const headerWords = ["Column1", "Column2", "Column3", "Column4"];
+    const headerWords = ["STEPS", "DATA1", "DATA2", "DATA3"];
     const numberOfRows = Math.floor(Math.random() * 7) + 4;
 
     let newData = [headerWords];

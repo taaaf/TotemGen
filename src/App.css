@@ -334,3 +334,8 @@ input[type="range"]::-moz-range-thumb {
   max-height: 75vh;
   overflow-y: auto;
 }
+
+.border-black{
+    border: 2px solid #2b2a29;
+    overflow-y: auto;
+}
