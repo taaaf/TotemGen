@@ -6,7 +6,7 @@ import res03 from "../assets/resources_03.png";
 import res04 from "../assets/resources_04.png";
 import res05 from "../assets/resources_05.png";
 import res06 from "../assets/resources_06.png";
-import dataSculptureExample from "../assets/data_sculpture_example.png";
+import dataSculptureExample from "../assets/example_photo.JPG";
 
 const Resources = () => {
   const [activeContent, setActiveContent] = useState("totemgen");
@@ -125,6 +125,15 @@ const Resources = () => {
                       Form +Memories
                     </a>
                     .
+                      <br /> <br />
+                    Totemgen is licensed under the {" "}
+                    <a
+                        href="https://github.com/taaaf/Totemgen/blob/main/LICENSE"
+                        style={{ color: "#2B2A29" }}
+                        target="_blank"
+                      >
+                        MIT License
+                      </a>.
                   </h4>
                 </div>
               </div>
@@ -284,7 +293,7 @@ const Resources = () => {
                     <br />
                     <br />
                     Here is one of the possible data sculpture that can be
-                    created with the data above:
+                    created with different data tables:
                   </h4>
 
                   <br />

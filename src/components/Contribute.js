@@ -24,11 +24,11 @@ const Contribute = () => {
         <br />
         - more modifiers
         <br />
-        
+
         </h4>
         </div>
 
-        <div className="col  border-black m-3 p-3">
+        <div className="col border-black my-3 me-3 p-3">
         <h1>
         To give feedback write me on the {" "}
         <a
@@ -49,7 +49,7 @@ const Contribute = () => {
         </h1>
         </div>
 
-        <div className="col  border-black m-3 p-3">
+        <div className="col-lg-4 col-md-12 border-black my-3 ms-3 p-3">
         <h3>
         CONTRIBUTORS:
         </h3>
