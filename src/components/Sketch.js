@@ -82,10 +82,10 @@ const sketch = (p) => {
 
     if (!switchMode) {
       transZ = -(myShape.length / myShapeRows - 2) * (scale / 2) - scale / 2;
-      transX = -(myShapeRows - 1) * 20;
+      transX = -(myShapeRows - 1) * scale*0.5;
     } else {
       transZ = -(myShape.length / (myShapeRows * 2)) * (scale / 2) - scale / 2;
-      transX = -(myShapeRows / 2 - 1) * 20;
+      transX = -(myShapeRows / 2 - 1) * scale*0.5;
     }
 
     for (let i = 0; i < myShape.length; i++) {

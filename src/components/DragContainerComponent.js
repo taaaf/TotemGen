@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import DraggableComponent from "./DraggableComponent";
 import DropZoneComponent from "./DropZoneComponent";
 
 const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const selectAllDraggables = () => {
+    const allDraggables = document.querySelectorAll(
+    ".general-dropzone .draggable:not(.button-select)"
+  );
+
+
+    const draggableIDs = Array.from(allDraggables).reduce((acc, el) => {
+      if (el.parentElement.classList.contains("general-dropzone")) {
+        acc.push(el.id);
+      }
+      return acc;
+    }, []);
+
+    setSelectedItems(draggableIDs);
+  };
+
   const handleDragStart = (event) => {
-    event.dataTransfer.setData("text/plain", event.target.id);
+    if (selectedItems.length > 0) {
+      event.dataTransfer.setData("text/plain", JSON.stringify(selectedItems));
+    } else {
+      event.dataTransfer.setData("text/plain", event.target.id);
+    }
   };
 
   const handleDragOver = (event) => {
@@ -12,8 +34,22 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
   };
 
   const handleDrop = (event) => {
-    event.preventDefault();
-    const draggableId = event.dataTransfer.getData("text/plain");
+  event.preventDefault();
+  const data = event.dataTransfer.getData("text/plain");
+
+  let draggableIds;
+  if (data.startsWith("[") && data.endsWith("]")) {
+    try {
+      draggableIds = JSON.parse(data);
+    } catch (e) {
+      console.error("Error parsing draggable IDs:", e);
+      return;
+    }
+  } else {
+    draggableIds = [data];
+  }
+
+  draggableIds.forEach((draggableId) => {
     const draggedElement = document.getElementById(draggableId);
 
     const isZAxis = event.target.id === "dropzone1";
@@ -27,7 +63,11 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
       event.target.appendChild(draggedElement);
       onDropZoneUpdate(event.target.id, draggableId);
     }
-  };
+  });
+
+  setSelectedItems([]);
+};
+
 
   const handleGeneralDrop = (event) => {
     event.preventDefault();
@@ -51,10 +91,18 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
           <label className="p-2">DIMENSIONS SUBMITTED</label>
 
           <div
-            className="general-dropzone dropzone-padding"
+            className="general-dropzone dropzone-padding pt-2"
             onDrop={handleGeneralDrop}
             onDragOver={handleDragOver}
           >
+
+          <button
+            className="button-select"
+            onClick={selectAllDraggables}
+          >
+            SELECT ALL
+          </button>
+
             {table &&
               table[0] &&
               table[0].map((item, index) => (
@@ -66,8 +114,8 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
                 />
               ))}
           </div>
-        </div>
 
+        </div>
         <div className="col-lg-1 col-xl-1"></div>
 
         <div className="col-lg-5 col-xl-6 box-droppable">

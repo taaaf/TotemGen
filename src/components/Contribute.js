@@ -24,6 +24,8 @@ const Contribute = () => {
         <br />
         - more modifiers
         <br />
+        - the drop order of dimensions is kept in the transformation
+        <br />
 
         </h4>
         </div>

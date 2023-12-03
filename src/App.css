@@ -76,6 +76,26 @@ html {
   color: white;
 }
 
+.button-select{
+  min-width: 10rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: white;
+  color: #2b2a29;
+  font-size: 1rem;
+  margin:0 auto;
+    display:block;
+}
+
+.button-select:hover{
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: #2b2a29;
+  color: white;
+  font-size: 1rem;
+}
+
+
 .images {
   max-width: 3rem;
 }

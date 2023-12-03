@@ -11,6 +11,7 @@ const MyShape = ({
   axisRotation,
 }) => {
   const myShape = useMemo(() => {
+
     let myShape = [];
     const dropZoneInfoLength = dropZoneInfo ? Object.values(dropZoneInfo) : [];
     const dropZoneInfoValues = [];
