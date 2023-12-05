@@ -435,6 +435,7 @@ const sketch = (p) => {
       p.pop();
 
       p.push();
+      p.fill(color);
       p.beginShape(p.TRIANGLE_STRIP);
 
       //wall 1
@@ -453,6 +454,7 @@ const sketch = (p) => {
       p.pop();
 
       p.push();
+      p.fill(color);
       p.beginShape(p.TRIANGLE_STRIP);
       //Wall 2
       for (let i = myShape.length - 1; i > myShape.length - verticesPerRow; i--) {
