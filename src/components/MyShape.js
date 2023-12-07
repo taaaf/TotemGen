@@ -9,6 +9,7 @@ const MyShape = ({
   qualityRotation,
   offsetValue,
   axisRotation,
+  zScale
 }) => {
   const myShape = useMemo(() => {
 
@@ -33,7 +34,7 @@ const MyShape = ({
       dropZoneInfoValues.forEach((element, index) => {
         if (index === 0) {
           for (let i = 0; i < table.length; i++) {
-            valueZ.push(Number(table[i][element]));
+            valueZ.push(Number(table[i][element]*zScale));
           }
         }
 
@@ -273,6 +274,7 @@ const MyShape = ({
     qualityRotation,
     offsetValue,
     axisRotation,
+    zScale
   ]);
 
   useEffect(() => {

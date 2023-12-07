@@ -524,6 +524,7 @@ const Sketch = ({
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
   const [scale, setScale] = useState(1);
+  const [zScale, setZScale] = useState(1);
   const [color, setColor] = useState("#FFFFFF");
 
   const [shapeName, setShapeName] = useState("");
@@ -551,6 +552,10 @@ const Sketch = ({
 
   const handleScaleChange = (data) => {
     setScale(data);
+  };
+
+  const handleZScaleChange = (data) => {
+    setZScale(data);
   };
 
   const handleColorChange = (data) => {
@@ -650,6 +655,7 @@ const Sketch = ({
                   qualityRotation={qualityRotation}
                   offsetValue={offsetValue}
                   axisRotation={axisRotation}
+                  zScale={zScale}
                 />
               </div>
 
@@ -664,6 +670,7 @@ const Sketch = ({
                     onOffsetValueChange={handleOffsetValue}
                     onAxisRotationChange={handleAxisRotation}
                     onScaleChange={handleScaleChange}
+                    onZScaleChange={handleZScaleChange}
                     onColorChange={handleColorChange}
                   />
                 </div>
