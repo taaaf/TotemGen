@@ -6,7 +6,9 @@ import res03 from "../assets/resources_03.png";
 import res04 from "../assets/resources_04.png";
 import res05 from "../assets/resources_05.png";
 import res06 from "../assets/resources_06.png";
-import dataSculptureExample from "../assets/example_photo.JPG";
+import dataSculptureExample1 from "../assets/example_photo1.JPG";
+import dataSculptureExample2 from "../assets/example_photo2.JPG";
+import dataSculptureExample3 from "../assets/example_photo3.JPG";
 
 const Resources = () => {
   const [activeContent, setActiveContent] = useState("totemgen");
@@ -237,7 +239,24 @@ const Resources = () => {
             <>
               <h1>CREATE YOUR OWN SCULPTURE</h1>
               <div className="row mt-3 mb-5">
-                <div className="col-xl-5 py-5 p-5"></div>
+                <div className="col-xl-5 py-5 p-5">
+
+                <img
+                  src={dataSculptureExample1}
+                  style={{ width: "100%", border: "1px solid #2B2A29"}}
+                />
+
+                <img
+                  src={dataSculptureExample2}
+                  style={{ width: "100%", border: "1px solid #2B2A29", margin:" 10% 0%" }}
+                />
+
+                <img
+                  src={dataSculptureExample3}
+                  style={{ width: "100%", border: "1px solid #2B2A29"}}
+                />
+
+                </div>
 
                 <div className="col-xl-7 p-4 pt-5">
                   <h4>
@@ -291,18 +310,10 @@ const Resources = () => {
                     </a>{" "}
                     if you need help.
                     <br />
-                    <br />
-                    Here is one of the possible data sculpture that can be
-                    created with different data tables:
+
                   </h4>
 
-                  <br />
-                  <br />
 
-                  <img
-                    src={dataSculptureExample}
-                    style={{ width: "100%", border: "1px solid #2B2A29" }}
-                  />
                 </div>
               </div>
             </>
