@@ -360,7 +360,6 @@ const sketch = (p) => {
 
     p.scale(scale);
 
-
     if (myShape) {
       p.push();
       p.fill(color);
@@ -570,7 +569,6 @@ const Sketch = ({
     setMyShape(myShape);
     setMyShapeRows(myShapeRows);
     setAngleRadians(angleRadians);
-    console.log(myShape);
   };
 
   const handleShapeNameChange = (event) => {
