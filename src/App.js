@@ -185,7 +185,6 @@ export function App() {
                 isFileTextSubmitted={isFileTextSubmitted}
                 areDimensionsSubmitted={areDimensionsSubmitted}
                 areModifiersSubmitted={areModifiersSubmitted}
-                onModifiersSubmission={handleModifiersSubmitted}
                 onResetDimensionSubmitted={handleResetDimensionsSubmitted}
                 onResetModifiersSubmitted={handleResetModifiersSubmitted}
                 isReadyCreate={isReadyCreate}

@@ -29,7 +29,7 @@ const sketch = (p) => {
 
   let exportStl;
   let exportBoolean = false;
-  let shapeName = "MyShape";
+  let shapeName = "MySculpture";
 
   const divCanvas = document.getElementById("divCanvas");
 
@@ -92,7 +92,6 @@ const sketch = (p) => {
        1,
 
        function createGeometry() {
-         console.log("update");
          let verticesPerRow = myShape.length / myShapeRows;
 
            for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
@@ -361,6 +360,7 @@ const sketch = (p) => {
 
     p.scale(scale);
 
+
     if (myShape) {
       p.push();
       p.fill(color);
@@ -570,6 +570,7 @@ const Sketch = ({
     setMyShape(myShape);
     setMyShapeRows(myShapeRows);
     setAngleRadians(angleRadians);
+    console.log(myShape);
   };
 
   const handleShapeNameChange = (event) => {
@@ -611,6 +612,7 @@ const Sketch = ({
                 qualityRotation={qualityRotation}
                 offsetValue={offsetValue}
                 axisRotation={axisRotation}
+                zScale={zScale}
               />
 
               <input

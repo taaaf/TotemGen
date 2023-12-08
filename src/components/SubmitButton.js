@@ -37,7 +37,6 @@ const SubmitButton = ({
 
   const handleExport = () => {
     onReadyToExport();
-    console.log("clicked");
   };
 
   const handleCreate = () => {

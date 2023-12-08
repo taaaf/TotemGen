@@ -7,7 +7,7 @@ const sketch = (p) => {
   let axisRotation;
   let switchMode;
   let angleRadians;
-  let shapeName = "myShape";
+  let shapeName = "MySculpture";
 
   p.updateWithProps = (props) => {
     myShape = props.myShape;
@@ -48,7 +48,7 @@ const sketch = (p) => {
       stlContent += "  endfacet\n";
     }
 
-    stlContent += "endsolid MyShape\n";
+    stlContent += "endsolid MySculpture\n";
 
     // Create a Blob and a download link
     const blob = new Blob([stlContent], {

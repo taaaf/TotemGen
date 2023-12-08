@@ -8,7 +8,6 @@ const BackButton = ({
   isFileTextSubmitted,
   areDimensionsSubmitted,
   areModifiersSubmitted,
-  onModifiersSubmission,
   onResetModifiersSubmitted,
 }) => {
   const handleResetCreate = () => {
