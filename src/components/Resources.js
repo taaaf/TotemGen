@@ -9,6 +9,10 @@ import res06 from "../assets/resources_06.png";
 import dataSculptureExample1 from "../assets/example_photo1.JPG";
 import dataSculptureExample2 from "../assets/example_photo2.JPG";
 import dataSculptureExample3 from "../assets/example_photo3.JPG";
+import keychain from "../assets/keychain.png";
+import colab from "../assets/colab.png";
+
+
 
 const Resources = () => {
   const [activeContent, setActiveContent] = useState("totemgen");
@@ -45,6 +49,13 @@ const Resources = () => {
             onClick={() => handleContentChange("tutorial")}
           >
             Tutorial
+          </p>
+
+          <p
+            style={getStyle("extras")}
+            onClick={() => handleContentChange("extras")}
+          >
+            Extras
           </p>
 
           {/*  <p style={getStyle('community')} onClick={() => handleContentChange('community')}>Community</p>
@@ -127,15 +138,16 @@ const Resources = () => {
                       Form +Memories
                     </a>
                     .
-                      <br /> <br />
-                    Totemgen is licensed under the {" "}
+                    <br /> <br />
+                    Totemgen is licensed under the{" "}
                     <a
-                        href="https://github.com/taaaf/Totemgen/blob/main/LICENSE"
-                        style={{ color: "#2B2A29" }}
-                        target="_blank"
-                      >
-                        MIT License
-                      </a>.
+                      href="https://github.com/taaaf/Totemgen/blob/main/LICENSE"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      MIT License
+                    </a>
+                    .
                   </h4>
                 </div>
               </div>
@@ -240,22 +252,24 @@ const Resources = () => {
               <h1>CREATE YOUR OWN SCULPTURE</h1>
               <div className="row mt-3 mb-5">
                 <div className="col-xl-5 py-5 p-5">
+                  <img
+                    src={dataSculptureExample1}
+                    style={{ width: "100%", border: "1px solid #2B2A29" }}
+                  />
 
-                <img
-                  src={dataSculptureExample1}
-                  style={{ width: "100%", border: "1px solid #2B2A29"}}
-                />
+                  <img
+                    src={dataSculptureExample2}
+                    style={{
+                      width: "100%",
+                      border: "1px solid #2B2A29",
+                      margin: " 10% 0%",
+                    }}
+                  />
 
-                <img
-                  src={dataSculptureExample2}
-                  style={{ width: "100%", border: "1px solid #2B2A29", margin:" 10% 0%" }}
-                />
-
-                <img
-                  src={dataSculptureExample3}
-                  style={{ width: "100%", border: "1px solid #2B2A29"}}
-                />
-
+                  <img
+                    src={dataSculptureExample3}
+                    style={{ width: "100%", border: "1px solid #2B2A29" }}
+                  />
                 </div>
 
                 <div className="col-xl-7 p-4 pt-5">
@@ -310,10 +324,60 @@ const Resources = () => {
                     </a>{" "}
                     if you need help.
                     <br />
-
                   </h4>
+                </div>
+              </div>
+            </>
+          )}
 
+          {activeContent === "extras" && (
+            <>
+              <h1>GOOGLE DRIVE FOLDER</h1>
 
+              <div className="row">
+
+              <div className="col-xl-5 py-2 p-5"> </div>
+                <div className="col-xl-7 p-4 pt-5">
+                  <h4>
+                    <a
+                      href="https://drive.google.com/drive/folders/1fZ1Pa8w-FydmPdEQNzteUTOLyB9w97rA?usp=drive_link"
+                      style={{ color: "#2B2A29" }}
+                      target="_blank"
+                    >
+                      Link to the Extras Folder
+                    </a>{" "}
+                    where you can find:
+                  </h4>
+                </div>
+
+                <div className="col-xl-5 py-5 p-5">
+                  <img
+                    src={keychain}
+                    style={{ width: "100%", border: "1px solid #2B2A29" }}
+                  />
+                  </div>
+
+                <div className="col-xl-7 p-4 pt-5">
+                  <h4>
+                    <h2> 1 </h2> Stl file of a keychain attachment. This can be
+                    used to create a pendant or a keychain.
+                  </h4>
+                </div>
+
+                <div className="col-xl-5 py-5 p-5">
+                  <img
+                    src={colab}
+                    style={{ width: "100%", border: "1px solid #2B2A29" }}
+                  />
+                  </div>
+
+                <div className="col-xl-7 p-4 pt-5">
+                  <h4>
+                    <h2> 2 </h2> Python code ready to be executed on Google
+                    Colab that can extrapolate those messages that contain
+                    certain keywords. You can use it to find how many times
+                    you said "Miss you!" to your significant other.
+                  </h4>
                 </div>
               </div>
             </>
