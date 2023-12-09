@@ -38,7 +38,11 @@ const sketch = (p) => {
   let canvas;
 
   p.setup = () => {
-    canvas = p.createCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
+    canvas = p.createCanvas(
+      divCanvas.clientWidth,
+      window.innerHeight * 0.9,
+      p.WEBGL
+    );
     //p.debugMode();
   };
 
@@ -47,6 +51,17 @@ const sketch = (p) => {
   };
 
   p.updateWithProps = (props) => {
+    
+    if (exportStl !== props.exportStl && exportStl) {
+      canvas.remove();
+    }
+
+    canvas = p.createCanvas(
+      divCanvas.clientWidth,
+      window.innerHeight * 0.9,
+      p.WEBGL
+    );
+
     myShape = props.myShape;
 
     axisRotation = props.axisRotation;
@@ -59,9 +74,10 @@ const sketch = (p) => {
       p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
     }
 
-    if(exportStl !== props.exportStl && exportStl){
-      p.resizeCanvas(1920, 1920, p.WEBGL);
+    if (exportStl !== props.exportStl && exportStl) {
+      canvas = p.createCanvas(1920, 1920, p.WEBGL);
       exportBoolean = true;
+      console.log("dentro resize render");
     }
 
     areModifiersSubmitted = props.areModifiersSubmitted;
@@ -76,219 +92,201 @@ const sketch = (p) => {
     shapeName = props.shapeName;
 
     createModel();
-
-    canvas.remove();
-    canvas = p.createCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
-
   };
 
-
-
-
-  function createModel(){
-
+  function createModel() {
     myGeometry = new p5.Geometry(
-       1,
-       1,
+      1,
+      1,
 
-       function createGeometry() {
-         let verticesPerRow = myShape.length / myShapeRows;
+      function createGeometry() {
+        let verticesPerRow = myShape.length / myShapeRows;
 
-           for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
-             this.vertices.push(
-               new p5.Vector(
-                 myShape[i - verticesPerRow][0],
-                 myShape[i - verticesPerRow][1],
-                 myShape[i - verticesPerRow][2]
-               ),
-               new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2]),
-               new p5.Vector(
-                 myShape[i + 1][0],
-                 myShape[i + 1][1],
-                 myShape[i + 1][2]
-               )
-             );
+        for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
+          this.vertices.push(
+            new p5.Vector(
+              myShape[i - verticesPerRow][0],
+              myShape[i - verticesPerRow][1],
+              myShape[i - verticesPerRow][2]
+            ),
+            new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2]),
+            new p5.Vector(
+              myShape[i + 1][0],
+              myShape[i + 1][1],
+              myShape[i + 1][2]
+            )
+          );
 
-             this.vertices.push(
-               new p5.Vector(
-                 myShape[i - verticesPerRow][0],
-                 myShape[i - verticesPerRow][1],
-                 myShape[i - verticesPerRow][2]
-               ),
-               new p5.Vector(
-                 myShape[i + 1][0],
-                 myShape[i + 1][1],
-                 myShape[i + 1][2]
-               ),
-               new p5.Vector(
-                 myShape[i + 1 - verticesPerRow][0],
-                 myShape[i + 1 - verticesPerRow][1],
-                 myShape[i + 1 - verticesPerRow][2]
-               )
-             );
+          this.vertices.push(
+            new p5.Vector(
+              myShape[i - verticesPerRow][0],
+              myShape[i - verticesPerRow][1],
+              myShape[i - verticesPerRow][2]
+            ),
+            new p5.Vector(
+              myShape[i + 1][0],
+              myShape[i + 1][1],
+              myShape[i + 1][2]
+            ),
+            new p5.Vector(
+              myShape[i + 1 - verticesPerRow][0],
+              myShape[i + 1 - verticesPerRow][1],
+              myShape[i + 1 - verticesPerRow][2]
+            )
+          );
 
-             if ((i + 2) % verticesPerRow === 0) {
-               i = i + 1;
+          if ((i + 2) % verticesPerRow === 0) {
+            i = i + 1;
 
-               this.vertices.push(
-                 new p5.Vector(
-                   myShape[i - verticesPerRow][0],
-                   myShape[i - verticesPerRow][1],
-                   myShape[i - verticesPerRow][2]
-                 ),
-                 new p5.Vector(
-                   myShape[i - verticesPerRow * 2 + 1][0],
-                   myShape[i - verticesPerRow * 2 + 1][1],
-                   myShape[i - verticesPerRow * 2 + 1][2]
-                 ),
-                 new p5.Vector(
-                   myShape[i - verticesPerRow + 1][0],
-                   myShape[i - verticesPerRow + 1][1],
-                   myShape[i - verticesPerRow + 1][2]
-                 )
-               );
+            this.vertices.push(
+              new p5.Vector(
+                myShape[i - verticesPerRow][0],
+                myShape[i - verticesPerRow][1],
+                myShape[i - verticesPerRow][2]
+              ),
+              new p5.Vector(
+                myShape[i - verticesPerRow * 2 + 1][0],
+                myShape[i - verticesPerRow * 2 + 1][1],
+                myShape[i - verticesPerRow * 2 + 1][2]
+              ),
+              new p5.Vector(
+                myShape[i - verticesPerRow + 1][0],
+                myShape[i - verticesPerRow + 1][1],
+                myShape[i - verticesPerRow + 1][2]
+              )
+            );
 
-               this.vertices.push(
-                 new p5.Vector(
-                   myShape[i - verticesPerRow][0],
-                   myShape[i - verticesPerRow][1],
-                   myShape[i - verticesPerRow][2]
-                 ),
-                 new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2]),
-                 new p5.Vector(
-                   myShape[i - verticesPerRow + 1][0],
-                   myShape[i - verticesPerRow + 1][1],
-                   myShape[i - verticesPerRow + 1][2]
-                 )
-               );
-             }
-           }
+            this.vertices.push(
+              new p5.Vector(
+                myShape[i - verticesPerRow][0],
+                myShape[i - verticesPerRow][1],
+                myShape[i - verticesPerRow][2]
+              ),
+              new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2]),
+              new p5.Vector(
+                myShape[i - verticesPerRow + 1][0],
+                myShape[i - verticesPerRow + 1][1],
+                myShape[i - verticesPerRow + 1][2]
+              )
+            );
+          }
+        }
 
-           // Wall 1
+        // Wall 1
 
-           if (axisRotation && switchMode) {
-             for (let i = 1; i < verticesPerRow - 1; i++) {
-               this.vertices.push(
-                 new p5.Vector([0, 0, myShape[i][2]]),
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([0, 0, myShape[i + 1][2]])
-               );
+        if (axisRotation && switchMode) {
+          for (let i = 1; i < verticesPerRow - 1; i++) {
+            this.vertices.push(
+              new p5.Vector([0, 0, myShape[i][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([0, 0, myShape[i + 1][2]])
+            );
 
-               this.vertices.push(
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([
-                   myShape[i + 1][0],
-                   myShape[i + 1][1],
-                   myShape[i + 1][2],
-                 ]),
-                 new p5.Vector([0, 0, myShape[i + 1][2]])
-               );
-             }
-           }
-           for (let i = 1; i < verticesPerRow - 1; i++) {
-             this.vertices.push(
-               new p5.Vector([myShape[i][0], 0, myShape[i][2]]),
-               new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-               new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]])
-             );
+            this.vertices.push(
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([
+                myShape[i + 1][0],
+                myShape[i + 1][1],
+                myShape[i + 1][2],
+              ]),
+              new p5.Vector([0, 0, myShape[i + 1][2]])
+            );
+          }
+        }
+        for (let i = 1; i < verticesPerRow - 1; i++) {
+          this.vertices.push(
+            new p5.Vector([myShape[i][0], 0, myShape[i][2]]),
+            new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+            new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]])
+          );
 
-             this.vertices.push(
-               new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-               new p5.Vector([
-                 myShape[i + 1][0],
-                 myShape[i + 1][1],
-                 myShape[i + 1][2],
-               ]),
-               new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]])
-             );
-           }
+          this.vertices.push(
+            new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+            new p5.Vector([
+              myShape[i + 1][0],
+              myShape[i + 1][1],
+              myShape[i + 1][2],
+            ]),
+            new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]])
+          );
+        }
 
-           //end wall 1
+        //end wall 1
 
-           // Wall 2
+        // Wall 2
 
-           for (
-             let i = myShape.length - 1;
-             i > myShape.length - verticesPerRow;
-             i--
-           ) {
-             if (
-               (!axisRotation && !switchMode) ||
-               (!axisRotation && switchMode)
-             ) {
-               this.vertices.push(
-                 new p5.Vector([myShape[i][0], 0, myShape[i][2]]),
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]])
-               );
+        for (
+          let i = myShape.length - 1;
+          i > myShape.length - verticesPerRow;
+          i--
+        ) {
+          if ((!axisRotation && !switchMode) || (!axisRotation && switchMode)) {
+            this.vertices.push(
+              new p5.Vector([myShape[i][0], 0, myShape[i][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]])
+            );
 
-               this.vertices.push(
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([
-                   myShape[i - 1][0],
-                   myShape[i - 1][1],
-                   myShape[i - 1][2],
-                 ]),
-                 new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]])
-               );
-             }
+            this.vertices.push(
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([
+                myShape[i - 1][0],
+                myShape[i - 1][1],
+                myShape[i - 1][2],
+              ]),
+              new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]])
+            );
+          }
 
-             if (axisRotation && !switchMode) {
-               this.vertices.push(
-                 new p5.Vector([0, 0, myShape[i][2]]),
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([0, 0, myShape[i - 1][2]])
-               );
+          if (axisRotation && !switchMode) {
+            this.vertices.push(
+              new p5.Vector([0, 0, myShape[i][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([0, 0, myShape[i - 1][2]])
+            );
 
-               this.vertices.push(
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([
-                   myShape[i - 1][0],
-                   myShape[i - 1][1],
-                   myShape[i - 1][2],
-                 ]),
-                 new p5.Vector([0, 0, myShape[i - 1][2]])
-               );
-             }
+            this.vertices.push(
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([
+                myShape[i - 1][0],
+                myShape[i - 1][1],
+                myShape[i - 1][2],
+              ]),
+              new p5.Vector([0, 0, myShape[i - 1][2]])
+            );
+          }
 
-             if (axisRotation && switchMode) {
-               const y = Math.sin(angleRadians) * 0.5;
+          if (axisRotation && switchMode) {
+            const y = Math.sin(angleRadians) * 0.5;
 
-               this.vertices.push(
-                 new p5.Vector([
-                   myShape[myShape.length - 1][0],
-                   y,
-                   myShape[i][2],
-                 ]),
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([
-                   myShape[myShape.length - 1][0],
-                   y,
-                   myShape[i - 1][2],
-                 ])
-               );
+            this.vertices.push(
+              new p5.Vector([myShape[myShape.length - 1][0], y, myShape[i][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([
+                myShape[myShape.length - 1][0],
+                y,
+                myShape[i - 1][2],
+              ])
+            );
 
-               this.vertices.push(
-                 new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-                 new p5.Vector([
-                   myShape[i - 1][0],
-                   myShape[i - 1][1],
-                   myShape[i - 1][2],
-                 ]),
-                 new p5.Vector([
-                   myShape[myShape.length - 1][0],
-                   y,
-                   myShape[i - 1][2],
-                 ])
-               );
-             }
-           }
-
-       }
-     );
-
+            this.vertices.push(
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([
+                myShape[i - 1][0],
+                myShape[i - 1][1],
+                myShape[i - 1][2],
+              ]),
+              new p5.Vector([
+                myShape[myShape.length - 1][0],
+                y,
+                myShape[i - 1][2],
+              ])
+            );
+          }
+        }
+      }
+    );
   }
-
 
   function isMouseOverCanvas() {
     let overCanvasX = p.mouseX > 0 && p.mouseX < p.width;
@@ -301,10 +299,10 @@ const sketch = (p) => {
 
     if (!switchMode) {
       transZ = -(myShape.length / myShapeRows - 2) * (scale / 2) - scale / 2;
-      transX = -(myShapeRows - 1) * scale*0.5;
+      transX = -(myShapeRows - 1) * scale * 0.5;
     } else {
       transZ = -(myShape.length / (myShapeRows * 2)) * (scale / 2) - scale / 2;
-      transX = -(myShapeRows / 2 - 1) * scale*0.5;
+      transX = -(myShapeRows / 2 - 1) * scale * 0.5;
     }
 
     for (let i = 0; i < myShape.length; i++) {
@@ -343,7 +341,7 @@ const sketch = (p) => {
       p.camera(camX, camY, camZ, 0, 0, 0, 0, 1, 0);
     } else {
       let zoom = 0.4;
-      p.camera(cameraX*zoom, cameraY*zoom, 0, 0, 0, 0);
+      p.camera(cameraX * zoom, cameraY * zoom, 0, 0, 0, 0);
       p.rotateY(p.frameCount / 160);
       scale = 20;
     }
@@ -371,143 +369,143 @@ const sketch = (p) => {
       p.stroke(0);
       p.beginShape(p.LINES);
 
-    { let verticesPerRow = myShape.length / myShapeRows;
+      {
+        let verticesPerRow = myShape.length / myShapeRows;
 
-
-
-
-      for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
-        p.vertex(
-          myShape[i - verticesPerRow][0],
-          myShape[i - verticesPerRow][1],
-          myShape[i - verticesPerRow][2]
-        );
-        p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-        p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
-
-        p.vertex(
-          myShape[i - verticesPerRow][0],
-          myShape[i - verticesPerRow][1],
-          myShape[i - verticesPerRow][2]
-        );
-        p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
-        p.vertex(
-          myShape[i + 1 - verticesPerRow][0],
-          myShape[i + 1 - verticesPerRow][1],
-          myShape[i + 1 - verticesPerRow][2]
-        );
-
-        if ((i + 2) % verticesPerRow === 0) {
-          i = i + 1;
-
+        for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
           p.vertex(
             myShape[i - verticesPerRow][0],
             myShape[i - verticesPerRow][1],
             myShape[i - verticesPerRow][2]
           );
           p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(
-            myShape[i - verticesPerRow + 1][0],
-            myShape[i - verticesPerRow + 1][1],
-            myShape[i - verticesPerRow + 1][2]
-          );
+          p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
 
           p.vertex(
             myShape[i - verticesPerRow][0],
             myShape[i - verticesPerRow][1],
             myShape[i - verticesPerRow][2]
           );
+          p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
           p.vertex(
-            myShape[i - verticesPerRow * 2 + 1][0],
-            myShape[i - verticesPerRow * 2 + 1][1],
-            myShape[i - verticesPerRow * 2 + 1][2]
+            myShape[i + 1 - verticesPerRow][0],
+            myShape[i + 1 - verticesPerRow][1],
+            myShape[i + 1 - verticesPerRow][2]
           );
-          p.vertex(
-            myShape[i - verticesPerRow + 1][0],
-            myShape[i - verticesPerRow + 1][1],
-            myShape[i - verticesPerRow + 1][2]
-          );
+
+          if ((i + 2) % verticesPerRow === 0) {
+            i = i + 1;
+
+            p.vertex(
+              myShape[i - verticesPerRow][0],
+              myShape[i - verticesPerRow][1],
+              myShape[i - verticesPerRow][2]
+            );
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(
+              myShape[i - verticesPerRow + 1][0],
+              myShape[i - verticesPerRow + 1][1],
+              myShape[i - verticesPerRow + 1][2]
+            );
+
+            p.vertex(
+              myShape[i - verticesPerRow][0],
+              myShape[i - verticesPerRow][1],
+              myShape[i - verticesPerRow][2]
+            );
+            p.vertex(
+              myShape[i - verticesPerRow * 2 + 1][0],
+              myShape[i - verticesPerRow * 2 + 1][1],
+              myShape[i - verticesPerRow * 2 + 1][2]
+            );
+            p.vertex(
+              myShape[i - verticesPerRow + 1][0],
+              myShape[i - verticesPerRow + 1][1],
+              myShape[i - verticesPerRow + 1][2]
+            );
+          }
         }
-      }
 
-      p.endShape();
-      p.pop();
+        p.endShape();
+        p.pop();
 
-      p.push();
-      p.fill(color);
-      p.beginShape(p.TRIANGLE_STRIP);
+        p.push();
+        p.fill(color);
+        p.beginShape(p.TRIANGLE_STRIP);
 
-      //wall 1
-      for (let i = 1; i < verticesPerRow - 1; i++) {
-        p.vertex(myShape[i][0], 0, myShape[i][2]);
-        p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-        p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
-
-        p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-        p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
-        p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
-      }
-      //end of wall 1
-
-      p.endShape();
-      p.pop();
-
-      p.push();
-      p.fill(color);
-      p.beginShape(p.TRIANGLE_STRIP);
-      //Wall 2
-      for (let i = myShape.length - 1; i > myShape.length - verticesPerRow; i--) {
-        if ((!axisRotation && !switchMode) || (!axisRotation && switchMode)) {
+        //wall 1
+        for (let i = 1; i < verticesPerRow - 1; i++) {
           p.vertex(myShape[i][0], 0, myShape[i][2]);
           p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(myShape[i - 1][0], 0, myShape[i - 1][2]);
+          p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
 
           p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(myShape[i - 1][0], myShape[i - 1][1], myShape[i - 1][2]);
-          p.vertex(myShape[i - 1][0], 0, myShape[i - 1][2]);
+          p.vertex(myShape[i + 1][0], myShape[i + 1][1], myShape[i + 1][2]);
+          p.vertex(myShape[i + 1][0], 0, myShape[i + 1][2]);
         }
+        //end of wall 1
 
-        if (axisRotation && !switchMode) {
-          p.vertex(0, 0, myShape[i][2]);
-          p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(0, 0, myShape[i - 1][2]);
+        p.endShape();
+        p.pop();
 
-          p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(myShape[i - 1][0], myShape[i - 1][1], myShape[i - 1][2]);
-          p.vertex(0, 0, myShape[i - 1][2]);
+        p.push();
+        p.fill(color);
+        p.beginShape(p.TRIANGLE_STRIP);
+        //Wall 2
+        for (
+          let i = myShape.length - 1;
+          i > myShape.length - verticesPerRow;
+          i--
+        ) {
+          if ((!axisRotation && !switchMode) || (!axisRotation && switchMode)) {
+            p.vertex(myShape[i][0], 0, myShape[i][2]);
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[i - 1][0], 0, myShape[i - 1][2]);
+
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[i - 1][0], myShape[i - 1][1], myShape[i - 1][2]);
+            p.vertex(myShape[i - 1][0], 0, myShape[i - 1][2]);
+          }
+
+          if (axisRotation && !switchMode) {
+            p.vertex(0, 0, myShape[i][2]);
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(0, 0, myShape[i - 1][2]);
+
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[i - 1][0], myShape[i - 1][1], myShape[i - 1][2]);
+            p.vertex(0, 0, myShape[i - 1][2]);
+          }
+
+          if (axisRotation && switchMode) {
+            const y = Math.sin(angleRadians) * 0.5;
+
+            p.vertex(myShape[myShape.length - 1][0], y, myShape[i][2]);
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[myShape.length - 1][0], y, myShape[i - 1][2]);
+
+            p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
+            p.vertex(myShape[i - 1][0], myShape[i - 1][1], myShape[i - 1][2]);
+            p.vertex(myShape[myShape.length - 1][0], y, myShape[i - 1][2]);
+          }
         }
+        //end of wall 2
 
-        if (axisRotation && switchMode) {
-          const y = Math.sin(angleRadians) * 0.5;
-
-          p.vertex(myShape[myShape.length - 1][0], y, myShape[i][2]);
-          p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(myShape[myShape.length - 1][0], y, myShape[i - 1][2]);
-
-          p.vertex(myShape[i][0], myShape[i][1], myShape[i][2]);
-          p.vertex(myShape[i - 1][0], myShape[i - 1][1], myShape[i - 1][2]);
-          p.vertex(myShape[myShape.length - 1][0], y, myShape[i - 1][2]);
-        }
+        p.endShape();
+        p.pop();
       }
-      //end of wall 2
 
-      p.endShape();
-      p.pop();
-
-
-     }
-
-    if(exportBoolean){
-      p.saveCanvas("Render_Sculpture_"+shapeName, 'jpg');
-      p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
-      exportBoolean = false;
+      if (exportBoolean) {
+        p.saveCanvas("Render_Sculpture_" + shapeName, "jpg");
+        canvas = p.createCanvas(
+          divCanvas.clientWidth,
+          window.innerHeight * 0.9,
+          p.WEBGL
+        );
+        exportBoolean = false;
+      }
     }
-
-  }
-
-  }
-
-
+  };
 };
 
 const Sketch = ({
