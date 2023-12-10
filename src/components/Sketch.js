@@ -78,11 +78,6 @@ const sketch = (p) => {
       p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
     }
 
-    if (saveCanvas !== props.saveCanvas && saveCanvas) {
-      canvas = p.createCanvas(1920, 1920, p.WEBGL);
-      exportBoolean = true;
-      console.log("dentro resize render");
-    }
 
     areModifiersSubmitted = props.areModifiersSubmitted;
 
@@ -98,6 +93,10 @@ const sketch = (p) => {
 
     if (props.onSaveCanvasComplete) {
       onSaveCanvasComplete = props.onSaveCanvasComplete;
+    }
+
+    if(saveCanvas){
+      canvas = p.createCanvas(1920, 1920, p.WEBGL);
     }
 
     createModel();
