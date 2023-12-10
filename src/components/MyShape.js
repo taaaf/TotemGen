@@ -17,6 +17,8 @@ const MyShape = ({
     const dropZoneInfoLength = dropZoneInfo ? Object.values(dropZoneInfo) : [];
     const dropZoneInfoValues = [];
 
+    console.log(dropZoneInfo);
+
     for (let i = 0; i < dropZoneInfoLength.length; i++) {
       dropZoneInfoValues.push(Number(Object.keys(dropZoneInfo)[i]));
     }
@@ -278,6 +280,7 @@ const MyShape = ({
   ]);
 
   useEffect(() => {
+    console.log(myShape);
     onMyShapeChange(myShape);
   }, [myShape, onMyShapeChange]);
 
