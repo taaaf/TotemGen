@@ -283,18 +283,18 @@ const Resources = () => {
                       Click here
                     </a>{" "}
                     if you'd like to have a template as a starting point. You
-                    can also write your data on a piece of paper, the notes on
-                    your phone... Do whatever is handier and more convenient for
+                    can also write your data on a piece of paper, on the notes on
+                    your phone... Do whatever is handier and more convenient to
                     you!
                     <br />
                     <br />
-                    Naturally you can also use some data that you have already,
-                    like the meters you walked the past week, the calories you
-                    had today or the time spent listening to Lofi Girl the past
+                    Naturally you can use data you already have,
+                    like the meters you walked the past week, how many calories you
+                    had today or how much time you spent listening to Lofi Girl the past
                     month.
                     <br />
                     <br />
-                    Once data is collected you need to format it in a table like
+                    Once data is collected, you need to format it in a table like
                     so:
                     <br />
                   </h4>
