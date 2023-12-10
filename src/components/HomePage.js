@@ -9,7 +9,7 @@ import x from "../assets/x.svg";
 
 const HomePage = () => {
 
-  const [showNews, setShowNews] = useState(true);
+  const [showNews, setShowNews] = useState(false);
 
   const toggleNews = () => {
     setShowNews(!showNews);

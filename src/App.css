@@ -89,7 +89,6 @@ html {
   cursor: pointer;
 }
 
-
 .my-btn {
   padding: 0.3rem 1rem;
   width: 18rem;
@@ -348,12 +347,40 @@ input[type="radio"]:checked {
   cursor: pointer;
 }
 
-.shape-name-input {
+.export-name-camera{
   position: absolute;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+  width: 25rem;
+  height:2rem;
+  background-color: none;
+}
+
+.camera-button{
+  background-color:white;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.camera-button:hover{
+  background-color:#2b2a29;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.camera-button:hover svg path {
+  fill: white;
+}
+
+.shape-name-input {
   padding: 0.5rem;
   height: 2.8rem;
   width: 15rem;

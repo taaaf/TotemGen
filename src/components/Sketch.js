@@ -4,6 +4,8 @@ import * as p5 from "p5";
 import Modifiers from "./Modifiers";
 import MyShape from "./MyShape";
 import Export from "./Export";
+import { ReactComponent as CameraIcon } from '../assets/camera.svg';
+
 
 const sketch = (p) => {
   let angle = 0;
@@ -30,6 +32,9 @@ const sketch = (p) => {
   let exportStl;
   let exportBoolean = false;
   let shapeName = "MySculpture";
+  let saveCanvas = false;
+  let onSaveCanvasComplete;
+
 
   const divCanvas = document.getElementById("divCanvas");
 
@@ -43,7 +48,6 @@ const sketch = (p) => {
       window.innerHeight * 0.9,
       p.WEBGL
     );
-    //p.debugMode();
   };
 
   p.windowResized = () => {
@@ -51,7 +55,7 @@ const sketch = (p) => {
   };
 
   p.updateWithProps = (props) => {
-    
+
     if (exportStl !== props.exportStl && exportStl) {
       canvas.remove();
     }
@@ -74,7 +78,7 @@ const sketch = (p) => {
       p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
     }
 
-    if (exportStl !== props.exportStl && exportStl) {
+    if (saveCanvas !== props.saveCanvas && saveCanvas) {
       canvas = p.createCanvas(1920, 1920, p.WEBGL);
       exportBoolean = true;
       console.log("dentro resize render");
@@ -90,6 +94,11 @@ const sketch = (p) => {
 
     exportStl = props.exportStl;
     shapeName = props.shapeName;
+    saveCanvas = props.saveCanvas;
+
+    if (props.onSaveCanvasComplete) {
+      onSaveCanvasComplete = props.onSaveCanvasComplete;
+    }
 
     createModel();
   };
@@ -495,14 +504,27 @@ const sketch = (p) => {
         p.pop();
       }
 
-      if (exportBoolean) {
+      if(saveCanvas){
         p.saveCanvas("Render_Sculpture_" + shapeName, "jpg");
         canvas = p.createCanvas(
           divCanvas.clientWidth,
           window.innerHeight * 0.9,
           p.WEBGL
         );
+        saveCanvas=false;
+        if (onSaveCanvasComplete) {
+        onSaveCanvasComplete();
+      }
+      }
+
+      if (exportBoolean) {
+        canvas = p.createCanvas(
+          divCanvas.clientWidth,
+          window.innerHeight * 0.9,
+          p.WEBGL
+        );
         exportBoolean = false;
+
       }
     }
   };
@@ -577,6 +599,19 @@ const Sketch = ({
     setIsFormSubmitted(true);
   };
 
+  const [saveCanvas, setSaveCanvas] = useState(false);
+
+  const handleSaveCanvas = () => {
+    setSaveCanvas(true);
+    console.log(saveCanvas);
+   };
+
+  const handleSaveCanvasComplete = () => {
+    setSaveCanvas(false);
+    console.log(saveCanvas);
+  };
+
+
   return (
     <>
       <div className="container-fluid">
@@ -598,6 +633,8 @@ const Sketch = ({
                 color={color}
                 exportStl={exportStl}
                 shapeName={shapeName}
+                saveCanvas={saveCanvas}
+                onSaveCanvasComplete={handleSaveCanvasComplete}
               />
               <MyShape
                 dropZoneInfo={dropZoneInfo}
@@ -611,13 +648,22 @@ const Sketch = ({
                 zScale={zScale}
               />
 
+              <div className="export-name-camera row">
+
               <input
-                className="shape-name-input"
+                className="shape-name-input col-8"
                 type="text"
                 value={shapeName}
                 onChange={handleShapeNameChange}
                 placeholder="Enter sculpture name"
               />
+
+              <div className="col-1"> </div>
+
+              <button className="col-3 camera-button" onClick={handleSaveCanvas}>
+                   <CameraIcon className="camera-icon" style={{ width: "60%", padding: "10%", height:"100%"}} />
+              </button>
+              </div>
 
               {exportStl && (
                 <Export
@@ -643,6 +689,7 @@ const Sketch = ({
                   areModifiersSubmitted={areModifiersSubmitted}
                   scale={scale}
                   color={color}
+                  saveCanvas={saveCanvas}
                 />
                 <MyShape
                   dropZoneInfo={dropZoneInfo}
