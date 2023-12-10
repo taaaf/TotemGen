@@ -1,13 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from "../assets/logo.svg";
 import mit from "../assets/mit-license.png";
 import github from "../assets/github-mark.png";
 import formplusmemories from "../assets/F+M.svg";
 import version from "../assets/version.svg";
+import x from "../assets/x.svg";
+
 
 const HomePage = () => {
+
+  const [showNews, setShowNews] = useState(true);
+
+  const toggleNews = () => {
+    setShowNews(!showNews);
+  };
+
+
   return (
     <>
+
+    {showNews && (
+        <div className="news-window">
+          <button className="close-button" onClick={toggleNews}> <img src={x} alt="X" className="x"/></button>
+          <h3>NEWS</h3>
+          <p className="news-paragraph">OPEN CALL! At the end of January there will be a workshop about data sculptures with an hands on of Totemgen. More info soon!</p>
+        </div>
+      )}
+
       <div className="position-absolute top-50 start-50 translate-middle">
         <div className="relative-positioned-div">
           <img src={logo} alt="Logo" />
@@ -19,7 +38,7 @@ const HomePage = () => {
         </p>
       </div>
 
-      <div className="position-absolute bottom-0 start-0 p-3">
+      <div className="logos start-0 p-3">
         <div className="row align-items-center">
           <div className="col">
             <a
@@ -50,6 +69,8 @@ const HomePage = () => {
 
         </div>
       </div>
+
+
     </>
   );
 };
