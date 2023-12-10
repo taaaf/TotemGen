@@ -1,4 +1,6 @@
 import React from "react";
+import { ReactComponent as Arrow } from '../assets/arrow.svg';
+
 
 const SubmitButton = ({
   onCreate,
@@ -48,6 +50,7 @@ const SubmitButton = ({
       {!isReadyCreate && (
         <button className="my-btn submitButton" onClick={handleCreate}>
           CREATE
+          <Arrow  style={{ width: "65%", paddingLeft: "1rem", height:"50%"}} />
         </button>
       )}
 
