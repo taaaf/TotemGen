@@ -20,8 +20,6 @@ const Contribute = () => {
         <h4>
         Suggested features to add:
         <br />
-        - check box for exporting only stl or jpg or both.
-        <br />
         - more modifiers
         <br />
         - the drop order of dimensions is kept in the transformation
