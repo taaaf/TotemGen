@@ -21,6 +21,8 @@ const sketch = (p) => {
   let transZ = 0;
   let transX = 0;
   let maxY = 0;
+  let maxZ = 0;
+  let cameraFactor;
 
   let camRadius = 300;
   let camAngleX = 0;
@@ -48,6 +50,8 @@ const sketch = (p) => {
       window.innerHeight * 0.9,
       p.WEBGL
     );
+
+
   };
 
   p.windowResized = () => {
@@ -78,7 +82,6 @@ const sketch = (p) => {
       p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
     }
 
-
     areModifiersSubmitted = props.areModifiersSubmitted;
 
     switchMode = props.switchMode;
@@ -98,6 +101,33 @@ const sketch = (p) => {
     if(saveCanvas){
       canvas = p.createCanvas(1920, 1920, p.WEBGL);
     }
+
+    for (let i = 0; i < myShape.length; i++) {
+      if (myShape[i][1] > maxY) {
+        maxY = Math.abs(myShape[i][1]);
+      }
+      if(myShape[i][2] > maxZ){
+        maxZ = myShape[i][2];
+      }
+    }
+
+
+    if(!axisRotation&&(angleRadians>3)&&exportStl){
+      maxZ*=2;
+    }
+
+
+//TO DO !!!
+
+    cameraFactor = 0;
+
+    if(maxY > maxZ){
+      cameraFactor=maxY;
+    }else{cameraFactor = maxZ;}
+
+    cameraFactor /=8;
+    console.log(cameraFactor);
+//CAMERA FACTOR
 
     createModel();
   };
@@ -313,15 +343,9 @@ const sketch = (p) => {
       transX = -(myShapeRows / 2 - 1) * scale * 0.5;
     }
 
-    for (let i = 0; i < myShape.length; i++) {
-      if (myShape[i][1] < maxY) {
-        maxY = myShape[i][1];
-      }
-    }
-    maxY = -maxY;
 
     if (!switchMode) {
-      cameraX = 500 + 30 * maxY;
+      cameraX = 500 + 60*maxY;
       cameraY = -cameraX / 2;
     } else {
       cameraX = (myShape.length / myShapeRows / 2) * 15 * maxY;

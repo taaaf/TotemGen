@@ -58,15 +58,21 @@ html {
   max-width: 3rem;
 }
 
-.news-window {
+.news{
   position: fixed;
   width: 18rem;
   top: 5rem;
   right: 1%;
+  z-index:100;
+
+}
+
+.news-window {
   background-color: white;
   padding: 0.8rem;
+  margin-top:1rem;
   border: 2px solid #2b2a29;
-  z-index:100;
+  position: relative;
 }
 
 .x{
@@ -74,8 +80,8 @@ html {
 }
 
 .news-paragraph{
-  margin-top:1.2rem;
-  margin-bottom:1.5rem;
+  margin-top:0.8rem;
+  margin-bottom:0.2rem;
   line-height:1.2rem;
 }
 

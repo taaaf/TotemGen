@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import logo from "../assets/logo.svg";
 import res01 from "../assets/resources_01.png";
 import res02 from "../assets/resources_02.png";
@@ -15,6 +16,16 @@ import colab from "../assets/colab.png";
 
 
 const Resources = () => {
+
+  const location = useLocation();
+
+  useEffect(() => {
+  console.log(location); // To see what the location object contains
+  if (location.state?.activeContent) {
+    setActiveContent(location.state.activeContent);
+  }
+}, [location]);
+
   const [activeContent, setActiveContent] = useState("totemgen");
 
   const handleContentChange = (content) => {
@@ -56,6 +67,13 @@ const Resources = () => {
             onClick={() => handleContentChange("extras")}
           >
             Extras
+          </p>
+
+          <p
+            style={getStyle("workshop")}
+            onClick={() => handleContentChange("workshop")}
+          >
+            Workshop
           </p>
 
           {/*  <p style={getStyle('community')} onClick={() => handleContentChange('community')}>Community</p>
@@ -383,13 +401,30 @@ const Resources = () => {
             </>
           )}
 
+          {activeContent === "workshop" &&
+
+          <>
+
+          <h1>
+          DATE, PROGRAM AND OTHER INFO SOON!
+          </h1>
+
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd3EUubMz7pSguvp0N2TCP3bqs3Tq11YIZJ-noR2HekFaKqbA/viewform?embedded=true"
+          width="100%" height="520"
+          frameborder="0" marginheight="0" marginwidth="0"
+          className="mt-4">Loading…
+          </iframe>
+
+
+</>
+        }
+
           {activeContent === "dataSculptures" && <h2>to do.....</h2>}
 
           {activeContent === "community" && <h2>to do...</h2>}
 
           {activeContent === "selfTracking" && <h2>to do.....</h2>}
 
-          {activeContent === "workshop" && <h2>Soon in January 2024 !</h2>}
         </div>
       </div>
     </>

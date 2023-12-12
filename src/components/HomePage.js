@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import logo from "../assets/logo.svg";
 import mit from "../assets/mit-license.png";
 import github from "../assets/github-mark.png";
@@ -13,20 +14,38 @@ const HomePage = () => {
     setShowNews(!showNews);
   };
 
+  const [showNews2, setShowNews2] = useState(true);
+
+  const toggleNews2 = () => {
+    setShowNews2(!showNews2);
+  };
+
   return (
     <>
-      {showNews && (
+    <div className="news">
+
+      {showNews &&
         <div className="news-window">
           <button className="close-button" onClick={toggleNews}>
             {" "}
             <img src={x} alt="X" className="x" />
           </button>
-          {/* <h3>NEWS</h3>
+           <h3>OPEN CALL!</h3>
           <p className="news-paragraph">
-            OPEN CALL! At the end of January there will be a workshop about data
-            sculptures with an hands on of Totemgen. More info soon!
+            At the end of January there will be a workshop about Data
+            Sculptures. If you want to be notified
+            about updates fill the form in the "Workshop" page under "Resources".
           </p>
-          */}
+
+            </div>}
+
+      {showNews2 && (
+          <div className="news-window">
+          <button className="close-button" onClick={toggleNews2}>
+            {" "}
+            <img src={x} alt="X" className="x" />
+          </button>
+
           <h3>DONT KNOW WHERE TO START?</h3>
           <p className="news-paragraph">
             Check out the "Getting Started" page under "Resources". You will find some examples
@@ -34,6 +53,7 @@ const HomePage = () => {
           </p>
         </div>
       )}
+      </div>
 
       <div className="position-absolute top-50 start-50 translate-middle">
         <div className="relative-positioned-div">
