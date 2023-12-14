@@ -26,7 +26,7 @@ const Resources = () => {
   }
 }, [location]);
 
-  const [activeContent, setActiveContent] = useState("totemgen");
+  const [activeContent, setActiveContent] = useState("workshop");
 
   const handleContentChange = (content) => {
     setActiveContent(content);
@@ -41,6 +41,14 @@ const Resources = () => {
     <>
       <div className="row m-4 mt-5">
         <div className="col-sm-2 me-3" style={{ border: "" }}>
+
+        <p
+          style={getStyle("workshop")}
+          onClick={() => handleContentChange("workshop")}
+        >
+          Workshop
+        </p>
+
           <p
             style={getStyle("totemgen")}
             onClick={() => handleContentChange("totemgen")}
@@ -69,12 +77,7 @@ const Resources = () => {
             Extras
           </p>
 
-          <p
-            style={getStyle("workshop")}
-            onClick={() => handleContentChange("workshop")}
-          >
-            Workshop
-          </p>
+
 
           {/*  <p style={getStyle('community')} onClick={() => handleContentChange('community')}>Community</p>
         <p style={getStyle('dataSculptures')} onClick={() => handleContentChange('dataSculptures')}>Data Sculptures</p>
@@ -101,7 +104,7 @@ const Resources = () => {
                     sculptures. It was developed to simplify the process of
                     translating table data into three-dimensional shapes.
                     <br /> <br />
-                    The website is built with
+                    The website is built with{" "}
                     <a
                       href="https://react.dev/"
                       style={{ color: "#2B2A29" }}

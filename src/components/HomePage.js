@@ -34,7 +34,7 @@ const HomePage = () => {
           <p className="news-paragraph">
             At the end of January there will be a workshop about Data
             Sculptures. If you want to be notified
-            about updates fill the form in the "Workshop" page under "Resources".
+            about updates fill the <Link to={{ pathname: "/resources"}} style={{ color: "#2B2A29" }}>form</Link>.
           </p>
 
             </div>}
