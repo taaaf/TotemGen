@@ -56,8 +56,8 @@ const HomePage = () => {
       </div>
 
       <div className="position-absolute top-50 start-50 translate-middle">
-        <div className="relative-positioned-div">
-          <img src={logo} alt="Logo" />
+        <div className="relative-positioned-div main-logo">
+          <img src={logo} alt="Logo" className="" />
           <img src={version} className="absolute-top-right" alt="New SVG" />
         </div>
         <p className="mt-4 text-center description">
