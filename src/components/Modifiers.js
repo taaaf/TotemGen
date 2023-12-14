@@ -304,7 +304,7 @@ const Modifiers = ({
         <input
           type="range"
           min="0.1"
-          max="100"
+          max="30"
           step="0.1"
           value={scale}
           onChange={handleScaleChange}
