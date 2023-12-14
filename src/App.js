@@ -127,11 +127,6 @@ export function App() {
   return (
     <Router>
 
-    <div className="screen-warning">
-        This website does not have a mobile version yet. Please open on a larger display.
-      </div>
-
-
       <Navbar isReadyCreate={isReadyCreate} />
 
       <Routes>
@@ -140,6 +135,11 @@ export function App() {
           path="/"
           element={
             <>
+
+            {!isReadyCreate &&  <div className="screen-warning">
+                  This website does not have a mobile version yet. Please open on a larger display.
+                </div>}
+
               {!isReadyCreate && <HomePage />}
 
               {isReadyCreate && !submittedData && (
