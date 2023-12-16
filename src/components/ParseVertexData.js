@@ -7,7 +7,7 @@ function ParseVertexData(props) {
 
   // Function to determine the delimiter
   function determineDelimiter(line) {
-    const delimiters = [",", ";", "|"];
+    const delimiters = [",", ";", "|","\t"];
     return delimiters.find(delimiter => line.includes(delimiter));
   }
 

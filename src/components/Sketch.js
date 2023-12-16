@@ -8,7 +8,6 @@ import { ReactComponent as CameraIcon } from '../assets/camera.svg';
 
 
 const sketch = (p) => {
-  let angle = 0;
   let switchMode = 0;
   let myShape = [];
   let axisRotation;
@@ -126,7 +125,7 @@ const sketch = (p) => {
     }else{cameraFactor = maxZ;}
 
     cameraFactor /=8;
-    console.log(cameraFactor);
+    // console.log(cameraFactor);
 //CAMERA FACTOR
 
     createModel();
@@ -698,6 +697,7 @@ const Sketch = ({
                   shapeName={shapeName}
                 />
               )}
+
             </div>
           ) : (
             <>
