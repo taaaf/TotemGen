@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { ReactComponent as Arrow } from '../assets/arrow.svg';
 
 
@@ -45,24 +45,45 @@ const SubmitButton = ({
     onCreate();
   };
 
+  const [buttonClass, setButtonClass] = useState("my-btn submitButton");
+  const [arrowStyle, setArrowStyle] = useState({});
+
+ useEffect(() => {
+   function handleResize() {
+     if (window.innerWidth < 768) {
+       setButtonClass("my-btn submitButtonSmall");
+       setArrowStyle({ width: "50%", paddingLeft: "6%", height: "50%" });
+     } else {
+       setButtonClass("my-btn submitButton");
+       setArrowStyle({ width: "65%", paddingLeft: "6%", height: "50%" });
+     }
+   }
+
+   handleResize();
+
+   window.addEventListener('resize', handleResize);
+
+   return () => window.removeEventListener('resize', handleResize);
+ }, []);
+
   return (
     <div className="position-fixed bottom-0 end-0 p-3 mb-5">
       {!isReadyCreate && (
-        <button className="my-btn submitButton" onClick={handleCreate}>
+        <button className={buttonClass} onClick={handleCreate}>
           CREATE
-          <Arrow  style={{ width: "65%", paddingLeft: "1rem", height:"50%"}} />
+          <Arrow style={arrowStyle}/>
         </button>
       )}
 
       {!isFileTextSubmitted && isReadyCreate && (
-        <button className="my-btn submitButton" onClick={handleFileTextSubmit}>
+        <button className={buttonClass} onClick={handleFileTextSubmit}>
           SUBMIT
         </button>
       )}
 
       {isFileTextSubmitted && !areDimensionsSubmitted && (
         <button
-          className="my-btn submitButton"
+          className={buttonClass}
           onClick={handleDropDivInfoSubmit}
         >
           SUBMIT
@@ -71,7 +92,7 @@ const SubmitButton = ({
 
       {!isReadyToExport && areDimensionsSubmitted && (
         <button
-          className="my-btn submitButton"
+          className={buttonClass}
           onClick={handleModifiersSubmitted}
         >
           SUBMIT
@@ -79,7 +100,7 @@ const SubmitButton = ({
       )}
 
       {isReadyToExport && (
-        <button className="my-btn submitButton" onClick={handleExport}>
+        <button className={buttonClass} onClick={handleExport}>
           EXPORT
         </button>
       )}

@@ -57,6 +57,7 @@ html {
   top: -20%;
   right: -2.5%;
   animation: pulse 4s infinite;
+  width:15%
 }
 
 @keyframes pulse {
@@ -67,6 +68,14 @@ html {
   50% {
     transform: scale(1.2);
   }
+}
+
+.logo{
+  width:100%;
+}
+
+.description{
+  line-height:1.1rem;
 }
 
 .logos{
@@ -129,15 +138,18 @@ html {
   text-align: left;
 }
 
-.submitButton:hover svg path {
-  fill: white;
+.submitButtonSmall{
+  text-align: left;
+  padding: 0.3rem 1rem;
+  width: 12rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: white;
+  color: #2b2a29;
+  font-size: 1.2rem;
 }
 
-.backButton {
-  text-align: right;
-}
-
-.my-btn:hover {
+.submitButton:hover {
   padding: 0.3rem 1rem;
   width: 18rem;
   border: 2px solid #2b2a29;
@@ -145,6 +157,57 @@ html {
   background-color: #2b2a29;
   color: white;
 }
+
+.submitButtonSmall:hover{
+  padding: 0.3rem 1rem;
+  width: 12rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: #2b2a29;
+  color: white;
+}
+
+.submitButton:hover svg path {
+  fill: white;
+}
+
+.submitButtonSmall:hover svg path {
+  fill: white;
+}
+
+.backButton {
+  text-align: right;
+}
+
+.backButtonSmall{
+  text-align: right;
+  padding: 0.3rem 1rem;
+  width: 12rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: white;
+  color: #2b2a29;
+  font-size: 1.2rem;
+}
+
+.backButton:hover {
+  padding: 0.3rem 1rem;
+  width: 18rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: #2b2a29;
+  color: white;
+}
+
+.backButtonSmall:hover {
+  padding: 0.3rem 1rem;
+  width: 12rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: #2b2a29;
+  color: white;
+}
+
 
 .button-select {
   min-width: 10rem;
@@ -219,9 +282,6 @@ html {
   overflow: auto;
 }
 
-.height-window {
-  height: 90vh;
-}
 
 .droppable {
   min-height: 3rem;

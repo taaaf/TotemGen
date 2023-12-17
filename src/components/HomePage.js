@@ -57,11 +57,10 @@ const HomePage = () => {
 
       <div className="position-absolute top-50 start-50 translate-middle">
         <div className="relative-positioned-div main-logo">
-          <img src={logo} alt="Logo" className="" />
+          <img src={logo} alt="Logo" className="logo" />
           <img src={version} className="absolute-top-right" alt="New SVG" />
         </div>
         <p className="mt-4 text-center description">
-          {" "}
           A free and opensource tool for generating data sculptures.
         </p>
       </div>

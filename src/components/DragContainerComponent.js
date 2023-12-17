@@ -82,12 +82,14 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
 
   return (
     <div className="container">
-      {" "}
-      {/* Adds a bit of margin on the sides */}
-      <div className="row d-flex align-items-center height-window mx-5 general-dropzone">
+
+    <div className="row d-flex align-items-center mx-5 general-dropzone pt-3 pt-lg-5 mt-lg-5">
+
+      <h2 className="text-center">MAPPING</h2>
+
         <div className="col-lg-1 col-xl-1"></div>
 
-        <div className="col-lg-4 col-xl-3 box-draggable flex">
+        <div className="col-lg-4 col-xl-3 box-draggable flex mt-4">
           <label className="p-2">DIMENSIONS SUBMITTED</label>
 
           <div
@@ -118,7 +120,7 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
         </div>
         <div className="col-lg-1 col-xl-1"></div>
 
-        <div className="col-lg-5 col-xl-6 box-droppable">
+        <div className="col-lg-5 col-xl-6 box-droppable mt-4">
           <label className="p-2">VARIABLES</label>
 
           <div className="row px-4 mt-2">

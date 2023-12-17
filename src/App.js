@@ -136,10 +136,10 @@ export function App() {
           element={
             <>
 
-            {!isReadyCreate &&  <div className="screen-warning">
+          {/*  {!isReadyCreate &&  <div className="screen-warning">
                   This website does not have a mobile version yet. Please open on a larger display.
                 </div>}
-
+*/}
               {!isReadyCreate && <HomePage />}
 
               {isReadyCreate && !submittedData && (

@@ -43,8 +43,11 @@ const Import = ({ onFileSelect, onTextChange }) => {
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center pt-5 mt-5 pb-4 ">
       <div className="row">
-        <div className="col-sm-8 col-md-12 col-lg-12 mx-auto">
-          <div className="mb-3">
+        <div className="col-sm-12 mx-auto">
+
+        <h2 className="pb-4 text-center">LOAD DATA</h2>
+
+          <div className="my-3">
             <input
               className="form-control"
               id="choose-file"
@@ -52,8 +55,9 @@ const Import = ({ onFileSelect, onTextChange }) => {
               accept=".csv"
               onChange={handleFileChange}
             />
+            <p className="ps-2 pt-1" style={{fontSize:"0.9rem"}}>File format accepted: .csv </p>
           </div>
-          <div className="mb-0">
+          <div className="mb-0 pt-2">
             <textarea
               className="form-control"
               id="text-area"

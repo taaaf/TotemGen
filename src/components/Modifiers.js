@@ -94,7 +94,7 @@ const Modifiers = ({
     <div  className="mb-5 px-3 pt-3">
 
       <div className="row">
-        <div className="col-sm-12 px-3 pb-0">
+        <div className="col-12 px-3 pb-0">
           <label>
             MODIFIERS
           </label>
@@ -107,7 +107,7 @@ const Modifiers = ({
 
   <div className="row mt-5">
 
-    <div className="col-sm-1 px-1">
+    <div className="col-1 px-1">
     <input
       type="radio"
       value= {0}
@@ -116,14 +116,14 @@ const Modifiers = ({
     />
     </div>
 
-    <div className="col-sm-3 px-3">
+    <div className="col-3 px-3">
         <label>
           Plot
           </label>
       </div>
 
 
-    <div className="col-sm-1 px-1">
+    <div className="col-1 px-1">
         <input
           type="radio"
           value= {1}
@@ -133,7 +133,7 @@ const Modifiers = ({
         />
     </div>
 
-    <div className="col-sm-7 px-3">
+    <div className="col-3 px-3">
       <label>
           Bars
         </label>
@@ -144,13 +144,13 @@ const Modifiers = ({
 
   <div className="row mt-5">
 
-    <div className="col-sm-3 px-1">
+    <div className="col-3 px-1">
         <label>
           Axis
           </label>
       </div>
 
-    <div className="col-sm-1 px-1">
+    <div className="col-1 px-1">
       <input
           type="radio"
           name="axisRotation"
@@ -160,14 +160,14 @@ const Modifiers = ({
         />
     </div>
 
-    <div className="col-sm-2 px-3">
+    <div className="col-2 px-3">
     <label>
           Y
           </label>
       </div>
 
 
-    <div className="col-sm-1 px-1">
+    <div className="col-1 px-1">
         <input
           type="radio"
           name="axisRotation"
@@ -177,7 +177,7 @@ const Modifiers = ({
 
         />
     </div>
-    <div className="col-sm-5 px-3">
+    <div className="col-5 px-3">
           <label >
           Z
           </label>
@@ -187,10 +187,10 @@ const Modifiers = ({
     <br />
 
     <div className="row mt-2">
-       <label className="col-form-label col-sm-3 px-1 ">
+       <label className="col-form-label col-3 px-1 ">
          Angle:
        </label>
-       <div className="col-sm-6 px-1">
+       <div className="col-6 px-1">
          <input
            type="range"
            min="0"
@@ -200,7 +200,7 @@ const Modifiers = ({
            className="custom-range form-control"
          />
        </div>
-       <div className="col-sm-3 px-1">
+       <div className="col-3 px-1">
          <input
            type="number"
            value={angle}
@@ -213,10 +213,10 @@ const Modifiers = ({
       <br />
 
       <div className="row mt-2">
-         <label className="col-form-label col-sm-3 px-1">
+         <label className="col-form-label col-3 px-1">
            Iterations:
          </label>
-         <div className="col-sm-6 px-1">
+         <div className="col-6 px-1">
          <input
          type="range"
          min="2"
@@ -227,7 +227,7 @@ const Modifiers = ({
 
          />
          </div>
-         <div className="col-sm-3 px-1">
+         <div className="col-3 px-1">
          <input
            type="number"
            min="0"
@@ -243,10 +243,10 @@ const Modifiers = ({
        <br />
 
        <div className="row mt-2">
-          <label className="col-form-label col-sm-3 px-1">
+          <label className="col-form-label col-3 px-1">
             Offset:
           </label>
-          <div className="col-sm-6 px-1">
+          <div className="col-6 px-1">
           <input
           type="range"
           min="-100"
@@ -258,7 +258,7 @@ const Modifiers = ({
 
           />
           </div>
-          <div className="col-sm-3 px-1">
+          <div className="col-3 px-1">
           <input
             type="number"
             min="-1000"
@@ -272,10 +272,10 @@ const Modifiers = ({
         </div>
 
     <div className="row mt-5">
-      <label className="col-form-label col-sm-3 px-1">
+      <label className="col-form-label col-3 px-1">
         Z scale:
       </label>
-      <div className="col-sm-6 px-1">
+      <div className="col-6 px-1">
         <input
           type="range"
           min="0.1"
@@ -286,7 +286,7 @@ const Modifiers = ({
           className="custom-range form-control"
         />
       </div>
-      <div className="col-sm-3 px-1">
+      <div className="col-3 px-1">
         <input
           type="number"
           value={zScale}
@@ -297,10 +297,10 @@ const Modifiers = ({
     </div>
 
     <div className="row mt-2">
-      <label className="col-form-label col-sm-3 px-1">
+      <label className="col-form-label col-3 px-1">
         Scale:
       </label>
-      <div className="col-sm-6 px-1">
+      <div className="col-6 px-1">
         <input
           type="range"
           min="0.1"
@@ -311,7 +311,7 @@ const Modifiers = ({
           className="custom-range form-control"
         />
       </div>
-      <div className="col-sm-3 px-1">
+      <div className="col-3 px-1">
         <input
           type="number"
           value={scale}
@@ -322,10 +322,10 @@ const Modifiers = ({
     </div>
 
     <div className="row mt-5">
-            <label className="col-form-label col-sm-3 px-1">
+            <label className="col-form-label col-3 px-1">
               Color:
             </label>
-            <div className="col-sm-9 px-1">
+            <div className="col-9 px-1">
               <input
                 type="color"
                 value={color}

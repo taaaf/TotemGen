@@ -46,7 +46,7 @@ const sketch = (p) => {
   p.setup = () => {
     canvas = p.createCanvas(
       divCanvas.clientWidth,
-      window.innerHeight * 0.9,
+      window.innerHeight * 0.8,
       p.WEBGL
     );
 
@@ -54,7 +54,7 @@ const sketch = (p) => {
   };
 
   p.windowResized = () => {
-    p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
+    p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.8, p.WEBGL);
   };
 
   p.updateWithProps = (props) => {
@@ -65,7 +65,7 @@ const sketch = (p) => {
 
     canvas = p.createCanvas(
       divCanvas.clientWidth,
-      window.innerHeight * 0.9,
+      window.innerHeight * 0.8,
       p.WEBGL
     );
 
@@ -78,7 +78,7 @@ const sketch = (p) => {
 
     if (areModifiersSubmitted !== props.areModifiersSubmitted) {
       p.camera(400, -300, 100, 0, 0, 0);
-      p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.9, p.WEBGL);
+      p.resizeCanvas(divCanvas.clientWidth, window.innerHeight * 0.8, p.WEBGL);
     }
 
     areModifiersSubmitted = props.areModifiersSubmitted;
@@ -530,7 +530,7 @@ const sketch = (p) => {
         p.saveCanvas("Render_Sculpture_" + shapeName, "jpg");
         canvas = p.createCanvas(
           divCanvas.clientWidth,
-          window.innerHeight * 0.9,
+          window.innerHeight * 0.8,
           p.WEBGL
         );
         saveCanvas=false;
@@ -542,7 +542,7 @@ const sketch = (p) => {
       if (exportBoolean) {
         canvas = p.createCanvas(
           divCanvas.clientWidth,
-          window.innerHeight * 0.9,
+          window.innerHeight * 0.8,
           p.WEBGL
         );
         exportBoolean = false;
@@ -639,6 +639,9 @@ const Sketch = ({
       <div className="container-fluid">
         <div className="row">
           {areModifiersSubmitted ? (
+            <>
+            <h2 className="text-center pt-3">SAVE</h2>
+
             <div
               className="col p-0 m-0 d-flex justify-content-center"
               id="divCanvas"
@@ -696,11 +699,15 @@ const Sketch = ({
                   switchMode={switchMode}
                   shapeName={shapeName}
                 />
+
+
               )}
 
             </div>
+            </>
           ) : (
             <>
+            <h2 className="text-center pt-3">GENERATE</h2>
               <div className="col-lg-7 col-xl-8 p-0 m-0" id="divCanvas">
                 <ReactP5Wrapper
                   sketch={sketch}
