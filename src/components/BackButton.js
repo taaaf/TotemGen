@@ -31,9 +31,11 @@ const BackButton = ({
 
     useEffect(() => {
       function handleResize() {
-        if (window.innerWidth < 768) {
-          setButtonClass("my-btn backButtonSmall");
-        } else {
+        if (window.innerWidth < 576) {
+          setButtonClass("my-btn backButtonMobile");
+        } else if(window.innerWidth < 768){
+            setButtonClass("my-btn backButtonSmall");
+        }else{
           setButtonClass("my-btn backButton");
         }
       }

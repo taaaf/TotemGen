@@ -50,13 +50,18 @@ const SubmitButton = ({
 
  useEffect(() => {
    function handleResize() {
-     if (window.innerWidth < 768) {
+     if (window.innerWidth < 576) {
+       setButtonClass("my-btn submitButtonMobile");
+       setArrowStyle({ width: "30%", paddingLeft: "6%", height: "50%" });
+
+     } else if(window.innerWidth < 768){
        setButtonClass("my-btn submitButtonSmall");
        setArrowStyle({ width: "50%", paddingLeft: "6%", height: "50%" });
-     } else {
+     }else{
        setButtonClass("my-btn submitButton");
        setArrowStyle({ width: "65%", paddingLeft: "6%", height: "50%" });
      }
+
    }
 
    handleResize();

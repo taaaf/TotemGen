@@ -149,6 +149,18 @@ html {
   font-size: 1.2rem;
 }
 
+.submitButtonMobile{
+  text-align: left;
+  padding: 0.3rem 1rem;
+  width: 8rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: white;
+  color: #2b2a29;
+  font-size: 1rem;
+}
+
+
 .submitButton:hover {
   padding: 0.3rem 1rem;
   width: 18rem;
@@ -161,6 +173,15 @@ html {
 .submitButtonSmall:hover{
   padding: 0.3rem 1rem;
   width: 12rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: #2b2a29;
+  color: white;
+}
+
+.submitButtonMobile:hover{
+  padding: 0.3rem 1rem;
+  width: 8rem;
   border: 2px solid #2b2a29;
   border-radius: 100rem;
   background-color: #2b2a29;
@@ -190,6 +211,17 @@ html {
   font-size: 1.2rem;
 }
 
+.backButtonMobile{
+  text-align: right;
+  padding: 0.3rem 1rem;
+  width: 8rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: white;
+  color: #2b2a29;
+  font-size: 1rem;
+}
+
 .backButton:hover {
   padding: 0.3rem 1rem;
   width: 18rem;
@@ -202,6 +234,15 @@ html {
 .backButtonSmall:hover {
   padding: 0.3rem 1rem;
   width: 12rem;
+  border: 2px solid #2b2a29;
+  border-radius: 100rem;
+  background-color: #2b2a29;
+  color: white;
+}
+
+.backButtonMobile:hover {
+  padding: 0.3rem 1rem;
+  width: 8rem;
   border: 2px solid #2b2a29;
   border-radius: 100rem;
   background-color: #2b2a29;
