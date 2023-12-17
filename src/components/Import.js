@@ -41,7 +41,7 @@ const Import = ({ onFileSelect, onTextChange }) => {
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center align-items-center pt-5 mt-5 pb-4 ">
+    <div className="container-fluid d-flex justify-content-center align-items-center pt-3 pt-sm-5 mt-sm-5 pb-4 ">
       <div className="row">
         <div className="col-sm-12 mx-auto">
 
