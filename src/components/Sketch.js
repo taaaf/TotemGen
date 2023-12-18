@@ -707,7 +707,7 @@ const Sketch = ({
             </>
           ) : (
             <>
-            <h2 className="text-center pt-3">GENERATE</h2>
+            <h2 className="text-center pt-3">CUSTOMIZE</h2>
               <div className="col-lg-7 col-xl-8 p-0 m-0" id="divCanvas">
                 <ReactP5Wrapper
                   sketch={sketch}

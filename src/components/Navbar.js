@@ -52,7 +52,7 @@ const Navbar = ({ isReadyCreate }) => {
         </div>
 
         <div className="row">
-          <hr className="rule no-margin" />
+          <hr className="rule no-margin px-0" />
         </div>
 
         <div className="row px-4 pt-1">
