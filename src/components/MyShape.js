@@ -17,8 +17,17 @@ const MyShape = ({
     const dropZoneInfoLength = dropZoneInfo ? Object.values(dropZoneInfo) : [];
     const dropZoneInfoValues = [];
 
+
     for (let i = 0; i < dropZoneInfoLength.length; i++) {
-      dropZoneInfoValues.push(Number(Object.keys(dropZoneInfo)[i]));
+
+      if((Object.values(dropZoneInfo)[i])==="dropzone1"){
+        dropZoneInfoValues.unshift(Number(Object.keys(dropZoneInfo)[i]));
+      }
+
+      if((Object.values(dropZoneInfo)[i])==="dropzone2"){
+        dropZoneInfoValues.push(Number(Object.keys(dropZoneInfo)[i]));
+      }
+
     }
 
     let valueX = 0;
