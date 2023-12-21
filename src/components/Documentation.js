@@ -71,10 +71,10 @@ const Resources = () => {
           </p>
 
           <p
-            style={getStyle("extras")}
-            onClick={() => handleContentChange("extras")}
+            style={getStyle("Resources")}
+            onClick={() => handleContentChange("Resources")}
           >
-            Extras
+            Resources
           </p>
 
 
@@ -351,7 +351,7 @@ const Resources = () => {
             </>
           )}
 
-          {activeContent === "extras" && (
+          {activeContent === "Resources" && (
             <>
               <h1>GOOGLE DRIVE FOLDER</h1>
 

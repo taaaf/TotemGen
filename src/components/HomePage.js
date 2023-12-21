@@ -48,7 +48,7 @@ const HomePage = () => {
 
           <h3>DONT KNOW WHERE TO START?</h3>
           <p className="news-paragraph">
-            Check out the "Getting Started" page under "Resources". You will find some examples
+            Check out the "Getting Started" page under "Documentation". You will find some examples
             and a template.
           </p>
         </div>

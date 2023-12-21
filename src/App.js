@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
-import Resources from "./components/Resources";
+import Documentation from "./components/Documentation";
 import Contribute from "./components/Contribute";
 import Sketch from "./components/Sketch";
 import Import from "./components/Import";
@@ -200,7 +200,7 @@ export function App() {
           }
         />
 
-        <Route path="/resources" element={<Resources />} />
+        <Route path="/documentation" element={<Documentation />} />
 
         <Route path="/contribute" element={<Contribute />} />
       </Routes>

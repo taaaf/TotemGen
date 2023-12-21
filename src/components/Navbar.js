@@ -31,11 +31,11 @@ const Navbar = ({ isReadyCreate }) => {
             )}
           </div>
           <div className="col-4 text-center p-0">
-            {currentPath !== "/resources" && (
+            {currentPath !== "/documentation" && (
               <div className="navbar-brand no-margin">
                 {" "}
-                <Link to="/resources" className="style-link">
-                  Resources
+                <Link to="/documentation" className="style-link">
+                  Documentation
                 </Link>
               </div>
             )}
@@ -60,7 +60,7 @@ const Navbar = ({ isReadyCreate }) => {
             {!isReadyCreate && renderLinkText("/", "Home")}
           </div>
           <div className="col-4 text-center p-0">
-            {renderLinkText("/resources", "Resources")}
+            {renderLinkText("/documentation", "Documentation")}
           </div>
           <div className="col-4 text-end p-0">
             {renderLinkText("/contribute", "Contribute")}
