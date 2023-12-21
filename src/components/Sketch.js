@@ -17,8 +17,7 @@ const sketch = (p) => {
   let scale = 1;
   let color = "FFFFFF";
 
-  let transZ = 0;
-  let transX = 0;
+  let maxX = 0;
   let maxY = 0;
   let maxZ = 0;
   let cameraFactor;
@@ -101,32 +100,46 @@ const sketch = (p) => {
       canvas = p.createCanvas(1920, 1920, p.WEBGL);
     }
 
+
+    maxY=0;
+    maxX=0;
+    maxZ=0;
+
     for (let i = 0; i < myShape.length; i++) {
-      if (myShape[i][1] > maxY) {
+
+      if (Math.abs(myShape[i][0]) > maxX) {
+        maxX = Math.abs(myShape[i][0]);
+      }
+      if (Math.abs(myShape[i][1]) > maxY) {
         maxY = Math.abs(myShape[i][1]);
       }
       if(myShape[i][2] > maxZ){
-        maxZ = myShape[i][2];
+        maxZ =  Math.abs(myShape[i][2]);
       }
+
     }
 
 
-    if(!axisRotation&&(angleRadians>3)&&exportStl){
-      maxZ*=2;
+    if(!axisRotation&&angleRadians){
+      maxZ= maxZ*2;
+    }
+
+    if(axisRotation&&angleRadians){
+      maxY= maxY*2;
     }
 
 
-//TO DO !!!
-
-    cameraFactor = 0;
+    // cameraFactor = p.sqrt(maxY*maxY + maxZ*maxZ);
 
     if(maxY > maxZ){
       cameraFactor=maxY;
-    }else{cameraFactor = maxZ;}
+    }else{
+      cameraFactor = maxZ;
+    }
 
-    cameraFactor /=8;
-    // console.log(cameraFactor);
-//CAMERA FACTOR
+     console.log("camera factor "+ cameraFactor);
+
+
 
     createModel();
   };
@@ -334,27 +347,6 @@ const sketch = (p) => {
   p.draw = () => {
     p.background(255);
 
-    if (!switchMode) {
-      transZ = -(myShape.length / myShapeRows - 2) * (scale / 2) - scale / 2;
-      transX = -(myShapeRows - 1) * scale * 0.5;
-    } else {
-      transZ = -(myShape.length / (myShapeRows * 2)) * (scale / 2) - scale / 2;
-      transX = -(myShapeRows / 2 - 1) * scale * 0.5;
-    }
-
-
-    if (!switchMode) {
-      cameraX = 500 + 60*maxY;
-      cameraY = -cameraX / 2;
-    } else {
-      cameraX = (myShape.length / myShapeRows / 2) * 15 * maxY;
-      cameraY = -cameraX / 2;
-    }
-
-    if (angleRadians) {
-      cameraX = cameraX * 1.5;
-      cameraY = cameraY * 1.5;
-    }
 
     if (!areModifiersSubmitted) {
       if (p.mouseIsPressed && isMouseOverCanvas()) {
@@ -371,21 +363,17 @@ const sketch = (p) => {
 
       p.camera(camX, camY, camZ, 0, 0, 0, 0, 1, 0);
     } else {
-      let zoom = 0.4;
-      p.camera(cameraX * zoom, cameraY * zoom, 0, 0, 0, 0);
+      p.camera(1, 1, 0, 0, 0, 0);
+      p.ortho(-p.width / 2, p.width / 2, p.height / 2, -p.height / 2, -1000, 1000);
       p.rotateY(p.frameCount / 160);
-      scale = 20;
+      scale = -200/cameraFactor;
     }
 
-    if (!angleRadians) {
-      p.translate(transX, 0, transZ);
-    }
-
-    if (angleRadians && axisRotation) {
-      p.translate(0, 0, transZ);
-    } else {
-      p.translate(0, (maxY * scale) / 2, 0);
-    }
+      if(!axisRotation && angleRadians){
+        p.translate(0, 0, 0);
+      }else{
+        p.translate(0, 0, -maxZ * (scale / 2) );
+      }
 
     p.scale(scale);
 
