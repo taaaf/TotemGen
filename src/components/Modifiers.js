@@ -219,7 +219,7 @@ const Modifiers = ({
          <div className="col-6 px-1">
          <input
          type="range"
-         min="2"
+         min="1"
          max="36"
          value={qualityRotation}
          onChange={handleQualityRotation}

@@ -11,6 +11,7 @@ const sketch = (p) => {
   let switchMode = 0;
   let myShape = [];
   let axisRotation;
+  let angle;
   let myShapeRows;
   let angleRadians = 0;
   let areModifiersSubmitted = false;
@@ -71,7 +72,7 @@ const sketch = (p) => {
     myShape = props.myShape;
 
     axisRotation = props.axisRotation;
-
+    angle = props.angle;
     myShapeRows = props.myShapeRows;
     angleRadians = props.angleRadians;
 
@@ -136,9 +137,6 @@ const sketch = (p) => {
     }else{
       cameraFactor = maxZ;
     }
-
-     console.log("camera factor "+ cameraFactor);
-
 
 
     createModel();
@@ -369,7 +367,7 @@ const sketch = (p) => {
       scale = -200/cameraFactor;
     }
 
-      if(!axisRotation && angleRadians){
+      if(!axisRotation && angle){
         p.translate(0, 0, 0);
       }else{
         p.translate(0, 0, -maxZ * (scale / 2) );
@@ -641,6 +639,7 @@ const Sketch = ({
                 myShapeRows={myShapeRows}
                 angleRadians={angleRadians}
                 switchMode={switchMode}
+                angle={angle}
                 areModifiersSubmitted={areModifiersSubmitted}
                 scale={scale}
                 color={color}
@@ -704,6 +703,7 @@ const Sketch = ({
                   myShapeRows={myShapeRows}
                   angleRadians={angleRadians}
                   switchMode={switchMode}
+                  angle={angle}
                   areModifiersSubmitted={areModifiersSubmitted}
                   scale={scale}
                   color={color}

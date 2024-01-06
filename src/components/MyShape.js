@@ -9,25 +9,26 @@ const MyShape = ({
   qualityRotation,
   offsetValue,
   axisRotation,
-  zScale
+  zScale,
 }) => {
-  const myShape = useMemo(() => {
+  function mapRange(value, a, b, c, d) {
+    value = (value - a) / (b - a);
+    return c + value * (d - c);
+  }
 
+  const myShape = useMemo(() => {
     let myShape = [];
     const dropZoneInfoLength = dropZoneInfo ? Object.values(dropZoneInfo) : [];
     const dropZoneInfoValues = [];
 
-
     for (let i = 0; i < dropZoneInfoLength.length; i++) {
-
-      if((Object.values(dropZoneInfo)[i])==="dropzone1"){
+      if (Object.values(dropZoneInfo)[i] === "dropzone1") {
         dropZoneInfoValues.unshift(Number(Object.keys(dropZoneInfo)[i]));
       }
 
-      if((Object.values(dropZoneInfo)[i])==="dropzone2"){
+      if (Object.values(dropZoneInfo)[i] === "dropzone2") {
         dropZoneInfoValues.push(Number(Object.keys(dropZoneInfo)[i]));
       }
-
     }
 
     let valueX = 0;
@@ -37,128 +38,47 @@ const MyShape = ({
 
     let angleRadians = 0;
 
-    for (let ang = 0; ang <= angle; ang = ang + 360 / qualityRotation) {
-      angleRadians = (ang * Math.PI) / 180;
+    if (qualityRotation === 1 && angle !== 0) {
 
-      dropZoneInfoValues.forEach((element, index) => {
-        if (index === 0) {
-          for (let i = 0; i < table.length; i++) {
-            valueZ.push(Number(table[i][element]*zScale));
-          }
-        }
+      //fix this
+      let subtract = 3;
 
-        if (index > 0) {
-          if (!switchMode) {
-            //PLOT MODE---- PLOT MODE---- PLOT MODE---- PLOT MODE---- PLOT MODE----
+      if (angle === 360) {
+        subtract = 2;
+      }
+      //subtract to be fixed
 
-            if (angle === 0) {
-              valueX = myShapeRows;
-            }
-
+      for (let j = 0; j < dropZoneInfoValues.length - subtract; j++) {
+        dropZoneInfoValues.forEach((element, index) => {
+          if (index === 0) {
             for (let i = 0; i < table.length; i++) {
-              if (!axisRotation) {
-                // The Axis of rotation is the Y Axis
+              valueZ.push(Number(table[i][element] * zScale));
+            }
+          }
 
-                //piece to go back to 0 height
-                if (i === 0) {
-                  const x = valueX;
-                  const z = valueZ[1] + offsetValue;
-                  const rotatedX =
-                    Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
-                  const rotatedZ =
-                    -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
+          if (index > 0) {
+            if (!switchMode) {
+              //PLOT MODE---- PLOT MODE---- PLOT MODE---- PLOT MODE---- PLOT MODE----
 
-                  const array = [rotatedX, 0, rotatedZ];
-                  myShape.push(array);
-                } else {
-                  //sculpture
-                  const valueY = -table[i][element];
-                  const x = valueX;
-                  const z = valueZ[i] + offsetValue;
-                  const rotatedX =
-                    Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
-                  const rotatedZ =
-                    -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
-
-                  const array = [rotatedX, valueY, rotatedZ];
-                  myShape.push(array);
-                }
-
-                //piece to go back to 0 height
-                if (i === table.length - 1) {
-                  const x = valueX;
-                  const z = valueZ[i] + offsetValue;
-                  const rotatedX =
-                    Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
-                  const rotatedZ =
-                    -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
-
-                  const array = [rotatedX, 0, rotatedZ];
-                  myShape.push(array);
-                }
-              } else {
-                // the Axis of rotation is the Z Axis
-
-                //piece to go back to 0 height
-
-                if (i === 0) {
-                  const x = valueX;
-                  const y = 0;
-                  const rotatedX =
-                    Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
-                  const rotatedY =
-                    Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
-
-                  const array = [rotatedX, rotatedY, valueZ[1]];
-                  myShape.push(array);
-                } else {
-                  //sculpture
-                  const valueY = -table[i][element];
-                  const x = valueX;
-                  const y = valueY - offsetValue;
-                  const rotatedX =
-                    Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
-                  const rotatedY =
-                    Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
-
-                  const array = [rotatedX, rotatedY, valueZ[i]];
-                  myShape.push(array);
-                }
-
-                //piece to go back to 0 height
-                if (i === table.length - 1) {
-                  const x = valueX;
-                  const y = 0;
-                  const rotatedX =
-                    Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
-                  const rotatedY =
-                    Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
-
-                  const array = [rotatedX, rotatedY, valueZ[i]];
-                  myShape.push(array);
-                }
+              if (angle === 0) {
+                valueX = myShapeRows;
               }
-            }
 
-            myShapeRows++;
-
-            //end plot mode
-          } else {
-            //BARS MODE --- BARS MODE --- BARS MODE --- BARS MODE --- BARS MODE ---
-
-            if (angle === 0) {
-              valueX = myShapeRows;
-            }
-
-            for (let j = 0; j < 2; j++) {
               for (let i = 0; i < table.length; i++) {
                 if (!axisRotation) {
                   // The Axis of rotation is the Y Axis
 
-                  if (i === 0) {
-                    //piece to go back to 0 height
+                  const angleRadians = mapRange(
+                    myShapeRows,
+                    0,
+                    dropZoneInfoValues.length - 1,
+                    0,
+                    (angle * Math.PI) / 180
+                  );
 
-                    const x = valueX + j + (-element + 0.5);
+                  //piece to go back to 0 height
+                  if (i === 0) {
+                    const x = valueX;
                     const z = valueZ[1] + offsetValue;
                     const rotatedX =
                       Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
@@ -169,20 +89,13 @@ const MyShape = ({
                     myShape.push(array);
                   } else {
                     //sculpture
-
                     const valueY = -table[i][element];
-                    const x = valueX + j + (-element + 0.5);
+                    const x = valueX;
                     const z = valueZ[i] + offsetValue;
                     const rotatedX =
                       Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
                     const rotatedZ =
                       -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
-
-                    if (i > 1) {
-                      const valueYprev = -table[i - 1][element];
-                      const array = [rotatedX, valueYprev, rotatedZ];
-                      myShape.push(array);
-                    }
 
                     const array = [rotatedX, valueY, rotatedZ];
                     myShape.push(array);
@@ -190,88 +103,460 @@ const MyShape = ({
 
                   //piece to go back to 0 height
                   if (i === table.length - 1) {
-                    const valueY = -table[i][element];
-                    const x = valueX + j + (-element + 0.5);
-                    const z =
-                      valueZ[i] + (valueZ[i] - valueZ[i - 1]) + offsetValue;
+                    const x = valueX;
+                    const z = valueZ[i] + offsetValue;
                     const rotatedX =
                       Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
                     const rotatedZ =
                       -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
 
-                    const array1 = [rotatedX, valueY, rotatedZ];
-                    const array2 = [rotatedX, 0, rotatedZ];
-                    myShape.push(array1);
-                    myShape.push(array2);
+                    const array = [rotatedX, 0, rotatedZ];
+                    myShape.push(array);
                   }
                 } else {
-                  // The Axis of rotation is the Z Axis
+                  // the Axis of rotation is the Z Axis
 
-                  //piece to go back to 0 height
+                  const angleRadians = mapRange(
+                    myShapeRows,
+                    0,
+                    dropZoneInfoValues.length - 1,
+                    0,
+                    (angle * Math.PI) / 180
+                  );
 
                   if (i === 0) {
-                    const x = valueX + j + (-element + 0.5);
+                    const x = valueX;
                     const y = 0;
                     const rotatedX =
                       Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
                     const rotatedY =
                       Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
-                    const z = valueZ[1];
 
-                    const array = [0, 0, z];
+                    const array = [rotatedX, rotatedY, valueZ[1]];
                     myShape.push(array);
                   } else {
-                    const valueY = -table[i][element];
-                    const x = valueX + j + (-element + 0.5);
-                    const y = valueY - offsetValue;
-                    const z = valueZ[i];
+                    //sculpture
 
+                    const valueY = -table[i][element];
+                    const x = valueX;
+                    const y = valueY - offsetValue;
                     const rotatedX =
                       Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
                     const rotatedY =
                       Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
 
-                    const array = [rotatedX, rotatedY, z];
+                    const array = [rotatedX, rotatedY, valueZ[i]];
                     myShape.push(array);
-
-                    if (i < table.length - 1) {
-                      const array1 = [rotatedX, rotatedY, valueZ[i + 1]];
-                      myShape.push(array1);
-                    }
                   }
 
                   //piece to go back to 0 height
                   if (i === table.length - 1) {
-                    const x = valueX + j + (-element + 0.5);
+                    const x = valueX;
                     const y = 0;
-                    const z = valueZ[i] + (valueZ[i] - valueZ[i - 1]);
                     const rotatedX =
                       Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
                     const rotatedY =
                       Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
 
-                    const valueYprev = -table[i][element] - offsetValue;
-                    const rotatedYprev =
-                      Math.sin(angleRadians) * x +
-                      Math.cos(angleRadians) * valueYprev;
-                    const rotatedXprev =
-                      Math.cos(angleRadians) * x -
-                      Math.sin(angleRadians) * valueYprev;
-
-                    const array1 = [rotatedXprev, rotatedYprev, z];
-                    myShape.push(array1);
-
-                    const array = [0, 0, z];
+                    const array = [rotatedX, rotatedY, valueZ[i]];
                     myShape.push(array);
                   }
                 }
               }
 
               myShapeRows++;
+
+              //end plot mode
+            } else {
+              //BARS MODE --- BARS MODE --- BARS MODE --- BARS MODE --- BARS MODE ---
+
+              if (angle === 0) {
+                valueX = myShapeRows;
+              }
+
+              const angleRadians = mapRange(
+                myShapeRows,
+                0,
+                dropZoneInfoValues.length - 1,
+                0,
+                (angle * Math.PI) / 180
+              );
+
+              for (let j = 0; j < 2; j++) {
+                for (let i = 0; i < table.length; i++) {
+                  if (!axisRotation) {
+                    // The Axis of rotation is the Y Axis
+
+                    if (i === 0) {
+                      //piece to go back to 0 height
+
+                      const x = valueX + j + (-element + 0.5);
+                      const z = valueZ[1] + offsetValue;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                      const rotatedZ =
+                        -Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * z;
+
+                      const array = [rotatedX, 0, rotatedZ];
+                      myShape.push(array);
+                    } else {
+                      //sculpture
+
+                      const valueY = -table[i][element];
+                      const x = valueX + j + (-element + 0.5);
+                      const z = valueZ[i] + offsetValue;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                      const rotatedZ =
+                        -Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * z;
+
+                      if (i > 1) {
+                        const valueYprev = -table[i - 1][element];
+                        const array = [rotatedX, valueYprev, rotatedZ];
+                        myShape.push(array);
+                      }
+
+                      const array = [rotatedX, valueY, rotatedZ];
+                      myShape.push(array);
+                    }
+
+                    //piece to go back to 0 height
+                    if (i === table.length - 1) {
+                      const valueY = -table[i][element];
+                      const x = valueX + j + (-element + 0.5);
+                      const z =
+                        valueZ[i] + (valueZ[i] - valueZ[i - 1]) + offsetValue;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                      const rotatedZ =
+                        -Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * z;
+
+                      const array1 = [rotatedX, valueY, rotatedZ];
+                      const array2 = [rotatedX, 0, rotatedZ];
+                      myShape.push(array1);
+                      myShape.push(array2);
+                    }
+                  } else {
+                    // The Axis of rotation is the Z Axis
+
+                    //piece to go back to 0 height
+
+                    const angleRadians = mapRange(
+                      myShapeRows,
+                      0,
+                      dropZoneInfoValues.length - 1,
+                      0,
+                      (angle * Math.PI) / 180
+                    );
+
+                    if (i === 0) {
+                      const x = valueX + j + (-element + 0.5);
+                      const y = 0;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                      const rotatedY =
+                        Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+                      const z = valueZ[1];
+
+                      const array = [0, 0, z];
+                      myShape.push(array);
+                    } else {
+                      const valueY = -table[i][element];
+                      const x = valueX + j + (-element + 0.5);
+                      const y = valueY - offsetValue;
+                      const z = valueZ[i];
+
+                      const rotatedX =
+                        Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                      const rotatedY =
+                        Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                      const array = [rotatedX, rotatedY, z];
+                      myShape.push(array);
+
+                      if (i < table.length - 1) {
+                        const array1 = [rotatedX, rotatedY, valueZ[i + 1]];
+                        myShape.push(array1);
+                      }
+                    }
+
+                    //piece to go back to 0 height
+                    if (i === table.length - 1) {
+                      const x = valueX + j + (-element + 0.5);
+                      const y = 0;
+                      const z = valueZ[i] + (valueZ[i] - valueZ[i - 1]);
+                      const rotatedX =
+                        Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                      const rotatedY =
+                        Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                      const valueYprev = -table[i][element] - offsetValue;
+                      const rotatedYprev =
+                        Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * valueYprev;
+                      const rotatedXprev =
+                        Math.cos(angleRadians) * x -
+                        Math.sin(angleRadians) * valueYprev;
+
+                      const array1 = [rotatedXprev, rotatedYprev, z];
+                      myShape.push(array1);
+
+                      const array = [0, 0, z];
+                      myShape.push(array);
+                    }
+                  }
+                }
+
+                myShapeRows++;
+              }
+            } //end bars mode
+
+          }
+        });
+      }
+    } else {
+      for (let ang = 0; ang <= angle; ang = ang + 360 / qualityRotation) {
+        angleRadians = (ang * Math.PI) / 180;
+
+        dropZoneInfoValues.forEach((element, index) => {
+          if (index === 0) {
+            for (let i = 0; i < table.length; i++) {
+              valueZ.push(Number(table[i][element] * zScale));
             }
-          } //end bars mode
-        }
-      });
+          }
+
+          if (index > 0) {
+            if (!switchMode) {
+              //PLOT MODE---- PLOT MODE---- PLOT MODE---- PLOT MODE---- PLOT MODE----
+
+              if (angle === 0) {
+                valueX = myShapeRows;
+              }
+
+              for (let i = 0; i < table.length; i++) {
+                if (!axisRotation) {
+                  // The Axis of rotation is the Y Axis
+
+                  //piece to go back to 0 height
+                  if (i === 0) {
+                    const x = valueX;
+                    const z = valueZ[1] + offsetValue;
+                    const rotatedX =
+                      Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                    const rotatedZ =
+                      -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
+
+                    const array = [rotatedX, 0, rotatedZ];
+                    myShape.push(array);
+                  } else {
+                    //sculpture
+                    const valueY = -table[i][element];
+                    const x = valueX;
+                    const z = valueZ[i] + offsetValue;
+                    const rotatedX =
+                      Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                    const rotatedZ =
+                      -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
+
+                    const array = [rotatedX, valueY, rotatedZ];
+                    myShape.push(array);
+                  }
+
+                  //piece to go back to 0 height
+                  if (i === table.length - 1) {
+                    const x = valueX;
+                    const z = valueZ[i] + offsetValue;
+                    const rotatedX =
+                      Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                    const rotatedZ =
+                      -Math.sin(angleRadians) * x + Math.cos(angleRadians) * z;
+
+                    const array = [rotatedX, 0, rotatedZ];
+                    myShape.push(array);
+                  }
+                } else {
+                  // the Axis of rotation is the Z Axis
+
+                  //piece to go back to 0 height
+
+                  if (i === 0) {
+                    const x = valueX;
+                    const y = 0;
+                    const rotatedX =
+                      Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                    const rotatedY =
+                      Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                    const array = [rotatedX, rotatedY, valueZ[1]];
+                    myShape.push(array);
+                  } else {
+                    //sculpture
+                    const valueY = -table[i][element];
+                    const x = valueX;
+                    const y = valueY - offsetValue;
+                    const rotatedX =
+                      Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                    const rotatedY =
+                      Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                    const array = [rotatedX, rotatedY, valueZ[i]];
+                    myShape.push(array);
+                  }
+
+                  //piece to go back to 0 height
+                  if (i === table.length - 1) {
+                    const x = valueX;
+                    const y = 0;
+                    const rotatedX =
+                      Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                    const rotatedY =
+                      Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                    const array = [rotatedX, rotatedY, valueZ[i]];
+                    myShape.push(array);
+                  }
+                }
+              }
+
+              myShapeRows++;
+
+              //end plot mode
+            } else {
+              //BARS MODE --- BARS MODE --- BARS MODE --- BARS MODE --- BARS MODE ---
+
+              if (angle === 0) {
+                valueX = myShapeRows;
+              }
+
+              for (let j = 0; j < 2; j++) {
+                for (let i = 0; i < table.length; i++) {
+                  if (!axisRotation) {
+                    // The Axis of rotation is the Y Axis
+
+                    if (i === 0) {
+                      //piece to go back to 0 height
+
+                      const x = valueX + j + (-element + 0.5);
+                      const z = valueZ[1] + offsetValue;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                      const rotatedZ =
+                        -Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * z;
+
+                      const array = [rotatedX, 0, rotatedZ];
+                      myShape.push(array);
+                    } else {
+                      //sculpture
+
+                      const valueY = -table[i][element];
+                      const x = valueX + j + (-element + 0.5);
+                      const z = valueZ[i] + offsetValue;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                      const rotatedZ =
+                        -Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * z;
+
+                      if (i > 1) {
+                        const valueYprev = -table[i - 1][element];
+                        const array = [rotatedX, valueYprev, rotatedZ];
+                        myShape.push(array);
+                      }
+
+                      const array = [rotatedX, valueY, rotatedZ];
+                      myShape.push(array);
+                    }
+
+                    //piece to go back to 0 height
+                    if (i === table.length - 1) {
+                      const valueY = -table[i][element];
+                      const x = valueX + j + (-element + 0.5);
+                      const z =
+                        valueZ[i] + (valueZ[i] - valueZ[i - 1]) + offsetValue;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x + Math.sin(angleRadians) * z;
+                      const rotatedZ =
+                        -Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * z;
+
+                      const array1 = [rotatedX, valueY, rotatedZ];
+                      const array2 = [rotatedX, 0, rotatedZ];
+                      myShape.push(array1);
+                      myShape.push(array2);
+                    }
+                  } else {
+                    // The Axis of rotation is the Z Axis
+
+                    //piece to go back to 0 height
+
+                    if (i === 0) {
+                      const x = valueX + j + (-element + 0.5);
+                      const y = 0;
+                      const rotatedX =
+                        Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                      const rotatedY =
+                        Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+                      const z = valueZ[1];
+
+                      const array = [0, 0, z];
+                      myShape.push(array);
+                    } else {
+                      const valueY = -table[i][element];
+                      const x = valueX + j + (-element + 0.5);
+                      const y = valueY - offsetValue;
+                      const z = valueZ[i];
+
+                      const rotatedX =
+                        Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                      const rotatedY =
+                        Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                      const array = [rotatedX, rotatedY, z];
+                      myShape.push(array);
+
+                      if (i < table.length - 1) {
+                        const array1 = [rotatedX, rotatedY, valueZ[i + 1]];
+                        myShape.push(array1);
+                      }
+                    }
+
+                    //piece to go back to 0 height
+                    if (i === table.length - 1) {
+                      const x = valueX + j + (-element + 0.5);
+                      const y = 0;
+                      const z = valueZ[i] + (valueZ[i] - valueZ[i - 1]);
+                      const rotatedX =
+                        Math.cos(angleRadians) * x - Math.sin(angleRadians) * y;
+                      const rotatedY =
+                        Math.sin(angleRadians) * x + Math.cos(angleRadians) * y;
+
+                      const valueYprev = -table[i][element] - offsetValue;
+                      const rotatedYprev =
+                        Math.sin(angleRadians) * x +
+                        Math.cos(angleRadians) * valueYprev;
+                      const rotatedXprev =
+                        Math.cos(angleRadians) * x -
+                        Math.sin(angleRadians) * valueYprev;
+
+                      const array1 = [rotatedXprev, rotatedYprev, z];
+                      myShape.push(array1);
+
+                      const array = [0, 0, z];
+                      myShape.push(array);
+                    }
+                  }
+                }
+
+                myShapeRows++;
+              }
+            } //end bars mode
+          }
+        });
+      }
     }
 
     return { myShape, myShapeRows, angleRadians };
@@ -283,7 +568,7 @@ const MyShape = ({
     qualityRotation,
     offsetValue,
     axisRotation,
-    zScale
+    zScale,
   ]);
 
   useEffect(() => {
