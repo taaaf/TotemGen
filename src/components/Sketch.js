@@ -386,10 +386,10 @@ const sketch = (p) => {
       p.stroke(0);
       p.beginShape(p.LINES);
 
-      {
+    {
         let verticesPerRow = myShape.length / myShapeRows;
 
-        for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
+      for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
           p.vertex(
             myShape[i - verticesPerRow][0],
             myShape[i - verticesPerRow][1],

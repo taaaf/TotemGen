@@ -40,15 +40,18 @@ const MyShape = ({
 
     if (qualityRotation === 1 && angle !== 0) {
 
-      //fix this
-      let subtract = 3;
+
+      let subtract;
 
       if (angle === 360) {
-        subtract = 2;
+        subtract = dropZoneInfoValues.length - 2;
+      }else{
+        subtract = dropZoneInfoValues.length - 1
       }
-      //subtract to be fixed
+
 
       for (let j = 0; j < dropZoneInfoValues.length - subtract; j++) {
+
         dropZoneInfoValues.forEach((element, index) => {
           if (index === 0) {
             for (let i = 0; i < table.length; i++) {
