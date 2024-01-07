@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import res01 from "../assets/resources_01.png";
 import res02 from "../assets/resources_02.png";
@@ -11,20 +11,18 @@ import dataSculptureExample1 from "../assets/example_photo1.JPG";
 import dataSculptureExample2 from "../assets/example_photo2.JPG";
 import dataSculptureExample3 from "../assets/example_photo3.JPG";
 import keychain from "../assets/keychain.png";
-import colab from "../assets/colab.png";
-
-
+import colab1 from "../assets/colab1.png";
+import colab2 from "../assets/colab2.png";
 
 const Resources = () => {
-
   const location = useLocation();
 
   useEffect(() => {
-  console.log(location); // To see what the location object contains
-  if (location.state?.activeContent) {
-    setActiveContent(location.state.activeContent);
-  }
-}, [location]);
+    console.log(location); // To see what the location object contains
+    if (location.state?.activeContent) {
+      setActiveContent(location.state.activeContent);
+    }
+  }, [location]);
 
   const [activeContent, setActiveContent] = useState("workshop");
 
@@ -41,13 +39,12 @@ const Resources = () => {
     <>
       <div className="row m-4 mt-5">
         <div className="col-sm-2 me-3" style={{ border: "" }}>
-
-        <p
-          style={getStyle("workshop")}
-          onClick={() => handleContentChange("workshop")}
-        >
-          Workshop
-        </p>
+          <p
+            style={getStyle("workshop")}
+            onClick={() => handleContentChange("workshop")}
+          >
+            Workshop
+          </p>
 
           <p
             style={getStyle("totemgen")}
@@ -76,8 +73,6 @@ const Resources = () => {
           >
             Resources
           </p>
-
-
 
           {/*  <p style={getStyle('community')} onClick={() => handleContentChange('community')}>Community</p>
         <p style={getStyle('dataSculptures')} onClick={() => handleContentChange('dataSculptures')}>Data Sculptures</p>
@@ -304,19 +299,19 @@ const Resources = () => {
                       Click here
                     </a>{" "}
                     if you'd like to have a template as a starting point. You
-                    can also write your data on a piece of paper, on the notes on
-                    your phone... Do whatever is handier and more convenient to
-                    you!
+                    can also write your data on a piece of paper, on the notes
+                    on your phone... Do whatever is handier and more convenient
+                    to you!
                     <br />
                     <br />
-                    Naturally you can use data you already have,
-                    like the meters you walked the past week, how many calories you
-                    had today or how much time you spent listening to Lofi Girl the past
+                    Naturally you can use data you already have, like the meters
+                    you walked the past week, how many calories you had today or
+                    how much time you spent listening to Lofi Girl the past
                     month.
                     <br />
                     <br />
-                    Once data is collected, you need to format it in a table like
-                    so:
+                    Once data is collected, you need to format it in a table
+                    like so:
                     <br />
                   </h4>
                   <br />
@@ -356,8 +351,7 @@ const Resources = () => {
               <h1>GOOGLE DRIVE FOLDER</h1>
 
               <div className="row">
-
-              <div className="col-xl-5 py-2 p-5"> </div>
+                <div className="col-xl-5 py-2 p-5"> </div>
                 <div className="col-xl-7 p-4 pt-5">
                   <h4>
                     <a
@@ -376,7 +370,7 @@ const Resources = () => {
                     src={keychain}
                     style={{ width: "100%", border: "1px solid #2B2A29" }}
                   />
-                  </div>
+                </div>
 
                 <div className="col-xl-7 p-4 pt-5">
                   <h4>
@@ -387,47 +381,61 @@ const Resources = () => {
 
                 <div className="col-xl-5 py-5 p-5">
                   <img
-                    src={colab}
+                    src={colab1}
                     style={{ width: "100%", border: "1px solid #2B2A29" }}
                   />
-                  </div>
+                </div>
 
                 <div className="col-xl-7 p-4 pt-5">
                   <h4>
                     <h2> 2 </h2> Python code ready to be executed on Google
                     Colab that can extrapolate those messages that contain
-                    certain keywords. You can use it to find how many times
-                    you said "Miss you!" to your significant other.
+                    certain keywords. You can use it to find how many times you
+                    said "Miss you!" to your significant other.
+                  </h4>
+                </div>
+
+                <div className="col-xl-5 py-5 p-5">
+                  <img
+                    src={colab2}
+                    style={{ width: "100%", border: "1px solid #2B2A29" }}
+                  />
+                </div>
+
+                <div className="col-xl-7 p-4 pt-5">
+                  <h4>
+                    <h2> 3 </h2> Python code ready to be executed on Google
+                    Colab that can translate a sound track (.mp3) into a table (.csv).
+                    Try it out with your favourite song or a vocal message!
                   </h4>
                 </div>
               </div>
             </>
           )}
 
-          {activeContent === "workshop" &&
+          {activeContent === "workshop" && (
+            <>
+              <h1>DATE, PROGRAM AND OTHER INFO SOON!</h1>
 
-          <>
-
-          <h1>
-          DATE, PROGRAM AND OTHER INFO SOON!
-          </h1>
-
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd3EUubMz7pSguvp0N2TCP3bqs3Tq11YIZJ-noR2HekFaKqbA/viewform?embedded=true"
-          width="100%" height="520"
-          frameborder="0" marginheight="0" marginwidth="0"
-          className="mt-4">Loading…
-          </iframe>
-
-
-</>
-        }
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSd3EUubMz7pSguvp0N2TCP3bqs3Tq11YIZJ-noR2HekFaKqbA/viewform?embedded=true"
+                width="100%"
+                height="520"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                className="mt-4"
+              >
+                Loading…
+              </iframe>
+            </>
+          )}
 
           {activeContent === "dataSculptures" && <h2>to do.....</h2>}
 
           {activeContent === "community" && <h2>to do...</h2>}
 
           {activeContent === "selfTracking" && <h2>to do.....</h2>}
-
         </div>
       </div>
     </>
