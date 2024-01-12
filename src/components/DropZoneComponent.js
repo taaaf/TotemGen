@@ -3,9 +3,9 @@ import React, { useState } from "react";
 const DropZoneComponent = ({ id, onDrop, onDragOver, onDropUpdate }) => (
   <>
     {id === "dropzone1" ? (
-      <p style={{ marginBottom: "0.3rem" }}> Z Axis </p>
-    ) : (
       <p style={{ marginBottom: "0.3rem" }}> X Axis </p>
+    ) : (
+      <p style={{ marginBottom: "0.3rem" }}> Y Axis </p>
     )}
 
     <div

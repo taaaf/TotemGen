@@ -7,7 +7,7 @@ const Modifiers = ({
   onOffsetValueChange,
   onAxisRotationChange,
   onScaleChange,
-  onZScaleChange,
+  onXScaleChange,
   onColorChange
 }) => {
 
@@ -18,7 +18,7 @@ const Modifiers = ({
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
   const [scale, setScale] = useState(1);
-  const [zScale, setZScale] = useState(1);
+  const [xScale, setXScale] = useState(1);
   const [color, setColor] = useState('#FFFFFF');
 
 
@@ -48,8 +48,8 @@ const Modifiers = ({
   }, [scale, onScaleChange]);
 
   useEffect(() => {
-    onZScaleChange(zScale);
-  }, [zScale, onZScaleChange]);
+    onXScaleChange(xScale);
+  }, [xScale, onXScaleChange]);
 
   useEffect(() => {
    onColorChange(color);
@@ -80,8 +80,8 @@ const Modifiers = ({
     setScale(Number(e.target.value));
   };
 
-  const handleZScaleChange = (e) => {
-    setZScale(Number(e.target.value));
+  const handleXScaleChange = (e) => {
+    setXScale(Number(e.target.value));
   };
 
   const handleColorChange = (e) => {
@@ -179,7 +179,7 @@ const Modifiers = ({
     </div>
     <div className="col-5 px-3">
           <label >
-          Z
+          X
           </label>
       </div>
     </div>
@@ -273,7 +273,7 @@ const Modifiers = ({
 
     <div className="row mt-5">
       <label className="col-form-label col-3 px-1">
-        Z scale:
+        X scale:
       </label>
       <div className="col-6 px-1">
         <input
@@ -281,16 +281,16 @@ const Modifiers = ({
           min="0.1"
           max="10"
           step="0.1"
-          value={zScale}
-          onChange={handleZScaleChange}
+          value={xScale}
+          onChange={handleXScaleChange}
           className="custom-range form-control"
         />
       </div>
       <div className="col-3 px-1">
         <input
           type="number"
-          value={zScale}
-          onChange={handleZScaleChange}
+          value={xScale}
+          onChange={handleXScaleChange}
           className="custom-number form-control"
         />
       </div>

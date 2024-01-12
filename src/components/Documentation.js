@@ -223,10 +223,10 @@ const Resources = () => {
                     columns you want to be translated to 3D form to the axis of
                     your choice.
                     <br />
-                    Note: the Z axis accepts only one column of values while the
-                    X axis supports the entry of multiple ones. It is suggested
+                    Note: the X axis accepts only one column of values while the
+                    Y axis supports the entry of multiple ones. It is suggested
                     to map the column with values in ascending or descending
-                    order to the Z axis.
+                    order to the X axis.
                   </h4>
                 </div>
 

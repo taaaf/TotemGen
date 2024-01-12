@@ -551,7 +551,7 @@ const Sketch = ({
   const [offsetValue, setOffsetValue] = useState(0);
   const [axisRotation, setAxisRotation] = useState(0);
   const [scale, setScale] = useState(1);
-  const [zScale, setZScale] = useState(1);
+  const [xScale, setXScale] = useState(1);
   const [color, setColor] = useState("#FFFFFF");
 
   const [shapeName, setShapeName] = useState("");
@@ -581,8 +581,8 @@ const Sketch = ({
     setScale(data);
   };
 
-  const handleZScaleChange = (data) => {
-    setZScale(data);
+  const handleXScaleChange = (data) => {
+    setXScale(data);
   };
 
   const handleColorChange = (data) => {
@@ -657,7 +657,7 @@ const Sketch = ({
                 qualityRotation={qualityRotation}
                 offsetValue={offsetValue}
                 axisRotation={axisRotation}
-                zScale={zScale}
+                xScale={xScale}
               />
 
               <div className="export-name-camera row">
@@ -718,7 +718,7 @@ const Sketch = ({
                   qualityRotation={qualityRotation}
                   offsetValue={offsetValue}
                   axisRotation={axisRotation}
-                  zScale={zScale}
+                  xScale={xScale}
                 />
               </div>
 
@@ -733,7 +733,7 @@ const Sketch = ({
                     onOffsetValueChange={handleOffsetValue}
                     onAxisRotationChange={handleAxisRotation}
                     onScaleChange={handleScaleChange}
-                    onZScaleChange={handleZScaleChange}
+                    onXScaleChange={handleXScaleChange}
                     onColorChange={handleColorChange}
                   />
                 </div>

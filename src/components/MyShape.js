@@ -9,7 +9,7 @@ const MyShape = ({
   qualityRotation,
   offsetValue,
   axisRotation,
-  zScale,
+  xScale,
 }) => {
   function mapRange(value, a, b, c, d) {
     value = (value - a) / (b - a);
@@ -55,7 +55,7 @@ const MyShape = ({
         dropZoneInfoValues.forEach((element, index) => {
           if (index === 0) {
             for (let i = 0; i < table.length; i++) {
-              valueZ.push(Number(table[i][element] * zScale));
+              valueZ.push(Number(table[i][element] * xScale));
             }
           }
 
@@ -327,7 +327,7 @@ const MyShape = ({
         dropZoneInfoValues.forEach((element, index) => {
           if (index === 0) {
             for (let i = 0; i < table.length; i++) {
-              valueZ.push(Number(table[i][element] * zScale));
+              valueZ.push(Number(table[i][element] * xScale));
             }
           }
 
@@ -571,7 +571,7 @@ const MyShape = ({
     qualityRotation,
     offsetValue,
     axisRotation,
-    zScale,
+    xScale,
   ]);
 
   useEffect(() => {
