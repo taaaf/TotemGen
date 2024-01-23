@@ -415,10 +415,10 @@ const Resources = () => {
 
           {activeContent === "workshop" && (
             <>
-              <h1>DATE, PROGRAM AND OTHER INFO SOON!</h1>
+              <h1>Compila il modulo per registrarti!</h1>
 
               <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLSd3EUubMz7pSguvp0N2TCP3bqs3Tq11YIZJ-noR2HekFaKqbA/viewform?embedded=true"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfG-jbH3gXXADpJVeH9tluV8-k0WqG5G2u-VnZULg8IKSKL3A/viewform?usp=sf_link"
                 width="100%"
                 height="520"
                 frameborder="0"

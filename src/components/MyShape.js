@@ -576,6 +576,7 @@ const MyShape = ({
 
   useEffect(() => {
     onMyShapeChange(myShape);
+    console.log(myShape);
   }, [myShape, onMyShapeChange]);
 
   // Return nothing or a placeholder as this component seems to not render anything.
