@@ -25,16 +25,7 @@ const HomePage = () => {
     <div className="news">
 
       {showNews &&
-        <div className="news-window">
-          <button className="close-button" onClick={toggleNews}>
-            {" "}
-            <img src={x} alt="X" className="x" />
-          </button>
-           <h3>OPEN CALL!</h3>
-          <p className="news-paragraph">
-          Fill out the <Link to={{ pathname: "/documentation"}} style={{ color: "#2B2A29" }}>form</Link>
-        {" "}  to register for the workshop. It will be held in Milan the 31st of January.
-          </p>
+        <div className="">
 
             </div>}
 

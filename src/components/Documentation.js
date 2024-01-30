@@ -24,7 +24,7 @@ const Resources = () => {
     }
   }, [location]);
 
-  const [activeContent, setActiveContent] = useState("workshop");
+  const [activeContent, setActiveContent] = useState("totemgen");
 
   const handleContentChange = (content) => {
     setActiveContent(content);
@@ -43,7 +43,7 @@ const Resources = () => {
             style={getStyle("workshop")}
             onClick={() => handleContentChange("workshop")}
           >
-            Workshop
+
           </p>
 
           <p
