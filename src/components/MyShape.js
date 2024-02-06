@@ -112,7 +112,7 @@ const MyShape = ({
                   0,
                   dropZoneInfoValues.length - 1,
                   0,
-                  (angle * Math.PI) / 180
+                  (angle * Math.PI) / 180 / qualityRotation
                 );
 
                 if (i === 0) {
@@ -170,6 +170,7 @@ const MyShape = ({
                 if (!axisRotation) {
                   // The Axis of rotation is the Y Axis
 
+                
                   if (i === 0) {
                     //piece to go back to 0 height
 
