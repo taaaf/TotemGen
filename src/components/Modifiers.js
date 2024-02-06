@@ -8,6 +8,7 @@ const Modifiers = ({
   onAxisRotationChange,
   onScaleChange,
   onXScaleChange,
+  onZScaleChange,
   onColorChange
 }) => {
 
@@ -19,6 +20,7 @@ const Modifiers = ({
   const [axisRotation, setAxisRotation] = useState(0);
   const [scale, setScale] = useState(1);
   const [xScale, setXScale] = useState(1);
+  const [zScale, setZScale] = useState(1);
   const [color, setColor] = useState('#FFFFFF');
 
 
@@ -52,6 +54,10 @@ const Modifiers = ({
   }, [xScale, onXScaleChange]);
 
   useEffect(() => {
+    onZScaleChange(zScale);
+  }, [zScale, onZScaleChange]);
+
+  useEffect(() => {
    onColorChange(color);
  }, [color, onColorChange]);
 
@@ -82,6 +88,10 @@ const Modifiers = ({
 
   const handleXScaleChange = (e) => {
     setXScale(Number(e.target.value));
+  };
+
+  const handleZScaleChange = (e) => {
+    setZScale(Number(e.target.value));
   };
 
   const handleColorChange = (e) => {
@@ -298,7 +308,32 @@ const Modifiers = ({
 
     <div className="row mt-2">
       <label className="col-form-label col-3 px-1">
-        Scale:
+        Z scale:
+      </label>
+      <div className="col-6 px-1">
+        <input
+          type="range"
+          min="0.1"
+          max="10"
+          step="0.1"
+          value={zScale}
+          onChange={handleZScaleChange}
+          className="custom-range form-control"
+        />
+      </div>
+      <div className="col-3 px-1">
+        <input
+          type="number"
+          value={zScale}
+          onChange={handleZScaleChange}
+          className="custom-number form-control"
+        />
+      </div>
+    </div>
+
+    <div className="row mt-4">
+      <label className="col-form-label col-3 px-1">
+        SCALE:
       </label>
       <div className="col-6 px-1">
         <input
