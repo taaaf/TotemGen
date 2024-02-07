@@ -32,6 +32,10 @@ const MyShape = ({
       }
     }
 
+    if(angle > 0){
+      zScale = 0;
+    }
+
     let valueZ = 0;
 
     const valueX = [];
