@@ -78,8 +78,9 @@ const sketch = (p) => {
           -myShape[i - verticesPerRow][1],
           myShape[i - verticesPerRow][2],
         ];
-        let v2 = [myShape[i][0], -myShape[i][1], myShape[i][2]];
-        let v3 = [myShape[i + 1][0], -myShape[i + 1][1], myShape[i + 1][2]];
+        let v2 = [myShape[i + 1][0], -myShape[i + 1][1], myShape[i + 1][2]];
+        let v3 = [myShape[i][0], -myShape[i][1], myShape[i][2]];
+
 
         myShapeExport.push(v1);
         myShapeExport.push(v2);
@@ -90,12 +91,12 @@ const sketch = (p) => {
           -myShape[i - verticesPerRow][1],
           myShape[i - verticesPerRow][2],
         ];
-        let v5 = [myShape[i + 1][0], -myShape[i + 1][1], myShape[i + 1][2]];
-        let v6 = [
+        let v5 = [
           myShape[i + 1 - verticesPerRow][0],
           -myShape[i + 1 - verticesPerRow][1],
           myShape[i + 1 - verticesPerRow][2],
         ];
+          let v6 = [myShape[i + 1][0], -myShape[i + 1][1], myShape[i + 1][2]];
 
         myShapeExport.push(v4);
         myShapeExport.push(v5);
@@ -110,14 +111,14 @@ const sketch = (p) => {
             myShape[i - verticesPerRow][2],
           ];
           let v2 = [
-            myShape[i - verticesPerRow * 2 + 1][0],
-            -myShape[i - verticesPerRow * 2 + 1][1],
-            myShape[i - verticesPerRow * 2 + 1][2],
-          ];
-          let v3 = [
             myShape[i - verticesPerRow + 1][0],
             -myShape[i - verticesPerRow + 1][1],
             myShape[i - verticesPerRow + 1][2],
+          ];
+          let v3 = [
+            myShape[i - verticesPerRow * 2 + 1][0],
+            -myShape[i - verticesPerRow * 2 + 1][1],
+            myShape[i - verticesPerRow * 2 + 1][2],
           ];
 
           myShapeExport.push(v1);
@@ -129,12 +130,13 @@ const sketch = (p) => {
             -myShape[i - verticesPerRow][1],
             myShape[i - verticesPerRow][2],
           ];
-          let v5 = [myShape[i][0], -myShape[i][1], myShape[i][2]];
-          let v6 = [
+          let v5 = [
             myShape[i - verticesPerRow + 1][0],
             -myShape[i - verticesPerRow + 1][1],
             myShape[i - verticesPerRow + 1][2],
           ];
+          let v6 = [myShape[i][0], -myShape[i][1], myShape[i][2]];
+
 
           myShapeExport.push(v4);
           myShapeExport.push(v5);
@@ -147,30 +149,31 @@ const sketch = (p) => {
       if (axisRotation && switchMode) {
         for (let i = 1; i < verticesPerRow - 1; i++) {
           myShapeExport.push([0, 0, myShape[i][2]]);
-          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
           myShapeExport.push([0, 0, myShape[i + 1][2]]);
+          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
 
           myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
+          myShapeExport.push([0, 0, myShape[i + 1][2]]);
           myShapeExport.push([
             myShape[i + 1][0],
             -myShape[i + 1][1],
             myShape[i + 1][2],
           ]);
-          myShapeExport.push([0, 0, myShape[i + 1][2]]);
         }
       }
       for (let i = 1; i < verticesPerRow - 1; i++) {
         myShapeExport.push([myShape[i][0], 0, myShape[i][2]]);
-        myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
         myShapeExport.push([myShape[i + 1][0], 0, myShape[i + 1][2]]);
+        myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
+
 
         myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
+        myShapeExport.push([myShape[i + 1][0], 0, myShape[i + 1][2]]);
         myShapeExport.push([
           myShape[i + 1][0],
           -myShape[i + 1][1],
           myShape[i + 1][2],
         ]);
-        myShapeExport.push([myShape[i + 1][0], 0, myShape[i + 1][2]]);
       }
 
       //end wall 1
@@ -184,30 +187,30 @@ const sketch = (p) => {
       ) {
         if ((!axisRotation && !switchMode) || (!axisRotation && switchMode)) {
           myShapeExport.push([myShape[i][0], 0, myShape[i][2]]);
-          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
           myShapeExport.push([myShape[i - 1][0], 0, myShape[i - 1][2]]);
+          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
 
           myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
+          myShapeExport.push([myShape[i - 1][0], 0, myShape[i - 1][2]]);
           myShapeExport.push([
             myShape[i - 1][0],
             -myShape[i - 1][1],
             myShape[i - 1][2],
           ]);
-          myShapeExport.push([myShape[i - 1][0], 0, myShape[i - 1][2]]);
         }
 
         if (axisRotation && !switchMode) {
           myShapeExport.push([0, 0, myShape[i][2]]);
-          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
           myShapeExport.push([0, 0, myShape[i - 1][2]]);
+          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
 
           myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
+          myShapeExport.push([0, 0, myShape[i - 1][2]]);
           myShapeExport.push([
             myShape[i - 1][0],
             -myShape[i - 1][1],
             myShape[i - 1][2],
           ]);
-          myShapeExport.push([0, 0, myShape[i - 1][2]]);
         }
 
         if (axisRotation && switchMode) {
@@ -218,22 +221,22 @@ const sketch = (p) => {
             -y,
             myShape[i][2],
           ]);
-          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
           myShapeExport.push([
             myShape[myShape.length - 1][0],
             -y,
             myShape[i - 1][2],
           ]);
+          myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
 
           myShapeExport.push([myShape[i][0], -myShape[i][1], myShape[i][2]]);
           myShapeExport.push([
-            myShape[i - 1][0],
-            -myShape[i - 1][1],
+            myShape[myShape.length - 1][0],
+            -y,
             myShape[i - 1][2],
           ]);
           myShapeExport.push([
-            myShape[myShape.length - 1][0],
-            -y,
+            myShape[i - 1][0],
+            -myShape[i - 1][1],
             myShape[i - 1][2],
           ]);
         }
