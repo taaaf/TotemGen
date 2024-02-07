@@ -17,7 +17,18 @@ import ParseVertexData from "./components/ParseVertexData";
 import DragContainerComponent from "./components/DragContainerComponent";
 
 export function App() {
+  
   const [isReadyCreate, setReadyCreate] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [inputText, setInputText] = useState("");
+  const [tableData, setTableData] = useState();
+  const [dropZoneInfo, setDropZoneInfo] = useState({});
+  const [submittedData, setSubmittedData] = useState("");
+  const [isFileTextSubmitted, setIsFileTextSubmitted] = useState(false);
+  const [areDimensionsSubmitted, setAreDimensionsSubmitted] = useState(false);
+  const [areModifiersSubmitted, setAreModifiersSubmitted] = useState(false);
+  const [isReadyToExport, setIsReadyToExport] = useState(false);
+  const [exportStl, setExportStl] = useState(false);
 
   const handleCreate = (data) => {
     setReadyCreate(true);
@@ -26,9 +37,6 @@ export function App() {
   const handleResetCreate = (data) => {
     setReadyCreate(false);
   };
-
-  const [uploadedFile, setUploadedFile] = useState(null);
-  const [inputText, setInputText] = useState("");
 
   const handleFileSelect = (file) => {
     if (file) {
@@ -46,13 +54,9 @@ export function App() {
     setInputText(text);
   };
 
-  const [tableData, setTableData] = useState();
-
   const handleTableData = (data) => {
     setTableData(data);
   };
-
-  const [dropZoneInfo, setDropZoneInfo] = useState({});
 
   const handleDropZoneUpdate = (dropZoneId, draggableId) => {
     setDropZoneInfo((prevInfo) => {
@@ -69,9 +73,6 @@ export function App() {
     });
   };
 
-  const [submittedData, setSubmittedData] = useState("");
-  const [isFileTextSubmitted, setIsFileTextSubmitted] = useState(false);
-
   const handleSubmission = (data) => {
     setSubmittedData(data);
     if (data) {
@@ -79,15 +80,9 @@ export function App() {
     }
   };
 
-  const [areDimensionsSubmitted, setAreDimensionsSubmitted] = useState(false);
-
   const handleDropDivInfoSubmission = () => {
     setAreDimensionsSubmitted(true);
   };
-
-  const [areModifiersSubmitted, setAreModifiersSubmitted] = useState(false);
-
-  const [isReadyToExport, setIsReadyToExport] = useState(false);
 
   const handleModifiersSubmitted = () => {
     setAreModifiersSubmitted(true);
@@ -112,8 +107,6 @@ export function App() {
     setExportStl(false);
   };
 
-  const [exportStl, setExportStl] = useState(false);
-
   const handleExport = () => {
     setExportStl(true);
   };
@@ -126,7 +119,6 @@ export function App() {
 
   return (
     <Router>
-
       <Navbar isReadyCreate={isReadyCreate} />
 
       <Routes>
@@ -135,11 +127,6 @@ export function App() {
           path="/"
           element={
             <>
-
-          {/*  {!isReadyCreate &&  <div className="screen-warning">
-                  This website does not have a mobile version yet. Please open on a larger display.
-                </div>}
-*/}
               {!isReadyCreate && <HomePage />}
 
               {isReadyCreate && !submittedData && (
@@ -201,7 +188,6 @@ export function App() {
         />
 
         <Route path="/documentation" element={<Documentation />} />
-
         <Route path="/contribute" element={<Contribute />} />
       </Routes>
     </Router>

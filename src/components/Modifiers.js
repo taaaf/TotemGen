@@ -152,7 +152,7 @@ const Modifiers = ({
 
     <br />
 
-  <div className="row mt-5">
+  <div className="row mt-4">
 
     <div className="col-3 px-1">
         <label>
@@ -196,7 +196,7 @@ const Modifiers = ({
 
     <br />
 
-    <div className="row mt-2">
+    <div className="row mt-1">
        <label className="col-form-label col-3 px-1 ">
          Angle:
        </label>
@@ -222,7 +222,7 @@ const Modifiers = ({
 
       <br />
 
-      <div className="row mt-2">
+      <div className="row mt-1">
          <label className="col-form-label col-3 px-1">
            Iterations:
          </label>
@@ -252,7 +252,7 @@ const Modifiers = ({
 
        <br />
 
-       <div className="row mt-2">
+       <div className="row mt-1">
           <label className="col-form-label col-3 px-1">
             Offset:
           </label>
@@ -281,7 +281,7 @@ const Modifiers = ({
           </div>
         </div>
 
-    <div className="row mt-5">
+    <div className="row mt-4">
       <label className="col-form-label col-3 px-1">
         X scale:
       </label>
@@ -306,7 +306,7 @@ const Modifiers = ({
       </div>
     </div>
 
-    <div className="row mt-2">
+    <div className="row mt-1">
       <label className="col-form-label col-3 px-1">
         Z scale:
       </label>
@@ -331,7 +331,7 @@ const Modifiers = ({
       </div>
     </div>
 
-    <div className="row mt-4">
+    <div className="row mt-3">
       <label className="col-form-label col-3 px-1">
         SCALE:
       </label>
@@ -356,7 +356,7 @@ const Modifiers = ({
       </div>
     </div>
 
-    <div className="row mt-5">
+    <div className="row mt-4">
             <label className="col-form-label col-3 px-1">
               Color:
             </label>

@@ -29,6 +29,9 @@ const SubmitButton = ({
     }
   };
 
+  const [buttonClass, setButtonClass] = useState("my-btn submitButton");
+  const [arrowStyle, setArrowStyle] = useState({});
+
   const handleDropDivInfoSubmit = () => {
     onDropDivInfoSubmission();
   };
@@ -45,8 +48,6 @@ const SubmitButton = ({
     onCreate();
   };
 
-  const [buttonClass, setButtonClass] = useState("my-btn submitButton");
-  const [arrowStyle, setArrowStyle] = useState({});
 
  useEffect(() => {
    function handleResize() {

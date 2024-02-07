@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const BackButton = ({
   isReadyCreate,
@@ -10,6 +10,8 @@ const BackButton = ({
   areModifiersSubmitted,
   onResetModifiersSubmitted,
 }) => {
+  const [buttonClass, setButtonClass] = useState("my-btn backButton");
+
   const handleResetCreate = () => {
     onResetCreate();
   };
@@ -26,27 +28,23 @@ const BackButton = ({
     onResetModifiersSubmitted();
   };
 
-
-  const [buttonClass, setButtonClass] = useState("my-btn backButton");
-
-    useEffect(() => {
-      function handleResize() {
-        if (window.innerWidth < 576) {
-          setButtonClass("my-btn backButtonMobile");
-        } else if(window.innerWidth < 768){
-            setButtonClass("my-btn backButtonSmall");
-        }else{
-          setButtonClass("my-btn backButton");
-        }
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 576) {
+        setButtonClass("my-btn backButtonMobile");
+      } else if (window.innerWidth < 768) {
+        setButtonClass("my-btn backButtonSmall");
+      } else {
+        setButtonClass("my-btn backButton");
       }
+    }
 
-      handleResize();
+    handleResize();
 
-      window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="position-fixed bottom-0 start-0 p-3 mb-5">
@@ -57,10 +55,7 @@ const BackButton = ({
       )}
 
       {isFileTextSubmitted && !areDimensionsSubmitted && (
-        <button
-          className={buttonClass}
-          onClick={handleBackClickSubmittedData}
-        >
+        <button className={buttonClass} onClick={handleBackClickSubmittedData}>
           BACK
         </button>
       )}

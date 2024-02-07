@@ -170,7 +170,14 @@ const MyShape = ({
                 if (!axisRotation) {
                   // The Axis of rotation is the Y Axis
 
-                
+                  angleRadians = mapRange(
+                    myShapeRows,
+                    0,
+                    dropZoneInfoValues.length - 1,
+                    0,
+                    (angle * Math.PI) / 360 / qualityRotation
+                  );
+
                   if (i === 0) {
                     //piece to go back to 0 height
 
@@ -222,6 +229,14 @@ const MyShape = ({
                   }
                 } else {
                   // The Axis of rotation is the Z Axis
+
+                  angleRadians = mapRange(
+                    myShapeRows,
+                    0,
+                    dropZoneInfoValues.length - 1,
+                    0,
+                    (angle * Math.PI) / 360 / qualityRotation
+                  );
 
                   //piece to go back to 0 height
 
@@ -298,6 +313,15 @@ const MyShape = ({
       myShapeRows++;
     }
 
+        if (angle === 360 && switchMode === 1) {
+          for (let i = 0; i <= table.length*2 -1; i++) {
+            console.log(myShape[i]);
+            const array = myShape[i];
+            myShape.push(array);
+          }
+          myShapeRows++;
+        }
+
     return { myShape, myShapeRows, angleRadians };
   }, [
     dropZoneInfo,
@@ -313,7 +337,7 @@ const MyShape = ({
 
   useEffect(() => {
     onMyShapeChange(myShape);
-    console.log(myShape);
+    //console.log(myShape);
   }, [myShape, onMyShapeChange]);
 
   // Return nothing or a placeholder as this component seems to not render anything.

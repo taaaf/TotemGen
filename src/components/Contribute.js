@@ -18,19 +18,14 @@ const Contribute = () => {
         {" "} if you want to contribute to the coding.
         <br />   <br /> <br /></h1>
         <h4>
-        Suggested features to add:
-        <br />
-        - more modifiers
-        <br />
-        - the drop order of dimensions is kept in the transformation
-        <br />
+
 
         </h4>
         </div>
 
         <div className="col border-black my-3 me-3 p-3">
         <h1>
-        To give feedback write me on the {" "}
+        To give feedback write me on this {" "}
         <a
           href="https://www.instagram.com/form____plusmemories/"
           style={{ color: "#2B2A29" }}
@@ -38,7 +33,7 @@ const Contribute = () => {
         >
           IG page
         </a> {" "}
-        or leave a message on the {" "}
+        or leave a message on this {" "}
         <a
           href="https://github.com/taaaf/Totemgen/discussions"
           style={{ color: "#2B2A29" }}

@@ -4,8 +4,7 @@ import * as p5 from "p5";
 import Modifiers from "./Modifiers";
 import MyShape from "./MyShape";
 import Export from "./Export";
-import { ReactComponent as CameraIcon } from '../assets/camera.svg';
-
+import { ReactComponent as CameraIcon } from "../assets/camera.svg";
 
 const sketch = (p) => {
   let switchMode = 0;
@@ -31,11 +30,9 @@ const sketch = (p) => {
   let cameraY;
 
   let exportStl;
-  let exportBoolean = false;
   let shapeName = "MySculpture";
   let saveCanvas = false;
   let onSaveCanvasComplete;
-
 
   const divCanvas = document.getElementById("divCanvas");
 
@@ -49,8 +46,6 @@ const sketch = (p) => {
       window.innerHeight * 0.8,
       p.WEBGL
     );
-
-
   };
 
   p.windowResized = () => {
@@ -58,16 +53,20 @@ const sketch = (p) => {
   };
 
   p.updateWithProps = (props) => {
-
-    if (exportStl !== props.exportStl && exportStl) {
+    if (
+      areModifiersSubmitted === true &&
+      props.areModifiersSubmitted === false
+    ) {
       canvas.remove();
     }
 
-    canvas = p.createCanvas(
-      divCanvas.clientWidth,
-      window.innerHeight * 0.8,
-      p.WEBGL
-    );
+    if (!exportStl) {
+      canvas = p.createCanvas(
+        divCanvas.clientWidth,
+        window.innerHeight * 0.8,
+        p.WEBGL
+      );
+    }
 
     myShape = props.myShape;
 
@@ -97,49 +96,38 @@ const sketch = (p) => {
       onSaveCanvasComplete = props.onSaveCanvasComplete;
     }
 
-    if(saveCanvas){
-      canvas = p.createCanvas(1920, 1920, p.WEBGL);
-    }
-
-
-    maxY=0;
-    maxX=0;
-    maxZ=0;
+    maxY = 0;
+    maxX = 0;
+    maxZ = 0;
 
     for (let i = 0; i < myShape.length; i++) {
-
       if (Math.abs(myShape[i][0]) > maxX) {
         maxX = Math.abs(myShape[i][0]);
       }
       if (Math.abs(myShape[i][1]) > maxY) {
         maxY = Math.abs(myShape[i][1]);
       }
-      if(myShape[i][2] > maxZ){
-        maxZ =  Math.abs(myShape[i][2]);
+      if (myShape[i][2] > maxZ) {
+        maxZ = Math.abs(myShape[i][2]);
       }
-
     }
 
-
-    if(!axisRotation&&angleRadians){
-      maxZ= maxZ*2;
+    if (!axisRotation && angleRadians) {
+      maxZ = maxZ * 2;
     }
 
-    if(axisRotation&&angleRadians){
-      maxY= maxY*2;
+    if (axisRotation && angleRadians) {
+      maxY = maxY * 2;
     }
 
-
-    // cameraFactor = p.sqrt(maxY*maxY + maxZ*maxZ);
-
-    if(maxY > maxZ){
-      cameraFactor=maxY;
-    }else{
-      cameraFactor = maxZ;
-    }
-
+    cameraFactor = Math.max(maxX, maxY, maxZ);
 
     createModel();
+
+    if (saveCanvas) {
+      canvas = p.createCanvas(1920, 1920, p.WEBGL);
+      cameraFactor /= 3;
+    }
   };
 
   function createModel() {
@@ -345,7 +333,6 @@ const sketch = (p) => {
   p.draw = () => {
     p.background(255);
 
-
     if (!areModifiersSubmitted) {
       if (p.mouseIsPressed && isMouseOverCanvas()) {
         camAngleX -= (p.mouseX - p.pmouseX) * 0.005;
@@ -362,16 +349,23 @@ const sketch = (p) => {
       p.camera(camX, camY, camZ, 0, 0, 0, 0, 1, 0);
     } else {
       p.camera(1, 1, 0, 0, 0, 0);
-      p.ortho(-p.width / 2, p.width / 2, p.height / 2, -p.height / 2, -1000, 1000);
+      p.ortho(
+        -p.width / 2,
+        p.width / 2,
+        p.height / 2,
+        -p.height / 2,
+        -1000,
+        1000
+      );
       p.rotateY(p.frameCount / 160);
-      scale = -200/cameraFactor;
+      scale = -200 / cameraFactor;
     }
 
-      if(!axisRotation && angle){
-        p.translate(0, 0, 0);
-      }else{
-        p.translate(0, 0, -maxZ * (scale / 2) );
-      }
+    if (!axisRotation && angle) {
+      p.translate(0, 0, 0);
+    } else {
+      p.translate(0, 0, -maxZ * (scale / 2));
+    }
 
     p.scale(scale);
 
@@ -386,10 +380,10 @@ const sketch = (p) => {
       p.stroke(0);
       p.beginShape(p.LINES);
 
-    {
+      {
         let verticesPerRow = myShape.length / myShapeRows;
 
-      for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
+        for (let i = verticesPerRow; i + 1 < myShape.length; i++) {
           p.vertex(
             myShape[i - verticesPerRow][0],
             myShape[i - verticesPerRow][1],
@@ -512,27 +506,17 @@ const sketch = (p) => {
         p.pop();
       }
 
-      if(saveCanvas){
+      if (saveCanvas) {
         p.saveCanvas("Render_Sculpture_" + shapeName, "jpg");
         canvas = p.createCanvas(
           divCanvas.clientWidth,
           window.innerHeight * 0.8,
           p.WEBGL
         );
-        saveCanvas=false;
+        saveCanvas = false;
         if (onSaveCanvasComplete) {
-        onSaveCanvasComplete();
-      }
-      }
-
-      if (exportBoolean) {
-        canvas = p.createCanvas(
-          divCanvas.clientWidth,
-          window.innerHeight * 0.8,
-          p.WEBGL
-        );
-        exportBoolean = false;
-
+          onSaveCanvasComplete();
+        }
       }
     }
   };
@@ -557,6 +541,10 @@ const Sketch = ({
 
   const [shapeName, setShapeName] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  const [myShape, setMyShape] = useState([]);
+  const [myShapeRows, setMyShapeRows] = useState();
+  const [angleRadians, setAngleRadians] = useState();
 
   const handleAngle = (data) => {
     setAngle(data);
@@ -594,10 +582,6 @@ const Sketch = ({
     setColor(data);
   };
 
-  const [myShape, setMyShape] = useState([]);
-  const [myShapeRows, setMyShapeRows] = useState();
-  const [angleRadians, setAngleRadians] = useState();
-
   const handleMyShapeChange = ({ myShape, myShapeRows, angleRadians }) => {
     setMyShape(myShape);
     setMyShapeRows(myShapeRows);
@@ -616,14 +600,11 @@ const Sketch = ({
 
   const handleSaveCanvas = () => {
     setSaveCanvas(true);
-    console.log(saveCanvas);
-   };
+  };
 
   const handleSaveCanvasComplete = () => {
     setSaveCanvas(false);
-    console.log(saveCanvas);
   };
-
 
   return (
     <>
@@ -631,76 +612,78 @@ const Sketch = ({
         <div className="row">
           {areModifiersSubmitted ? (
             <>
-            <h2 className="text-center pt-3">SAVE</h2>
+              <h2 className="text-center pt-3">SAVE</h2>
 
-            <div
-              className="col p-0 m-0 d-flex justify-content-center"
-              id="divCanvas"
-            >
-              <ReactP5Wrapper
-                sketch={sketch}
-                myShape={myShape}
-                axisRotation={axisRotation}
-                myShapeRows={myShapeRows}
-                angleRadians={angleRadians}
-                switchMode={switchMode}
-                angle={angle}
-                areModifiersSubmitted={areModifiersSubmitted}
-                scale={scale}
-                color={color}
-                exportStl={exportStl}
-                shapeName={shapeName}
-                saveCanvas={saveCanvas}
-                onSaveCanvasComplete={handleSaveCanvasComplete}
-              />
-              <MyShape
-                dropZoneInfo={dropZoneInfo}
-                table={table}
-                onMyShapeChange={handleMyShapeChange}
-                angle={angle}
-                switchMode={switchMode}
-                qualityRotation={qualityRotation}
-                offsetValue={offsetValue}
-                axisRotation={axisRotation}
-                xScale={xScale}
-                zScale={zScale}
-              />
-
-              <div className="export-name-camera row">
-
-              <input
-                className="shape-name-input col-8"
-                type="text"
-                value={shapeName}
-                onChange={handleShapeNameChange}
-                placeholder="Enter sculpture name"
-              />
-
-              <div className="col-1"> </div>
-
-              <button className="col-3 camera-button" onClick={handleSaveCanvas}>
-                   <CameraIcon className="camera-icon" style={{ width: "60%", padding: "10%", height:"100%"}} />
-              </button>
-              </div>
-
-              {exportStl && (
-                <Export
+              <div
+                className="col p-0 m-0 d-flex justify-content-center"
+                id="divCanvas"
+              >
+                <ReactP5Wrapper
+                  sketch={sketch}
                   myShape={myShape}
                   axisRotation={axisRotation}
                   myShapeRows={myShapeRows}
                   angleRadians={angleRadians}
                   switchMode={switchMode}
+                  angle={angle}
+                  areModifiersSubmitted={areModifiersSubmitted}
+                  scale={scale}
+                  color={color}
+                  exportStl={exportStl}
                   shapeName={shapeName}
+                  saveCanvas={saveCanvas}
+                  onSaveCanvasComplete={handleSaveCanvasComplete}
+                />
+                <MyShape
+                  dropZoneInfo={dropZoneInfo}
+                  table={table}
+                  onMyShapeChange={handleMyShapeChange}
+                  angle={angle}
+                  switchMode={switchMode}
+                  qualityRotation={qualityRotation}
+                  offsetValue={offsetValue}
+                  axisRotation={axisRotation}
+                  xScale={xScale}
+                  zScale={zScale}
                 />
 
+                <div className="export-name-camera row">
+                  <input
+                    className="shape-name-input col-8"
+                    type="text"
+                    value={shapeName}
+                    onChange={handleShapeNameChange}
+                    placeholder="Enter sculpture name"
+                  />
 
-              )}
+                  <div className="col-1"> </div>
 
-            </div>
+                  <button
+                    className="col-3 camera-button"
+                    onClick={handleSaveCanvas}
+                  >
+                    <CameraIcon
+                      className="camera-icon"
+                      style={{ width: "60%", padding: "10%", height: "100%" }}
+                    />
+                  </button>
+                </div>
+
+                {exportStl && (
+                  <Export
+                    myShape={myShape}
+                    axisRotation={axisRotation}
+                    myShapeRows={myShapeRows}
+                    angleRadians={angleRadians}
+                    switchMode={switchMode}
+                    shapeName={shapeName}
+                  />
+                )}
+              </div>
             </>
           ) : (
             <>
-            <h2 className="text-center pt-3">CUSTOMIZE</h2>
+              <h2 className="text-center pt-3">CUSTOMIZE</h2>
               <div className="col-lg-7 col-xl-8 p-0 m-0" id="divCanvas">
                 <ReactP5Wrapper
                   sketch={sketch}

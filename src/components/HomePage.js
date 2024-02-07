@@ -14,24 +14,14 @@ const HomePage = () => {
     setShowNews(!showNews);
   };
 
-  const [showNews2, setShowNews2] = useState(true);
-
-  const toggleNews2 = () => {
-    setShowNews2(!showNews2);
-  };
 
   return (
     <>
     <div className="news">
 
-      {showNews &&
-        <div className="">
-
-            </div>}
-
-      {showNews2 && (
+      {showNews && (
           <div className="news-window">
-          <button className="close-button" onClick={toggleNews2}>
+          <button className="close-button" onClick={toggleNews}>
             {" "}
             <img src={x} alt="X" className="x" />
           </button>
