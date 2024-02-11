@@ -379,6 +379,9 @@ const sketch = (p) => {
 
       p.push();
       p.noFill();
+      if(
+        areModifiersSubmitted
+      ){p.strokeWeight(40/cameraFactor);}
       p.stroke(0);
       p.beginShape(p.LINES);
 
@@ -443,6 +446,9 @@ const sketch = (p) => {
         p.pop();
 
         p.push();
+        if(
+          areModifiersSubmitted
+        ){p.strokeWeight(40/cameraFactor);}
         p.fill(color);
         p.beginShape(p.TRIANGLE_STRIP);
 
@@ -462,6 +468,9 @@ const sketch = (p) => {
         p.pop();
 
         p.push();
+        if(
+          areModifiersSubmitted
+        ){p.strokeWeight(40/cameraFactor);}
         p.fill(color);
         p.beginShape(p.TRIANGLE_STRIP);
         //Wall 2
