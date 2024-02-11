@@ -51,13 +51,13 @@ const DragContainerComponent = ({ table, onDropZoneUpdate }) => {
     draggableIds.forEach((draggableId) => {
       const draggedElement = document.getElementById(draggableId);
 
-      const isZAxis = event.target.id === "dropzone1";
+      const isXAxis = event.target.id === "dropzone1";
       const hasChild = event.target.children.length > 0;
 
       if (
         draggedElement &&
         event.target.classList.contains("droppable") &&
-        (!isZAxis || !hasChild)
+        (!isXAxis || !hasChild)
       ) {
         event.target.appendChild(draggedElement);
         onDropZoneUpdate(event.target.id, draggableId);

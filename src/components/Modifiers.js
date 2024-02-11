@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 const Modifiers = ({
+  angle,
+  switchMode,
+  qualityRotation,
+  offsetValue,
+  axisRotation,
+  scale,
+  xScale,
+  zScale,
+  color,
   onAngleChange,
   onSwitchModeChange,
   onQualityRotationChange,
@@ -12,90 +21,40 @@ const Modifiers = ({
   onColorChange
 }) => {
 
-
-  const [angle, setAngle] = useState(0);
-  const [switchMode, setSwitchMode] = useState(0);
-  const [qualityRotation, setQualityRotation] = useState(1);
-  const [offsetValue, setOffsetValue] = useState(0);
-  const [axisRotation, setAxisRotation] = useState(0);
-  const [scale, setScale] = useState(1);
-  const [xScale, setXScale] = useState(1);
-  const [zScale, setZScale] = useState(1);
-  const [color, setColor] = useState('#FFFFFF');
-
-
-
-  useEffect(() => {
-    onAngleChange(angle);
-  }, [angle, onAngleChange]);
-
-  useEffect(() => {
-    onSwitchModeChange(switchMode);
-  }, [switchMode, onSwitchModeChange]);
-
-  useEffect(() => {
-    onQualityRotationChange(qualityRotation);
-  }, [qualityRotation, onQualityRotationChange]);
-
-  useEffect(() => {
-    onOffsetValueChange(offsetValue);
-  }, [offsetValue, onOffsetValueChange]);
-
-  useEffect(() => {
-    onAxisRotationChange(axisRotation);
-  }, [axisRotation, onAxisRotationChange]);
-
-  useEffect(() => {
-    onScaleChange(scale);
-  }, [scale, onScaleChange]);
-
-  useEffect(() => {
-    onXScaleChange(xScale);
-  }, [xScale, onXScaleChange]);
-
-  useEffect(() => {
-    onZScaleChange(zScale);
-  }, [zScale, onZScaleChange]);
-
-  useEffect(() => {
-   onColorChange(color);
- }, [color, onColorChange]);
-
-
   const handleAngleChange = (e) => {
-    setAngle(Number(e.target.value));
+    onAngleChange(Number(e.target.value));
   };
 
   const handleSwitchModeChange = (e) => {
-    setSwitchMode(Number(e.target.value));
+    onSwitchModeChange(Number(e.target.value));
   };
 
   const handleQualityRotation = (e) => {
-    setQualityRotation(Number(e.target.value));
+    onQualityRotationChange(Number(e.target.value));
   };
 
   const handleOffsetValue = (e) => {
-    setOffsetValue(Number(e.target.value));
+    onOffsetValueChange(Number(e.target.value));
   };
 
   const handleAxisRotationChange = (e) => {
-    setAxisRotation(Number(e.target.value));
+    onAxisRotationChange(Number(e.target.value));
   };
 
   const handleScaleChange = (e) => {
-    setScale(Number(e.target.value));
+    onScaleChange(Number(e.target.value));
   };
 
   const handleXScaleChange = (e) => {
-    setXScale(Number(e.target.value));
+    onXScaleChange(Number(e.target.value));
   };
 
   const handleZScaleChange = (e) => {
-    setZScale(Number(e.target.value));
+    onZScaleChange(Number(e.target.value));
   };
 
   const handleColorChange = (e) => {
-    setColor(e.target.value);
+    onColorChange(e.target.value);
   };
 
 

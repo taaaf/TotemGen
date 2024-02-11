@@ -22,6 +22,8 @@ const MyShape = ({
     const dropZoneInfoLength = dropZoneInfo ? Object.values(dropZoneInfo) : [];
     const dropZoneInfoValues = [];
 
+    console.log(dropZoneInfo);
+
     for (let i = 0; i < dropZoneInfoLength.length; i++) {
       if (Object.values(dropZoneInfo)[i] === "dropzone1") {
         dropZoneInfoValues.unshift(Number(Object.keys(dropZoneInfo)[i]));
@@ -32,7 +34,9 @@ const MyShape = ({
       }
     }
 
-    if(angle > 0){
+    console.log(dropZoneInfoValues);
+
+    if (angle > 0) {
       zScale = 0;
     }
 
@@ -59,17 +63,17 @@ const MyShape = ({
               valueZ = myShapeRows;
             }
 
+            angleRadians = mapRange(
+              myShapeRows,
+              0,
+              dropZoneInfoValues.length - 1,
+              0,
+              (angle * Math.PI) / 180 / qualityRotation
+            );
+
             for (let i = 0; i < table.length; i++) {
               if (!axisRotation) {
                 // The Axis of rotation is the Y Axis
-
-                angleRadians = mapRange(
-                  myShapeRows,
-                  0,
-                  dropZoneInfoValues.length - 1,
-                  0,
-                  (angle * Math.PI) / 180 / qualityRotation
-                );
 
                 //piece to go back to 0 height
                 if (i === 0) {
@@ -109,15 +113,7 @@ const MyShape = ({
                   myShape.push(array);
                 }
               } else {
-                // the Axis of rotation is the Z Axis
-
-                angleRadians = mapRange(
-                  myShapeRows,
-                  0,
-                  dropZoneInfoValues.length - 1,
-                  0,
-                  (angle * Math.PI) / 180 / qualityRotation
-                );
+                // the Axis of rotation is the X Axis
 
                 if (i === 0) {
                   const z = valueZ * zScale;
@@ -170,17 +166,17 @@ const MyShape = ({
             }
 
             for (let j = 0; j < 2; j++) {
+              angleRadians = mapRange(
+                myShapeRows,
+                0,
+                dropZoneInfoValues.length - 1,
+                0,
+                (angle * Math.PI) / 360 / qualityRotation
+              );
+
               for (let i = 0; i < table.length; i++) {
                 if (!axisRotation) {
                   // The Axis of rotation is the Y Axis
-
-                  angleRadians = mapRange(
-                    myShapeRows,
-                    0,
-                    dropZoneInfoValues.length - 1,
-                    0,
-                    (angle * Math.PI) / 360 / qualityRotation
-                  );
 
                   if (i === 0) {
                     //piece to go back to 0 height
@@ -232,15 +228,7 @@ const MyShape = ({
                     myShape.push(array2);
                   }
                 } else {
-                  // The Axis of rotation is the Z Axis
-
-                  angleRadians = mapRange(
-                    myShapeRows,
-                    0,
-                    dropZoneInfoValues.length - 1,
-                    0,
-                    (angle * Math.PI) / 360 / qualityRotation
-                  );
+                  // The Axis of rotation is the X Axis
 
                   //piece to go back to 0 height
 
@@ -317,14 +305,13 @@ const MyShape = ({
       myShapeRows++;
     }
 
-        if (angle === 360 && switchMode === 1) {
-          for (let i = 0; i <= table.length*2 -1; i++) {
-            console.log(myShape[i]);
-            const array = myShape[i];
-            myShape.push(array);
-          }
-          myShapeRows++;
-        }
+    if (angle === 360 && switchMode === 1) {
+      for (let i = 0; i <= table.length * 2 - 1; i++) {
+        const array = myShape[i];
+        myShape.push(array);
+      }
+      myShapeRows++;
+    }
 
     return { myShape, myShapeRows, angleRadians };
   }, [
@@ -341,7 +328,7 @@ const MyShape = ({
 
   useEffect(() => {
     onMyShapeChange(myShape);
-    //console.log(myShape);
+    console.log(myShape);
   }, [myShape, onMyShapeChange]);
 
   // Return nothing or a placeholder as this component seems to not render anything.

@@ -17,7 +17,7 @@ import ParseVertexData from "./components/ParseVertexData";
 import DragContainerComponent from "./components/DragContainerComponent";
 
 export function App() {
-  
+
   const [isReadyCreate, setReadyCreate] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [inputText, setInputText] = useState("");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { ReactP5Wrapper } from "@p5-wrapper/react";
 import * as p5 from "p5";
 import Modifiers from "./Modifiers";
@@ -145,12 +145,12 @@ const sketch = (p) => {
               myShape[i - verticesPerRow][1],
               myShape[i - verticesPerRow][2]
             ),
-            new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2]),
             new p5.Vector(
               myShape[i + 1][0],
               myShape[i + 1][1],
               myShape[i + 1][2]
-            )
+            ),
+            new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2])
           );
 
           this.vertices.push(
@@ -160,14 +160,14 @@ const sketch = (p) => {
               myShape[i - verticesPerRow][2]
             ),
             new p5.Vector(
-              myShape[i + 1][0],
-              myShape[i + 1][1],
-              myShape[i + 1][2]
-            ),
-            new p5.Vector(
               myShape[i + 1 - verticesPerRow][0],
               myShape[i + 1 - verticesPerRow][1],
               myShape[i + 1 - verticesPerRow][2]
+            ),
+            new p5.Vector(
+              myShape[i + 1][0],
+              myShape[i + 1][1],
+              myShape[i + 1][2]
             )
           );
 
@@ -181,14 +181,14 @@ const sketch = (p) => {
                 myShape[i - verticesPerRow][2]
               ),
               new p5.Vector(
-                myShape[i - verticesPerRow * 2 + 1][0],
-                myShape[i - verticesPerRow * 2 + 1][1],
-                myShape[i - verticesPerRow * 2 + 1][2]
-              ),
-              new p5.Vector(
                 myShape[i - verticesPerRow + 1][0],
                 myShape[i - verticesPerRow + 1][1],
                 myShape[i - verticesPerRow + 1][2]
+              ),
+              new p5.Vector(
+                myShape[i - verticesPerRow * 2 + 1][0],
+                myShape[i - verticesPerRow * 2 + 1][1],
+                myShape[i - verticesPerRow * 2 + 1][2]
               )
             );
 
@@ -198,12 +198,12 @@ const sketch = (p) => {
                 myShape[i - verticesPerRow][1],
                 myShape[i - verticesPerRow][2]
               ),
-              new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2]),
               new p5.Vector(
                 myShape[i - verticesPerRow + 1][0],
                 myShape[i - verticesPerRow + 1][1],
                 myShape[i - verticesPerRow + 1][2]
-              )
+              ),
+              new p5.Vector(myShape[i][0], myShape[i][1], myShape[i][2])
             );
           }
         }
@@ -214,36 +214,36 @@ const sketch = (p) => {
           for (let i = 1; i < verticesPerRow - 1; i++) {
             this.vertices.push(
               new p5.Vector([0, 0, myShape[i][2]]),
-              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-              new p5.Vector([0, 0, myShape[i + 1][2]])
+              new p5.Vector([0, 0, myShape[i + 1][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]])
             );
 
             this.vertices.push(
               new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([0, 0, myShape[i + 1][2]]),
               new p5.Vector([
                 myShape[i + 1][0],
                 myShape[i + 1][1],
                 myShape[i + 1][2],
-              ]),
-              new p5.Vector([0, 0, myShape[i + 1][2]])
+              ])
             );
           }
         }
         for (let i = 1; i < verticesPerRow - 1; i++) {
           this.vertices.push(
             new p5.Vector([myShape[i][0], 0, myShape[i][2]]),
-            new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-            new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]])
+            new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]]),
+            new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]])
           );
 
           this.vertices.push(
             new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+            new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]]),
             new p5.Vector([
               myShape[i + 1][0],
               myShape[i + 1][1],
               myShape[i + 1][2],
-            ]),
-            new p5.Vector([myShape[i + 1][0], 0, myShape[i + 1][2]])
+            ])
           );
         }
 
@@ -259,36 +259,36 @@ const sketch = (p) => {
           if ((!axisRotation && !switchMode) || (!axisRotation && switchMode)) {
             this.vertices.push(
               new p5.Vector([myShape[i][0], 0, myShape[i][2]]),
-              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-              new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]])
+              new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]])
             );
 
             this.vertices.push(
               new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]]),
               new p5.Vector([
                 myShape[i - 1][0],
                 myShape[i - 1][1],
                 myShape[i - 1][2],
-              ]),
-              new p5.Vector([myShape[i - 1][0], 0, myShape[i - 1][2]])
+              ])
             );
           }
 
           if (axisRotation && !switchMode) {
             this.vertices.push(
               new p5.Vector([0, 0, myShape[i][2]]),
-              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
-              new p5.Vector([0, 0, myShape[i - 1][2]])
+              new p5.Vector([0, 0, myShape[i - 1][2]]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]])
             );
 
             this.vertices.push(
               new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
+              new p5.Vector([0, 0, myShape[i - 1][2]]),
               new p5.Vector([
                 myShape[i - 1][0],
                 myShape[i - 1][1],
                 myShape[i - 1][2],
-              ]),
-              new p5.Vector([0, 0, myShape[i - 1][2]])
+              ])
             );
           }
 
@@ -297,28 +297,30 @@ const sketch = (p) => {
 
             this.vertices.push(
               new p5.Vector([myShape[myShape.length - 1][0], y, myShape[i][2]]),
-              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
               new p5.Vector([
                 myShape[myShape.length - 1][0],
                 y,
                 myShape[i - 1][2],
-              ])
+              ]),
+              new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]])
             );
 
             this.vertices.push(
               new p5.Vector([myShape[i][0], myShape[i][1], myShape[i][2]]),
               new p5.Vector([
-                myShape[i - 1][0],
-                myShape[i - 1][1],
-                myShape[i - 1][2],
-              ]),
-              new p5.Vector([
                 myShape[myShape.length - 1][0],
                 y,
                 myShape[i - 1][2],
+              ]),
+              new p5.Vector([
+                myShape[i - 1][0],
+                myShape[i - 1][1],
+                myShape[i - 1][2],
               ])
+
             );
           }
+
         }
       }
     );
@@ -546,41 +548,42 @@ const Sketch = ({
   const [myShapeRows, setMyShapeRows] = useState();
   const [angleRadians, setAngleRadians] = useState();
 
-  const handleAngle = (data) => {
-    setAngle(data);
-  };
+  const handleAngle = useCallback((data) => {
+  setAngle(data);
+}, []);
 
-  const handleSwitchMode = (data) => {
-    setSwitchMode(data);
-  };
+const handleSwitchMode = useCallback((data) => {
+  setSwitchMode(data);
+}, []);
 
-  const handleQualityRotation = (data) => {
-    setQualityRotation(data);
-  };
+const handleQualityRotation = useCallback((data) => {
+  setQualityRotation(data);
+}, []);
 
-  const handleOffsetValue = (data) => {
-    setOffsetValue(data);
-  };
+const handleOffsetValue = useCallback((data) => {
+  setOffsetValue(data);
+}, []);
 
-  const handleAxisRotation = (data) => {
-    setAxisRotation(data);
-  };
+const handleAxisRotation = useCallback((data) => {
+  setAxisRotation(data);
+}, []);
 
-  const handleScaleChange = (data) => {
-    setScale(data);
-  };
+const handleScaleChange = useCallback((data) => {
+  setScale(data);
+}, []);
 
-  const handleXScaleChange = (data) => {
-    setXScale(data);
-  };
+const handleXScaleChange = useCallback((data) => {
+  setXScale(data);
+}, []);
 
-  const handleZScaleChange = (data) => {
-    setZScale(data);
-  };
+const handleZScaleChange = useCallback((data) => {
+  setZScale(data);
+}, []);
 
-  const handleColorChange = (data) => {
-    setColor(data);
-  };
+const handleColorChange = useCallback((data) => {
+  setColor(data);
+}, []);
+
 
   const handleMyShapeChange = ({ myShape, myShapeRows, angleRadians }) => {
     setMyShape(myShape);
@@ -717,6 +720,16 @@ const Sketch = ({
               <div className="col-sm-8 col-md-8 col-lg-4 col-xl-3 px-0 mx-0 my-5">
                 <div className="modifiers mx-1">
                   <Modifiers
+                  angle={angle}
+                  switchMode={switchMode}
+                  qualityRotation={qualityRotation}
+                  offsetValue={offsetValue}
+                  axisRotation={axisRotation}
+                  scale={scale}
+                  xScale={xScale}
+                  zScale={zScale}
+                  color={color}
+
                     onAngleChange={handleAngle}
                     onSwitchModeChange={handleSwitchMode}
                     onQualityRotationChange={handleQualityRotation}
