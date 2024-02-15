@@ -1,4 +1,4 @@
-CONTRIBUTING TO TOTEMGEN
+## CONTRIBUTING TO TOTEMGEN
 
 If you want to contribute, first of all check out the code of conduct!
 
