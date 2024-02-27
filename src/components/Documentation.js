@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
-import res01 from "../assets/resources_01.png";
-import res02 from "../assets/resources_02.png";
-import res03 from "../assets/resources_03.png";
-import res04 from "../assets/resources_04.png";
-import res05 from "../assets/resources_05.png";
-import res06 from "../assets/resources_06.png";
+import res01 from "../assets/resources_01.jpg";
+import res02 from "../assets/resources_02.jpg";
+import res03 from "../assets/resources_03.jpg";
+import res04 from "../assets/resources_04.jpg";
+import res05 from "../assets/resources_05.jpg";
+import res06 from "../assets/resources_06.jpg";
 import dataSculptureExample1 from "../assets/example_photo1.JPG";
 import dataSculptureExample2 from "../assets/example_photo2.JPG";
 import dataSculptureExample3 from "../assets/example_photo3.JPG";
-import keychain from "../assets/keychain.png";
-import colab1 from "../assets/colab1.png";
-import colab2 from "../assets/colab2.png";
+import keychain from "../assets/keychain.jpg";
+import colab1 from "../assets/colab1.jpg";
+import colab2 from "../assets/colab2.jpg";
 
 const Resources = () => {
   const location = useLocation();
