@@ -22,8 +22,6 @@ const MyShape = ({
     const dropZoneInfoLength = dropZoneInfo ? Object.values(dropZoneInfo) : [];
     const dropZoneInfoValues = [];
 
-    console.log(dropZoneInfo);
-
     for (let i = 0; i < dropZoneInfoLength.length; i++) {
       if (Object.values(dropZoneInfo)[i] === "dropzone1") {
         dropZoneInfoValues.unshift(Number(Object.keys(dropZoneInfo)[i]));
@@ -34,17 +32,9 @@ const MyShape = ({
       }
     }
 
-    console.log(dropZoneInfoValues);
-
-    if (angle > 0) {
-      zScale = 0;
-    }
-
     let valueZ = 0;
-
     const valueX = [];
     let myShapeRows = 0;
-
     let angleRadians = 0;
 
     for (let rep = 0; rep < qualityRotation; rep++) {
