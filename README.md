@@ -1,6 +1,6 @@
 # Totemgen
 
-Totemgen is a free and opensource tool for generating data sculptures. It was developed to simplify the process of translating table data into three-dimensional shapes. Look up data physicalization if you want to learn more (or read my thesis :P ... link coming soon when it will be finished).
+Totemgen is a free and opensource tool for generating data sculptures. It was developed to simplify the process of translating table data into three-dimensional shapes. Look up data physicalization if you want to learn more (or read my thesis :P ... [link](https://www.politesi.polimi.it/handle/10589/219733)).
 
 This is my first open-source project :) If I made some mistake in the ReadMe please let me know ! Every bit of help is greatly appreciated.
 
